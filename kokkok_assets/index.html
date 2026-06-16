@@ -323,6 +323,457 @@ img{display:block;width:100%;height:auto}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
+
+
+/* ==========================================================================
+   v70 Mobile Layout Refinement
+   - 모바일 스크롤 압박 완화
+   - 텍스트 여백/줄간격 개선
+   - 지도 영역 모바일 표시 안정화
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  body {
+    line-height: 1.58;
+    padding-bottom: 118px;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .section {
+    padding: 66px 0;
+  }
+
+  .section-header {
+    margin-bottom: 38px;
+    gap: 20px;
+  }
+
+  .section-title,
+  .method-title {
+    font-size: clamp(32px, 10vw, 46px);
+    line-height: 1.24;
+    letter-spacing: -.055em;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    line-height: 1.76;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: .12em;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: auto;
+    padding: 62px 0 54px;
+    background-size: 44px 44px, 44px 44px, auto;
+  }
+
+  .hero-badge {
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .hero-display {
+    line-height: 1.12;
+    letter-spacing: -.065em;
+  }
+
+  .hero-display .line-1 {
+    font-size: clamp(22px, 6vw, 28px);
+    margin-bottom: 10px;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(46px, 14.5vw, 64px);
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(40px, 12.5vw, 58px);
+    margin-top: 8px;
+  }
+
+  .hero-lead {
+    margin-top: 24px;
+    font-size: 14.5px;
+    line-height: 1.74;
+  }
+
+  .hero-actions {
+    margin-top: 26px;
+    gap: 9px;
+  }
+
+  .hero-actions .btn {
+    min-height: 52px;
+    font-size: 14px;
+    padding: 0 20px;
+  }
+
+  .hero-tags {
+    margin-top: 22px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .tag {
+    min-height: 32px;
+    width: 100%;
+    justify-content: center;
+    font-size: 12.5px;
+    border-radius: 14px;
+  }
+
+  .orb {
+    filter: blur(54px);
+    opacity: .42;
+  }
+
+  /* METRICS */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric {
+    padding: 24px 18px;
+  }
+
+  .metric strong {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  .metric span {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  /* METHOD */
+  .method {
+    padding: 70px 0;
+  }
+
+  .method-row {
+    margin-top: 42px;
+    gap: 28px;
+  }
+
+  .method-item {
+    padding: 2px 2px 0;
+  }
+
+  .icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+  }
+
+  .icon-wrap svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .method-item h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .method-item p {
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  /* CURRICULUM / MAP */
+  .curriculum .section-header {
+    margin-bottom: 34px;
+  }
+
+  .curriculum .section-desc {
+    margin-top: 18px;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .curriculum-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .map-stage {
+    width: 100%;
+    min-height: 380px;
+    height: 380px;
+    overflow: visible;
+    display: grid;
+    place-items: center;
+    justify-self: center;
+    margin: 0 auto;
+  }
+
+  .map-visual {
+    width: 112%;
+    max-width: 560px;
+    margin-left: 0;
+    transform: translateX(-2%) scale(1.02);
+    aspect-ratio: 4660 / 3504;
+  }
+
+  .map-base,
+  .map-area-highlight {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .map-area-highlight {
+    opacity: 0;
+  }
+
+  .map-area-highlight.is-active {
+    opacity: 1;
+    transform: scale(1.045);
+  }
+
+  .map-region-label {
+    font-size: clamp(20px, 7.5vw, 30px);
+  }
+
+  .map-pin {
+    width: 22px;
+    height: 22px;
+  }
+
+  .map-pin.is-active {
+    transform: translate(-50%, -122%) rotate(-45deg) scale(1.46);
+  }
+
+  .curriculum-panel {
+    width: 100%;
+    max-width: none;
+  }
+
+  .week-roadmap {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .week-roadmap-card {
+    min-height: auto;
+    padding: 16px 16px 14px;
+    border-radius: 18px;
+  }
+
+  .week-roadmap-card strong {
+    font-size: 18px;
+    line-height: 1.28;
+    margin-top: 12px;
+  }
+
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: auto;
+    transform: translateY(-2px);
+  }
+
+  .week-roadmap-card p {
+    font-size: 12.8px;
+    line-height: 1.62;
+  }
+
+  /* TRUST / PHOTO */
+  .trust-layout {
+    gap: 34px;
+  }
+
+  .trust-points {
+    gap: 22px;
+  }
+
+  .trust-point h3 {
+    font-size: 20px;
+  }
+
+  .trust-point p {
+    font-size: 13.8px;
+    line-height: 1.7;
+  }
+
+  .photo-slider {
+    margin-top: 40px;
+    border-radius: 20px;
+  }
+
+  .slide {
+    height: 250px;
+  }
+
+  .slide-caption {
+    left: 16px;
+    bottom: 14px;
+    font-size: 12px;
+  }
+
+  .slider-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* DEADLINE */
+  .deadline-section-final .urg {
+    padding: 54px 18px;
+  }
+
+  .deadline-section-final .inner {
+    max-width: 100%;
+  }
+
+  .deadline-section-final .badge {
+    margin-bottom: 18px;
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+
+  .deadline-section-final .headline {
+    font-size: clamp(30px, 10.5vw, 46px);
+    line-height: 1.18;
+    margin-bottom: 2.1rem;
+    letter-spacing: -.052em;
+  }
+
+  .deadline-section-final .cd-grid {
+    gap: 7px;
+    margin-bottom: 2.1rem;
+  }
+
+  .deadline-section-final .cd-cell {
+    padding: 13px 4px 10px;
+    border-radius: 10px;
+  }
+
+  .deadline-section-final .cd-num {
+    font-size: clamp(24px, 9vw, 36px);
+  }
+
+  .deadline-section-final .cd-unit {
+    font-size: 10px;
+  }
+
+  .deadline-section-final .prog-label {
+    font-size: 10.5px;
+    line-height: 1.5;
+  }
+
+  /* APPLY */
+  .apply {
+    padding: 72px 0;
+  }
+
+  .apply h2 {
+    font-size: clamp(34px, 10.5vw, 50px);
+    line-height: 1.2;
+  }
+
+  .apply p {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .apply-actions {
+    margin-top: 30px;
+  }
+
+  .apply .btn {
+    width: 100%;
+    min-height: 52px;
+    font-size: 14px;
+  }
+
+  .info-row {
+    padding: 16px 0;
+  }
+
+  .info-value {
+    font-size: 16px;
+  }
+
+  .tuition-strong {
+    font-size: 29px;
+  }
+
+  .apply-map-wrap {
+    margin-top: 36px;
+  }
+
+  .apply-map-card {
+    height: 240px;
+    border-radius: 22px;
+  }
+
+  /* BOTTOM BAR */
+  .deadline-bar {
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  }
+
+  .deadline-bar-inner {
+    gap: 8px;
+  }
+
+  .deadline-bar-count {
+    gap: 5px;
+  }
+
+  .bar-time-box {
+    height: 36px;
+    border-radius: 9px;
+  }
+
+  .bar-time-box strong {
+    font-size: 15px;
+  }
+
+  .bar-time-box em {
+    font-size: 10px;
+  }
+
+  .deadline-bar-btn {
+    min-height: 48px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-display .line-2 {
+    font-size: clamp(42px, 13.5vw, 54px);
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(36px, 12vw, 50px);
+  }
+
+  .map-stage {
+    height: 340px;
+    min-height: 340px;
+  }
+
+  .map-visual {
+    width: 120%;
+    transform: translateX(-4%) scale(1.01);
+  }
+
+  .deadline-section-final .headline {
+    font-size: clamp(28px, 10vw, 40px);
+  }
+}
 </style></head>
 <body>
 <!-- =========================================================
