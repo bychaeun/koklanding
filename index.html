@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>콕 찝어주는 부동산 학원 · 4기 모집</title>
-<meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/><link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/><meta content="website" property="og:type"/><meta content="ko_KR" property="og:locale"/><meta content="https://cqunqpkd.gensparkspace.com/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:site_name"/><meta content="콕 찝어주는 부동산 학원 · 4기 모집" property="og:title"/><meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 8주 실전 부동산 분석 클래스" property="og:description"/><meta content="https://cqunqpkd.gensparkspace.com/og-kokkok-simple.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원 · 4기 모집" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스 · 선착순 30명" name="twitter:description"/><meta content="https://cqunqpkd.gensparkspace.com/og-kokkok-simple.png" name="twitter:image"/>
+<title>콕 찝어주는 부동산 학원</title>
+<meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/><link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/><meta content="ko_KR" property="og:locale"/><meta content="콕 찝어주는 부동산 학원" property="og:site_name"/>
 <meta content="#42E686" name="theme-color"/>
 <style>/* ==========================================================================
    콕 찝어주는 부동산 학원 · v68 Clean Build
@@ -1195,7 +1195,487 @@ img{display:block;width:100%;height:auto}
     font-size: clamp(36px, 11.4vw, 50px);
   }
 }
-</style></head>
+
+
+/* 지도 활성 영역이 커지면서 보이던 그림자/잔상 제거 */
+.map-area-highlight {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.map-area-highlight.is-active,
+.map-visual[data-active-group="cheonan"] .highlight-cheonan,
+.map-visual[data-active-group="asan"] .highlight-asan {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* 지도 바탕 클릭 영역의 은은한 hover overlay도 제거 */
+.map-region-hit::after,
+.map-region-hit:hover::after,
+.map-region-hit.is-active::after {
+  background: transparent !important;
+}
+
+/* 데스크톱 히어로 상단 여백 축소 */
+@media (min-width: 761px) {
+  .hero {
+    padding-top: 82px !important;
+  }
+
+  .hero-badge {
+    margin-bottom: 34px !important;
+  }
+}
+
+/* 모바일도 첫 화면 답답하지 않게 상단 여백 소폭 축소 */
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 58px !important;
+  }
+
+  .hero-badge {
+    margin-bottom: 22px !important;
+  }
+}
+
+
+/* ==========================================================================
+   v76 Mobile Compact + OG Ready
+   - 모바일 글자 크기/여백 재정리
+   - 스크롤 압박 완화
+   - 지도 하이라이트 잔상 제거 유지
+   ========================================================================== */
+
+.map-area-highlight,
+.map-area-highlight.is-active,
+.map-visual[data-active-group="cheonan"] .highlight-cheonan,
+.map-visual[data-active-group="asan"] .highlight-asan {
+  filter: none !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal !important;
+  transform: none !important;
+}
+
+.map-region-hit::after,
+.map-region-hit:hover::after,
+.map-region-hit.is-active::after {
+  background: transparent !important;
+}
+
+@media (min-width: 761px) {
+  .hero {
+    padding-top: 76px !important;
+    padding-bottom: 76px !important;
+    min-height: 700px !important;
+  }
+
+  .hero-badge {
+    margin-bottom: 28px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    line-height: 1.58 !important;
+    padding-bottom: 108px !important;
+  }
+
+  .container {
+    width: calc(100% - 42px) !important;
+  }
+
+  .section {
+    padding: 58px 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 30px !important;
+    gap: 18px !important;
+  }
+
+  .section-title,
+  .method-title {
+    font-size: clamp(27px, 8.2vw, 38px) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -.048em !important;
+  }
+
+  .section-desc,
+  .curriculum .section-desc {
+    font-size: 13.2px !important;
+    line-height: 1.68 !important;
+  }
+
+  .eyebrow {
+    font-size: 10px !important;
+    letter-spacing: .1em !important;
+  }
+
+  .nav-inner {
+    height: 58px !important;
+  }
+
+  .brand {
+    font-size: 13px !important;
+  }
+
+  .brand-mark {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .nav-actions .btn-primary {
+    min-height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+  }
+
+  .hero {
+    padding: 46px 0 46px !important;
+    min-height: auto !important;
+    background-size: 48px 48px, 48px 48px, auto !important;
+  }
+
+  .hero-badge {
+    margin-bottom: 18px !important;
+    font-size: 12.5px !important;
+    line-height: 1.42 !important;
+  }
+
+  .hero-display {
+    line-height: 1.08 !important;
+  }
+
+  .hero-display .line-1 {
+    font-size: clamp(20px, 5.3vw, 25px) !important;
+    margin-bottom: 9px !important;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(36px, 11.2vw, 52px) !important;
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(33px, 10vw, 48px) !important;
+    margin-top: 8px !important;
+  }
+
+  .hero-lead {
+    margin-top: 21px !important;
+    font-size: 13.2px !important;
+    line-height: 1.66 !important;
+  }
+
+  .hero-actions {
+    margin-top: 23px !important;
+    gap: 8px !important;
+  }
+
+  .hero-actions .btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 13px !important;
+    padding: 0 16px !important;
+  }
+
+  .hero-tags {
+    margin-top: 19px !important;
+    gap: 7px !important;
+  }
+
+  .tag {
+    min-height: 30px !important;
+    font-size: 11.6px !important;
+    border-radius: 13px !important;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .metric {
+    padding: 20px 16px !important;
+  }
+
+  .metric strong {
+    font-size: clamp(26px, 8vw, 36px) !important;
+  }
+
+  .metric span {
+    margin-top: 6px !important;
+    font-size: 11.2px !important;
+  }
+
+  .method {
+    padding: 60px 0 !important;
+  }
+
+  .method-row {
+    margin-top: 32px !important;
+    gap: 24px !important;
+  }
+
+  .icon-wrap {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 15px !important;
+    margin-bottom: 15px !important;
+  }
+
+  .method-item h3,
+  .trust-point h3 {
+    font-size: 18px !important;
+    line-height: 1.32 !important;
+  }
+
+  .method-item p,
+  .trust-point p {
+    font-size: 13.2px !important;
+    line-height: 1.64 !important;
+  }
+
+  .curriculum .section-header {
+    margin-bottom: 28px !important;
+  }
+
+  .curriculum .section-desc {
+    margin-top: 14px !important;
+  }
+
+  .curriculum-layout {
+    gap: 24px !important;
+  }
+
+  .map-stage {
+    height: 360px !important;
+    min-height: 360px !important;
+    margin-top: 0 !important;
+  }
+
+  .map-visual {
+    width: min(100%, 470px) !important;
+    max-width: 470px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+
+  .map-pin {
+    width: 19px !important;
+    height: 19px !important;
+  }
+
+  .map-pin span {
+    font-size: 9px !important;
+  }
+
+  .map-pin.is-active {
+    transform: translate(-50%, -122%) rotate(-45deg) scale(1.34) !important;
+  }
+
+  .map-region-label {
+    font-size: clamp(18px, 6vw, 25px) !important;
+  }
+
+  .week-roadmap {
+    gap: 9px !important;
+  }
+
+  .week-roadmap-card {
+    padding: 15px 15px 13px !important;
+    border-radius: 17px !important;
+  }
+
+  .week-roadmap-card strong {
+    margin-top: 10px !important;
+    font-size: 16.2px !important;
+    line-height: 1.26 !important;
+  }
+
+  .week-code {
+    min-height: 24px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+  }
+
+  .week-roadmap-card p {
+    font-size: 12.2px !important;
+    line-height: 1.56 !important;
+  }
+
+  .trust-layout {
+    gap: 30px !important;
+  }
+
+  .trust-points {
+    gap: 19px !important;
+  }
+
+  .trust-point {
+    grid-template-columns: 30px 1fr !important;
+    gap: 14px !important;
+  }
+
+  .trust-num {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 16px !important;
+  }
+
+  .photo-slider {
+    margin-top: 32px !important;
+    border-radius: 18px !important;
+  }
+
+  .slide {
+    height: 220px !important;
+  }
+
+  .slide-caption {
+    left: 13px !important;
+    bottom: 12px !important;
+    font-size: 11.2px !important;
+  }
+
+  .deadline-section-final .urg {
+    padding: 46px 18px !important;
+  }
+
+  .deadline-section-final .badge {
+    margin-bottom: 14px !important;
+    font-size: 9.5px !important;
+    padding: 7px 10px !important;
+  }
+
+  .deadline-section-final .headline {
+    font-size: clamp(26px, 8.8vw, 39px) !important;
+    line-height: 1.16 !important;
+    margin-bottom: 1.65rem !important;
+  }
+
+  .deadline-section-final .cd-grid {
+    gap: 6px !important;
+    margin-bottom: 1.7rem !important;
+  }
+
+  .deadline-section-final .cd-cell {
+    padding: 11px 4px 8px !important;
+    border-radius: 9px !important;
+  }
+
+  .deadline-section-final .cd-num {
+    font-size: clamp(21px, 7.5vw, 31px) !important;
+  }
+
+  .deadline-section-final .cd-unit {
+    font-size: 9px !important;
+  }
+
+  .apply {
+    padding: 62px 0 !important;
+  }
+
+  .apply h2 {
+    font-size: clamp(29px, 8.8vw, 42px) !important;
+    line-height: 1.18 !important;
+  }
+
+  .apply p {
+    margin-top: 14px !important;
+    font-size: 13.2px !important;
+    line-height: 1.66 !important;
+  }
+
+  .apply-actions {
+    margin-top: 24px !important;
+  }
+
+  .apply .btn {
+    width: 100% !important;
+    min-height: 49px !important;
+    font-size: 13px !important;
+  }
+
+  .info-row {
+    padding: 13px 0 !important;
+  }
+
+  .info-label {
+    font-size: 10.4px !important;
+  }
+
+  .info-value {
+    font-size: 14.5px !important;
+  }
+
+  .tuition-strong {
+    font-size: 25px !important;
+  }
+
+  .apply-map-wrap {
+    margin-top: 28px !important;
+  }
+
+  .apply-map-card {
+    height: 220px !important;
+    border-radius: 20px !important;
+  }
+
+  .deadline-bar {
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .deadline-bar-inner {
+    gap: 7px !important;
+  }
+
+  .bar-time-box {
+    height: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 14px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 9px !important;
+  }
+
+  .deadline-bar-btn {
+    min-height: 45px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: calc(100% - 34px) !important;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(34px, 10.7vw, 47px) !important;
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(31px, 9.6vw, 44px) !important;
+  }
+
+  .map-stage {
+    height: 330px !important;
+    min-height: 330px !important;
+  }
+
+  .map-visual {
+    width: min(104%, 450px) !important;
+  }
+}
+</style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-custom.png" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-custom.png" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-custom.png" name="twitter:image"/></head>
 <body>
 <!-- =========================================================
   여기만 수정하면 됩니다.
@@ -1337,8 +1817,6 @@ img{display:block;width:100%;height:auto}
 <img alt="천안과 아산 지도" class="map-base" src="kokkok_assets/asset_01.png"/>
 <img alt="" aria-hidden="true" class="map-area-highlight highlight-asan" data-group="asan" src="kokkok_assets/asset_02.png"/>
 <img alt="" aria-hidden="true" class="map-area-highlight highlight-cheonan" data-group="cheonan" src="kokkok_assets/asset_03.png"/>
-
-
 <svg aria-hidden="true" class="pin-routes" preserveaspectratio="none" viewbox="0 0 100 100">
 <polyline class="route-line route-cheonan" data-group="cheonan" points="58,46 56,66 77,47 60,23"></polyline>
 <polyline class="route-line route-asan" data-group="asan" points="32,47 22,71 28,23 42,45"></polyline>
@@ -1526,8 +2004,6 @@ img{display:block;width:100%;height:auto}
 <a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank"><span aria-hidden="true" class="pencil-icon">✎</span><span>4기 당장 신청하기 →</span></a>
 </div>
 </div>
-
-
 <script>
 (() => {
   const campaign = window.KOKKOK_CAMPAIGN || {};
