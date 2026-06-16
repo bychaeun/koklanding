@@ -7,8 +7,7 @@
 <title>콕 찝어주는 부동산 학원 · 4기 모집</title>
 <meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/><link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/><meta content="website" property="og:type"/><meta content="ko_KR" property="og:locale"/><meta content="https://cqunqpkd.gensparkspace.com/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:site_name"/><meta content="콕 찝어주는 부동산 학원 · 4기 모집" property="og:title"/><meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 8주 실전 부동산 분석 클래스" property="og:description"/><meta content="https://cqunqpkd.gensparkspace.com/og-kokkok-simple.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원 · 4기 모집" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스 · 선착순 30명" name="twitter:description"/><meta content="https://cqunqpkd.gensparkspace.com/og-kokkok-simple.png" name="twitter:image"/>
 <meta content="#42E686" name="theme-color"/>
-<style>
-/* ==========================================================================
+<style>/* ==========================================================================
    콕 찝어주는 부동산 학원 · v68 Clean Build
    수정 위치: Ctrl + F → "여기만 수정"
    ========================================================================== */
@@ -325,42 +324,58 @@ img{display:block;width:100%;height:auto}
 }
 
 
-/* ==========================================================================
-   v70 Mobile Layout Refinement
-   - 모바일 스크롤 압박 완화
-   - 텍스트 여백/줄간격 개선
-   - 지도 영역 모바일 표시 안정화
-   ========================================================================== */
+
+/* 지도 하이라이트 기본 상태 */
+.map-area-highlight {
+  opacity: 0;
+  transition: opacity .32s var(--ease), transform .36s var(--ease);
+}
+
+.map-area-highlight.is-active {
+  opacity: 1;
+  transform: scale(1.07);
+}
+
+/* 데스크톱에서도 지도 하이라이트가 정상 보이게 보정 */
+.map-base {
+  opacity: 1;
+}
+
+.map-visual[data-active-group="cheonan"] .highlight-cheonan,
+.map-visual[data-active-group="asan"] .highlight-asan {
+  opacity: 1;
+}
 
 @media (max-width: 760px) {
   body {
-    line-height: 1.58;
-    padding-bottom: 118px;
+    line-height: 1.62;
+    padding-bottom: 116px;
   }
 
   .container {
-    width: calc(100% - 32px);
+    width: calc(100% - 44px);
   }
 
   .section {
-    padding: 66px 0;
+    padding: 74px 0;
   }
 
   .section-header {
-    margin-bottom: 38px;
-    gap: 20px;
+    margin-bottom: 42px;
+    gap: 24px;
   }
 
   .section-title,
   .method-title {
-    font-size: clamp(32px, 10vw, 46px);
-    line-height: 1.24;
-    letter-spacing: -.055em;
+    font-size: clamp(31px, 9.4vw, 44px);
+    line-height: 1.28;
+    letter-spacing: -.052em;
   }
 
-  .section-desc {
+  .section-desc,
+  .curriculum .section-desc {
     font-size: 14px;
-    line-height: 1.76;
+    line-height: 1.82;
   }
 
   .eyebrow {
@@ -371,69 +386,70 @@ img{display:block;width:100%;height:auto}
   /* HERO */
   .hero {
     min-height: auto;
-    padding: 62px 0 54px;
-    background-size: 44px 44px, 44px 44px, auto;
+    padding: 68px 0 62px;
+    background-size: 52px 52px, 52px 52px, auto;
   }
 
   .hero-badge {
-    margin-bottom: 24px;
+    margin-bottom: 26px;
     font-size: 14px;
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   .hero-display {
-    line-height: 1.12;
-    letter-spacing: -.065em;
+    line-height: 1.14;
+    letter-spacing: -.064em;
   }
 
   .hero-display .line-1 {
-    font-size: clamp(22px, 6vw, 28px);
-    margin-bottom: 10px;
+    font-size: clamp(22px, 6vw, 29px);
+    margin-bottom: 12px;
   }
 
   .hero-display .line-2 {
-    font-size: clamp(46px, 14.5vw, 64px);
+    font-size: clamp(43px, 13.2vw, 62px);
   }
 
   .hero-display .line-3 {
-    font-size: clamp(40px, 12.5vw, 58px);
-    margin-top: 8px;
+    font-size: clamp(38px, 11.7vw, 56px);
+    margin-top: 10px;
   }
 
   .hero-lead {
-    margin-top: 24px;
+    margin-top: 28px;
     font-size: 14.5px;
-    line-height: 1.74;
+    line-height: 1.82;
   }
 
   .hero-actions {
-    margin-top: 26px;
-    gap: 9px;
+    margin-top: 28px;
+    gap: 10px;
   }
 
   .hero-actions .btn {
-    min-height: 52px;
+    width: 100%;
+    min-height: 54px;
     font-size: 14px;
     padding: 0 20px;
   }
 
   .hero-tags {
-    margin-top: 22px;
+    margin-top: 24px;
     display: grid;
-    gap: 8px;
+    gap: 9px;
   }
 
   .tag {
-    min-height: 32px;
     width: 100%;
+    min-height: 34px;
     justify-content: center;
     font-size: 12.5px;
-    border-radius: 14px;
+    border-radius: 15px;
   }
 
   .orb {
     filter: blur(54px);
-    opacity: .42;
+    opacity: .36;
   }
 
   /* METRICS */
@@ -442,37 +458,33 @@ img{display:block;width:100%;height:auto}
   }
 
   .metric {
-    padding: 24px 18px;
+    padding: 26px 20px;
   }
 
   .metric strong {
-    font-size: clamp(30px, 10vw, 42px);
+    font-size: clamp(30px, 9.5vw, 42px);
   }
 
   .metric span {
     font-size: 12px;
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   /* METHOD */
   .method {
-    padding: 70px 0;
+    padding: 76px 0;
   }
 
   .method-row {
-    margin-top: 42px;
-    gap: 28px;
-  }
-
-  .method-item {
-    padding: 2px 2px 0;
+    margin-top: 46px;
+    gap: 34px;
   }
 
   .icon-wrap {
-    width: 50px;
-    height: 50px;
-    border-radius: 16px;
-    margin-bottom: 18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 17px;
+    margin-bottom: 19px;
   }
 
   .icon-wrap svg {
@@ -482,47 +494,46 @@ img{display:block;width:100%;height:auto}
 
   .method-item h3 {
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
   }
 
   .method-item p {
     font-size: 14px;
-    line-height: 1.72;
+    line-height: 1.78;
   }
 
   /* CURRICULUM / MAP */
   .curriculum .section-header {
-    margin-bottom: 34px;
+    margin-bottom: 36px;
   }
 
   .curriculum .section-desc {
-    margin-top: 18px;
-    font-size: 13.5px;
-    line-height: 1.7;
+    margin-top: 20px;
   }
 
   .curriculum-layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 30px;
   }
 
   .map-stage {
     width: 100%;
-    min-height: 380px;
-    height: 380px;
+    min-height: 420px;
+    height: 420px;
     overflow: visible;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     justify-self: center;
-    margin: 0 auto;
+    margin: 4px auto 0;
   }
 
   .map-visual {
-    width: 112%;
-    max-width: 560px;
-    margin-left: 0;
-    transform: translateX(-2%) scale(1.02);
+    width: min(100%, 520px);
+    max-width: 520px;
+    margin: 0 auto;
+    transform: none;
     aspect-ratio: 4660 / 3504;
   }
 
@@ -530,6 +541,9 @@ img{display:block;width:100%;height:auto}
   .map-area-highlight {
     display: block;
     visibility: visible;
+  }
+
+  .map-base {
     opacity: 1;
   }
 
@@ -543,16 +557,16 @@ img{display:block;width:100%;height:auto}
   }
 
   .map-region-label {
-    font-size: clamp(20px, 7.5vw, 30px);
+    font-size: clamp(20px, 7vw, 30px);
   }
 
   .map-pin {
-    width: 22px;
-    height: 22px;
+    width: 21px;
+    height: 21px;
   }
 
   .map-pin.is-active {
-    transform: translate(-50%, -122%) rotate(-45deg) scale(1.46);
+    transform: translate(-50%, -122%) rotate(-45deg) scale(1.42);
   }
 
   .curriculum-panel {
@@ -562,18 +576,18 @@ img{display:block;width:100%;height:auto}
 
   .week-roadmap {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
   }
 
   .week-roadmap-card {
     min-height: auto;
-    padding: 16px 16px 14px;
-    border-radius: 18px;
+    padding: 18px 18px 16px;
+    border-radius: 20px;
   }
 
   .week-roadmap-card strong {
     font-size: 18px;
-    line-height: 1.28;
+    line-height: 1.32;
     margin-top: 12px;
   }
 
@@ -585,17 +599,21 @@ img{display:block;width:100%;height:auto}
   }
 
   .week-roadmap-card p {
-    font-size: 12.8px;
-    line-height: 1.62;
+    font-size: 13px;
+    line-height: 1.68;
   }
 
   /* TRUST / PHOTO */
   .trust-layout {
-    gap: 34px;
+    gap: 40px;
   }
 
   .trust-points {
-    gap: 22px;
+    gap: 24px;
+  }
+
+  .trust-point {
+    gap: 17px;
   }
 
   .trust-point h3 {
@@ -603,17 +621,17 @@ img{display:block;width:100%;height:auto}
   }
 
   .trust-point p {
-    font-size: 13.8px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.76;
   }
 
   .photo-slider {
-    margin-top: 40px;
-    border-radius: 20px;
+    margin-top: 44px;
+    border-radius: 22px;
   }
 
   .slide {
-    height: 250px;
+    height: 260px;
   }
 
   .slide-caption {
@@ -629,7 +647,7 @@ img{display:block;width:100%;height:auto}
 
   /* DEADLINE */
   .deadline-section-final .urg {
-    padding: 54px 18px;
+    padding: 58px 22px;
   }
 
   .deadline-section-final .inner {
@@ -643,24 +661,24 @@ img{display:block;width:100%;height:auto}
   }
 
   .deadline-section-final .headline {
-    font-size: clamp(30px, 10.5vw, 46px);
-    line-height: 1.18;
-    margin-bottom: 2.1rem;
+    font-size: clamp(30px, 10vw, 45px);
+    line-height: 1.2;
+    margin-bottom: 2.2rem;
     letter-spacing: -.052em;
   }
 
   .deadline-section-final .cd-grid {
-    gap: 7px;
-    margin-bottom: 2.1rem;
+    gap: 8px;
+    margin-bottom: 2.2rem;
   }
 
   .deadline-section-final .cd-cell {
-    padding: 13px 4px 10px;
-    border-radius: 10px;
+    padding: 14px 5px 10px;
+    border-radius: 11px;
   }
 
   .deadline-section-final .cd-num {
-    font-size: clamp(24px, 9vw, 36px);
+    font-size: clamp(23px, 8.6vw, 35px);
   }
 
   .deadline-section-final .cd-unit {
@@ -668,38 +686,38 @@ img{display:block;width:100%;height:auto}
   }
 
   .deadline-section-final .prog-label {
-    font-size: 10.5px;
-    line-height: 1.5;
+    font-size: 10.8px;
+    line-height: 1.55;
   }
 
   /* APPLY */
   .apply {
-    padding: 72px 0;
+    padding: 78px 0;
   }
 
   .apply h2 {
-    font-size: clamp(34px, 10.5vw, 50px);
-    line-height: 1.2;
+    font-size: clamp(33px, 10vw, 49px);
+    line-height: 1.24;
   }
 
   .apply p {
-    margin-top: 16px;
+    margin-top: 18px;
     font-size: 14px;
-    line-height: 1.72;
+    line-height: 1.78;
   }
 
   .apply-actions {
-    margin-top: 30px;
+    margin-top: 32px;
   }
 
   .apply .btn {
     width: 100%;
-    min-height: 52px;
+    min-height: 53px;
     font-size: 14px;
   }
 
   .info-row {
-    padding: 16px 0;
+    padding: 17px 0;
   }
 
   .info-value {
@@ -711,17 +729,17 @@ img{display:block;width:100%;height:auto}
   }
 
   .apply-map-wrap {
-    margin-top: 36px;
+    margin-top: 38px;
   }
 
   .apply-map-card {
-    height: 240px;
-    border-radius: 22px;
+    height: 245px;
+    border-radius: 24px;
   }
 
   /* BOTTOM BAR */
   .deadline-bar {
-    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
   }
 
   .deadline-bar-inner {
@@ -752,26 +770,429 @@ img{display:block;width:100%;height:auto}
 }
 
 @media (max-width: 390px) {
+  .container {
+    width: calc(100% - 36px);
+  }
+
   .hero-display .line-2 {
-    font-size: clamp(42px, 13.5vw, 54px);
+    font-size: clamp(40px, 12.6vw, 54px);
   }
 
   .hero-display .line-3 {
-    font-size: clamp(36px, 12vw, 50px);
+    font-size: clamp(36px, 11.5vw, 50px);
   }
 
   .map-stage {
-    height: 340px;
-    min-height: 340px;
+    height: 370px;
+    min-height: 370px;
   }
 
   .map-visual {
-    width: 120%;
-    transform: translateX(-4%) scale(1.01);
+    width: min(106%, 500px);
   }
 
   .deadline-section-final .headline {
-    font-size: clamp(28px, 10vw, 40px);
+    font-size: clamp(28px, 9.6vw, 40px);
+  }
+}
+
+
+/* ==========================================================================
+   v73 Map Surface Interaction
+   - 지도 바탕 클릭 영역 추가
+   - 천안/아산 면 클릭 시 해당 주차 라인 활성화
+   - 핀/카드/하이라이트 전환 안정화
+   ========================================================================== */
+
+.map-visual {
+  will-change: transform;
+}
+
+.map-region-hit {
+  position: absolute;
+  z-index: 15;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background .18s var(--ease), opacity .18s var(--ease), transform .18s var(--ease);
+}
+
+.map-region-hit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(31, 201, 110, 0);
+  transition: background .18s var(--ease);
+}
+
+.map-region-hit:hover::after,
+.map-region-hit.is-active::after {
+  background: rgba(31, 201, 110, .045);
+}
+
+.map-region-hit:focus-visible {
+  outline: 2px solid var(--green-strong);
+  outline-offset: 4px;
+}
+
+.hit-asan {
+  left: 5%;
+  top: 12%;
+  width: 43%;
+  height: 80%;
+  clip-path: polygon(12% 22%, 50% 2%, 87% 14%, 82% 52%, 92% 80%, 48% 100%, 18% 82%, 0 50%);
+}
+
+.hit-cheonan {
+  left: 39%;
+  top: 4%;
+  width: 57%;
+  height: 88%;
+  clip-path: polygon(18% 0, 62% 8%, 100% 36%, 91% 65%, 62% 88%, 22% 100%, 0 74%, 10% 43%);
+}
+
+.map-area-highlight {
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity .26s var(--ease), transform .34s var(--ease);
+}
+
+.map-area-highlight.is-active,
+.map-visual[data-active-group="cheonan"] .highlight-cheonan,
+.map-visual[data-active-group="asan"] .highlight-asan {
+  opacity: 1;
+  transform: scale(1.052);
+}
+
+.map-pin {
+  z-index: 24;
+  will-change: transform, opacity;
+}
+
+.map-pin.is-muted {
+  opacity: .44;
+}
+
+.map-pin.is-active {
+  opacity: 1;
+  transition-duration: .22s;
+}
+
+.pin-routes {
+  z-index: 20;
+}
+
+.map-region-label {
+  z-index: 22;
+}
+
+.week-roadmap-card {
+  will-change: transform;
+}
+
+.week-roadmap-card.is-muted {
+  opacity: .78;
+}
+
+.week-roadmap-card.is-active {
+  opacity: 1;
+}
+
+.week-roadmap-card:focus-visible,
+.map-pin:focus-visible {
+  outline: 2px solid var(--green-strong);
+  outline-offset: 4px;
+}
+
+@media (hover: none) {
+  .map-region-hit:hover::after {
+    background: transparent;
+  }
+
+  .week-roadmap-card:hover {
+    transform: none;
+  }
+
+  .map-pin.is-active {
+    transform: translate(-50%, -122%) rotate(-45deg) scale(1.42);
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    line-height: 1.64;
+    padding-bottom: 116px;
+  }
+
+  .container {
+    width: calc(100% - 46px);
+  }
+
+  .section {
+    padding: 78px 0;
+  }
+
+  .section-header {
+    margin-bottom: 44px;
+    gap: 26px;
+  }
+
+  .section-title,
+  .method-title {
+    font-size: clamp(31px, 9.3vw, 44px);
+    line-height: 1.3;
+    letter-spacing: -.05em;
+  }
+
+  .section-desc,
+  .curriculum .section-desc {
+    font-size: 14px;
+    line-height: 1.86;
+  }
+
+  .hero {
+    padding: 72px 0 64px;
+  }
+
+  .hero-inner {
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 1.52;
+  }
+
+  .hero-display {
+    line-height: 1.15;
+  }
+
+  .hero-display .line-1 {
+    font-size: clamp(22px, 5.9vw, 29px);
+    margin-bottom: 13px;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(42px, 13vw, 62px);
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(38px, 11.6vw, 56px);
+    margin-top: 10px;
+  }
+
+  .hero-lead {
+    margin-top: 30px;
+    font-size: 14.5px;
+    line-height: 1.86;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-height: 54px;
+    font-size: 14px;
+  }
+
+  .hero-tags {
+    display: grid;
+    gap: 10px;
+    margin-top: 26px;
+  }
+
+  .tag {
+    width: 100%;
+    justify-content: center;
+    min-height: 35px;
+    font-size: 12.6px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric {
+    padding: 28px 20px;
+  }
+
+  .method {
+    padding: 78px 0;
+  }
+
+  .method-row {
+    margin-top: 46px;
+    gap: 36px;
+  }
+
+  .method-item p,
+  .trust-point p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .curriculum .section-header {
+    margin-bottom: 38px;
+  }
+
+  .curriculum-layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .map-stage {
+    width: 100%;
+    min-height: 430px;
+    height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    margin: 6px auto 0;
+    overflow: visible;
+  }
+
+  .map-visual {
+    width: min(100%, 520px);
+    max-width: 520px;
+    margin: 0 auto;
+    transform: none;
+    aspect-ratio: 4660 / 3504;
+  }
+
+  .map-base,
+  .map-area-highlight {
+    display: block;
+    visibility: visible;
+  }
+
+  .map-pin {
+    width: 21px;
+    height: 21px;
+  }
+
+  .map-pin.is-active {
+    transform: translate(-50%, -122%) rotate(-45deg) scale(1.42);
+  }
+
+  .map-region-label {
+    font-size: clamp(20px, 7vw, 30px);
+  }
+
+  .week-roadmap {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .week-roadmap-card {
+    min-height: auto;
+    padding: 18px 18px 16px;
+    border-radius: 20px;
+  }
+
+  .week-roadmap-card strong {
+    font-size: 18px;
+    line-height: 1.34;
+    margin-top: 12px;
+  }
+
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: auto;
+    transform: translateY(-2px);
+  }
+
+  .week-roadmap-card p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .trust-layout {
+    gap: 42px;
+  }
+
+  .trust-points {
+    gap: 25px;
+  }
+
+  .photo-slider {
+    margin-top: 46px;
+    border-radius: 22px;
+  }
+
+  .slide {
+    height: 260px;
+  }
+
+  .deadline-section-final .urg {
+    padding: 60px 22px;
+  }
+
+  .deadline-section-final .headline {
+    font-size: clamp(30px, 10vw, 45px);
+    line-height: 1.2;
+    margin-bottom: 2.2rem;
+  }
+
+  .deadline-section-final .cd-grid {
+    gap: 8px;
+  }
+
+  .deadline-section-final .cd-cell {
+    padding: 14px 5px 10px;
+  }
+
+  .apply {
+    padding: 80px 0;
+  }
+
+  .apply h2 {
+    font-size: clamp(33px, 10vw, 49px);
+    line-height: 1.25;
+  }
+
+  .apply p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .apply .btn {
+    width: 100%;
+  }
+
+  .apply-map-card {
+    height: 245px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: calc(100% - 38px);
+  }
+
+  .map-stage {
+    height: 380px;
+    min-height: 380px;
+  }
+
+  .map-visual {
+    width: min(106%, 500px);
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(40px, 12.4vw, 54px);
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(36px, 11.4vw, 50px);
   }
 }
 </style></head>
@@ -916,74 +1337,74 @@ img{display:block;width:100%;height:auto}
 <img alt="천안과 아산 지도" class="map-base" src="kokkok_assets/asset_01.png"/>
 <img alt="" aria-hidden="true" class="map-area-highlight highlight-asan" data-group="asan" src="kokkok_assets/asset_02.png"/>
 <img alt="" aria-hidden="true" class="map-area-highlight highlight-cheonan" data-group="cheonan" src="kokkok_assets/asset_03.png"/>
-<button aria-label="아산 권역 선택" class="map-region-hit hit-asan" data-group="asan" type="button"></button>
-<button aria-label="천안 권역 선택" class="map-region-hit hit-cheonan" data-group="cheonan" type="button"></button>
+
+
 <svg aria-hidden="true" class="pin-routes" preserveaspectratio="none" viewbox="0 0 100 100">
 <polyline class="route-line route-cheonan" data-group="cheonan" points="58,46 56,66 77,47 60,23"></polyline>
 <polyline class="route-line route-asan" data-group="asan" points="32,47 22,71 28,23 42,45"></polyline>
 </svg>
-<button class="map-pin pin green-pin" data-group="cheonan" data-week="1" style="left:58%; top:46%;" type="button"><span>1</span></button>
-<button class="map-pin pin green-pin" data-group="cheonan" data-week="2" style="left:56%; top:66%;" type="button"><span>2</span></button>
-<button class="map-pin pin green-pin" data-group="cheonan" data-week="3" style="left:77%; top:47%;" type="button"><span>3</span></button>
-<button class="map-pin pin green-pin" data-group="cheonan" data-week="4" style="left:60%; top:23%;" type="button"><span>4</span></button>
-<button class="map-pin pin blue-pin" data-group="asan" data-week="5" style="left:32%; top:47%;" type="button"><span>5</span></button>
-<button class="map-pin pin blue-pin" data-group="asan" data-week="6" style="left:22%; top:71%;" type="button"><span>6</span></button>
-<button class="map-pin pin blue-pin" data-group="asan" data-week="7" style="left:28%; top:23%;" type="button"><span>7</span></button>
-<button class="map-pin pin blue-pin" data-group="asan" data-week="8" style="left:42%; top:45%;" type="button"><span>8</span></button>
+<button aria-label="아산 권역 커리큘럼 보기" class="map-region-hit hit-asan" data-group="asan" data-target-week="5" type="button"></button><button aria-label="천안 권역 커리큘럼 보기" class="map-region-hit hit-cheonan" data-group="cheonan" data-target-week="1" type="button"></button><button aria-label="1주차 커리큘럼 보기" class="map-pin pin green-pin" data-group="cheonan" data-week="1" role="button" style="left:58%; top:46%;" tabindex="0" type="button"><span>1</span></button>
+<button aria-label="2주차 커리큘럼 보기" class="map-pin pin green-pin" data-group="cheonan" data-week="2" role="button" style="left:56%; top:66%;" tabindex="0" type="button"><span>2</span></button>
+<button aria-label="3주차 커리큘럼 보기" class="map-pin pin green-pin" data-group="cheonan" data-week="3" role="button" style="left:77%; top:47%;" tabindex="0" type="button"><span>3</span></button>
+<button aria-label="4주차 커리큘럼 보기" class="map-pin pin green-pin" data-group="cheonan" data-week="4" role="button" style="left:60%; top:23%;" tabindex="0" type="button"><span>4</span></button>
+<button aria-label="5주차 커리큘럼 보기" class="map-pin pin blue-pin" data-group="asan" data-week="5" role="button" style="left:32%; top:47%;" tabindex="0" type="button"><span>5</span></button>
+<button aria-label="6주차 커리큘럼 보기" class="map-pin pin blue-pin" data-group="asan" data-week="6" role="button" style="left:22%; top:71%;" tabindex="0" type="button"><span>6</span></button>
+<button aria-label="7주차 커리큘럼 보기" class="map-pin pin blue-pin" data-group="asan" data-week="7" role="button" style="left:28%; top:23%;" tabindex="0" type="button"><span>7</span></button>
+<button aria-label="8주차 커리큘럼 보기" class="map-pin pin blue-pin" data-group="asan" data-week="8" role="button" style="left:42%; top:45%;" tabindex="0" type="button"><span>8</span></button>
 </div>
 </div>
 <div class="curriculum-panel reveal delay-2">
 <div aria-label="8주차 커리큘럼 로드맵" class="week-roadmap">
-<button class="week-roadmap-card cheonan-card is-active" data-week-card="0" type="button">
+<button class="week-roadmap-card cheonan-card is-active" data-group="cheonan" data-week="1" tabindex="0" type="button">
 <span class="week-code">1주차</span>
 <span class="week-region">천안</span>
 <strong>천안 중심생활권 <span class="title-sub">개발사업</span></strong>
 <em>천안 · 중부</em>
 <p>도시재생·정비사업·재건축·재개발의 이해, 성성·업성지역 분석</p>
 </button>
-<button class="week-roadmap-card cheonan-card" data-week-card="1" type="button">
+<button class="week-roadmap-card cheonan-card" data-group="cheonan" data-week="2" tabindex="0" type="button">
 <span class="week-code">2주차</span>
 <span class="week-region">천안</span>
 <strong>천안 남부생활권 <span class="title-sub">개발사업</span></strong>
 <em>천안 · 남부</em>
 <p>풍세산단, 풍세2, 천안제6일반산단, 공주~천안 고속도로 파급 효과</p>
 </button>
-<button class="week-roadmap-card cheonan-card" data-week-card="2" type="button">
+<button class="week-roadmap-card cheonan-card" data-group="cheonan" data-week="3" tabindex="0" type="button">
 <span class="week-code">3주차</span>
 <span class="week-region">천안</span>
 <strong>천안 동부생활권 <span class="title-sub">개발사업</span></strong>
 <em>천안 · 동부</em>
 <p>서울~세종 고속도로의 파급력, 천안제5산단 확장, 국도대체우회도로</p>
 </button>
-<button class="week-roadmap-card cheonan-card" data-week-card="3" type="button">
+<button class="week-roadmap-card cheonan-card" data-group="cheonan" data-week="4" tabindex="0" type="button">
 <span class="week-code">4주차</span>
 <span class="week-region">천안</span>
 <strong>천안 북부생활권 <span class="title-sub">개발사업</span></strong>
 <em>천안 · 북부</em>
 <p>직산·성환·입장·성거 지역 입지 분석, 북천안스마트산단</p>
 </button>
-<button class="week-roadmap-card asan-card" data-week-card="4" type="button">
+<button class="week-roadmap-card asan-card" data-group="asan" data-week="5" tabindex="0" type="button">
 <span class="week-code">5주차</span>
 <span class="week-region">아산</span>
 <strong>아산 중심생활권 <span class="title-sub">개발사업</span></strong>
 <em>아산 · 중부</em>
 <p>도시재생사업, 모종·권곡지구, 천안~아산 고속도로 영향 분석</p>
 </button>
-<button class="week-roadmap-card asan-card" data-week-card="5" type="button">
+<button class="week-roadmap-card asan-card" data-group="asan" data-week="6" tabindex="0" type="button">
 <span class="week-code">6주차</span>
 <span class="week-region">아산</span>
 <strong>아산 서남생활권 <span class="title-sub">개발사업</span></strong>
 <em>아산 · 서남</em>
 <p>송악·도고·선장면 지역의 숨은 가치와 장기 관점 분석</p>
 </button>
-<button class="week-roadmap-card asan-card" data-week-card="6" type="button">
+<button class="week-roadmap-card asan-card" data-group="asan" data-week="7" tabindex="0" type="button">
 <span class="week-code">7주차</span>
 <span class="week-region">아산</span>
 <strong>아산 북부생활권 <span class="title-sub">개발사업</span></strong>
 <em>아산 · 북부</em>
 <p>충남경제자유구역 인주·둔포지구, 당진~아산 고속도로 연계</p>
 </button>
-<button class="week-roadmap-card asan-card" data-week-card="7" type="button">
+<button class="week-roadmap-card asan-card" data-group="asan" data-week="8" tabindex="0" type="button">
 <span class="week-code">8주차</span>
 <span class="week-region">아산</span>
 <strong>아산 동부생활권 <span class="title-sub">개발사업</span></strong>
@@ -1105,90 +1526,231 @@ img{display:block;width:100%;height:auto}
 <a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank"><span aria-hidden="true" class="pencil-icon">✎</span><span>4기 당장 신청하기 →</span></a>
 </div>
 </div>
+
+
 <script>
 (() => {
   const campaign = window.KOKKOK_CAMPAIGN || {};
   const deadline = new Date(campaign.deadlineAt || "2026-07-31T23:59:59").getTime();
+  const pad = value => String(value).padStart(2, "0");
+  const isMobile = () => window.matchMedia("(max-width: 760px)").matches;
 
-  function pad(value){ return String(value).padStart(2, "0"); }
-
-  // Campaign links + text
-  document.querySelectorAll('a[href*="docs.google.com/forms"]').forEach(a => {
-    if (campaign.formUrl) a.href = campaign.formUrl;
+  // 신청 링크 동기화
+  document.querySelectorAll('a[href*="docs.google.com/forms"]').forEach(link => {
+    if (campaign.formUrl) link.href = campaign.formUrl;
   });
 
-  // Reveal animation
+  // 스크롤 등장
   const revealItems = document.querySelectorAll(".reveal, .method-item");
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
       });
-    }, { threshold: .14 });
+    }, { threshold: .12 });
+
     revealItems.forEach(el => observer.observe(el));
   } else {
     revealItems.forEach(el => el.classList.add("is-visible"));
   }
 
-  // Navigation active state
+  // 메뉴 active
   const navLinks = [...document.querySelectorAll(".nav-links a")];
-  const sections = navLinks
-    .map(link => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
+  const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
 
   if ("IntersectionObserver" in window && sections.length) {
     const navObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        navLinks.forEach(link => link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id));
+        navLinks.forEach(link => {
+          link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+        });
       });
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
     sections.forEach(sec => navObserver.observe(sec));
   }
 
-  // Curriculum map/card sync
+  // -------------------------------------------------------------------
+  // 커리큘럼 지도 인터랙션
+  // - 카드 클릭/호버
+  // - 핀 클릭/호버
+  // - 지도 바탕 천안/아산 면 클릭
+  // -------------------------------------------------------------------
   const map = document.querySelector(".map-visual");
   const cards = [...document.querySelectorAll(".week-roadmap-card")];
   const pins = [...document.querySelectorAll(".map-pin")];
   const routes = [...document.querySelectorAll(".route-line")];
+  const highlights = [...document.querySelectorAll(".map-area-highlight")];
+  const regionHits = [...document.querySelectorAll(".map-region-hit")];
 
-  function setWeek(week) {
-    const targetCard = cards.find(card => card.dataset.week === String(week));
-    const group = targetCard?.dataset.group || "cheonan";
-    if (map) map.dataset.activeGroup = group;
+  let activeWeek = 1;
+  let userHoldUntil = 0;
 
-    cards.forEach(card => card.classList.toggle("is-active", card.dataset.week === String(week)));
+  function getGroupFromWeek(week) {
+    return Number(week) >= 5 ? "asan" : "cheonan";
+  }
+
+  function getWeeksByGroup(group) {
+    return cards
+      .filter(card => card.dataset.group === group)
+      .map(card => Number(card.dataset.week))
+      .filter(Boolean);
+  }
+
+  function getWeekFromGroup(group, currentWeek = activeWeek) {
+    const weeks = getWeeksByGroup(group);
+    if (!weeks.length) return group === "asan" ? 5 : 1;
+
+    const currentInGroup = weeks.includes(Number(currentWeek));
+    if (currentInGroup) {
+      const index = weeks.indexOf(Number(currentWeek));
+      return weeks[(index + 1) % weeks.length];
+    }
+
+    return weeks[0];
+  }
+
+  function getActiveCard(week) {
+    return cards.find(card => Number(card.dataset.week) === Number(week));
+  }
+
+  function syncCurriculum(week, options = {}) {
+    const source = options.source || "auto";
+    const shouldScroll = Boolean(options.scroll);
+
+    activeWeek = Number(week) || 1;
+
+    const activeCard = getActiveCard(activeWeek);
+    const group = activeCard?.dataset.group || getGroupFromWeek(activeWeek);
+
+    if (source !== "auto") {
+      userHoldUntil = Date.now() + 4000;
+    }
+
+    if (map) {
+      map.dataset.activeGroup = group;
+    }
+
+    cards.forEach(card => {
+      const active = Number(card.dataset.week) === activeWeek;
+      card.classList.toggle("is-active", active);
+      card.classList.toggle("is-muted", !active);
+      card.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
     pins.forEach(pin => {
-      const active = pin.dataset.week === String(week);
+      const active = Number(pin.dataset.week) === activeWeek;
       pin.classList.toggle("is-active", active);
       pin.classList.toggle("is-muted", !active);
+      pin.setAttribute("aria-pressed", active ? "true" : "false");
     });
-    routes.forEach(route => route.classList.toggle("is-active", route.dataset.group === group));
+
+    routes.forEach(route => {
+      route.classList.toggle("is-active", route.dataset.group === group);
+    });
+
+    highlights.forEach(highlight => {
+      highlight.classList.toggle("is-active", highlight.dataset.group === group);
+    });
+
+    regionHits.forEach(hit => {
+      const active = hit.dataset.group === group;
+      hit.classList.toggle("is-active", active);
+      hit.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    if (shouldScroll && activeCard && isMobile()) {
+      const top = activeCard.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   }
 
-  cards.forEach(card => {
-    card.addEventListener("mouseenter", () => setWeek(card.dataset.week));
-    card.addEventListener("focus", () => setWeek(card.dataset.week));
-    card.addEventListener("click", () => setWeek(card.dataset.week));
-  });
-  pins.forEach(pin => {
-    pin.addEventListener("mouseenter", () => setWeek(pin.dataset.week));
-    pin.addEventListener("click", () => setWeek(pin.dataset.week));
-  });
+  function bindCurriculum() {
+    cards.forEach(card => {
+      const week = Number(card.dataset.week);
 
-  let week = 1;
-  if (cards.length) {
-    setWeek(week);
-    setInterval(() => {
-      week = (week % cards.length) + 1;
-      setWeek(week);
-    }, 2000);
+      card.addEventListener("pointerenter", event => {
+        if (event.pointerType === "mouse") syncCurriculum(week, { source: "card" });
+      });
+
+      card.addEventListener("click", () => {
+        syncCurriculum(week, { source: "card" });
+      });
+
+      card.addEventListener("focus", () => {
+        syncCurriculum(week, { source: "card" });
+      });
+
+      card.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        syncCurriculum(week, { source: "card" });
+      });
+    });
+
+    pins.forEach(pin => {
+      const week = Number(pin.dataset.week);
+
+      pin.addEventListener("pointerenter", event => {
+        if (event.pointerType === "mouse") syncCurriculum(week, { source: "pin" });
+      });
+
+      pin.addEventListener("click", event => {
+        event.preventDefault();
+        syncCurriculum(week, { source: "pin", scroll: true });
+      });
+
+      pin.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        syncCurriculum(week, { source: "pin", scroll: true });
+      });
+    });
+
+    regionHits.forEach(hit => {
+      const group = hit.dataset.group;
+
+      hit.addEventListener("pointerenter", event => {
+        if (event.pointerType !== "mouse") return;
+        const week = getWeekFromGroup(group, activeWeek - 1);
+        syncCurriculum(week, { source: "region" });
+      });
+
+      hit.addEventListener("click", event => {
+        event.preventDefault();
+        const target = Number(hit.dataset.targetWeek) || getWeekFromGroup(group);
+        const week = getGroupFromWeek(activeWeek) === group ? getWeekFromGroup(group) : target;
+        syncCurriculum(week, { source: "region", scroll: true });
+      });
+
+      hit.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        const week = getGroupFromWeek(activeWeek) === group ? getWeekFromGroup(group) : Number(hit.dataset.targetWeek);
+        syncCurriculum(week, { source: "region", scroll: true });
+      });
+    });
   }
 
-  // Photo slider
+  function startCurriculumAuto() {
+    if (!cards.length) return;
+
+    syncCurriculum(activeWeek, { source: "init" });
+
+    window.setInterval(() => {
+      if (Date.now() < userHoldUntil) return;
+      activeWeek = activeWeek >= cards.length ? 1 : activeWeek + 1;
+      syncCurriculum(activeWeek, { source: "auto" });
+    }, 2700);
+  }
+
+  bindCurriculum();
+  startCurriculumAuto();
+
+  // 사진 슬라이더
   const slider = document.querySelector(".photo-slider");
   const track = slider?.querySelector(".slide-track");
   const slideCount = slider?.querySelectorAll(".slide").length || 0;
@@ -1202,11 +1764,15 @@ img{display:block;width:100%;height:auto}
 
   slider?.querySelector(".slider-prev")?.addEventListener("click", () => moveSlide(currentSlide - 1));
   slider?.querySelector(".slider-next")?.addEventListener("click", () => moveSlide(currentSlide + 1));
-  if (slideCount > 1) setInterval(() => moveSlide(currentSlide + 1), 6500); // 사진 자동 전환 속도
 
-  // Deadline countdown + bottom bar
+  if (slideCount > 1) {
+    window.setInterval(() => moveSlide(currentSlide + 1), 6500);
+  }
+
+  // 디데이
   const deadlineSection = document.querySelector("[data-deadline-section]");
   const bottomBar = document.querySelector("[data-deadline-bar]");
+
   const els = {
     days: document.querySelector("[data-dday-days]"),
     hours: document.querySelector("[data-dday-hours]"),
@@ -1223,6 +1789,7 @@ img{display:block;width:100%;height:auto}
 
   function updateCountdown() {
     const diff = deadline - Date.now();
+
     if (Number.isNaN(deadline) || diff <= 0) {
       deadlineSection?.classList.add("is-ended");
       bottomBar?.classList.add("is-hidden");
@@ -1247,6 +1814,7 @@ img{display:block;width:100%;height:auto}
 
   function runProgress() {
     if (!els.progressBar || !els.joinedCount) return;
+
     const total = Number(campaign.totalSeats || 30);
     const taken = Number(campaign.joinedSeats || 8);
     const speed = 320;
@@ -1259,25 +1827,28 @@ img{display:block;width:100%;height:auto}
       if (els.totalSeats) els.totalSeats.textContent = total;
 
       let current = taken;
-      setTimeout(() => {
+
+      window.setTimeout(() => {
         els.progressBar.style.transition = "width .4s ease";
-        const timer = setInterval(() => {
+
+        const timer = window.setInterval(() => {
           if (current < total) {
             current += 1;
             els.progressBar.style.width = `${(current / total) * 100}%`;
             els.joinedCount.textContent = current;
           } else {
-            clearInterval(timer);
-            setTimeout(run, pause);
+            window.clearInterval(timer);
+            window.setTimeout(run, pause);
           }
         }, speed);
       }, 400);
     }
+
     run();
   }
 
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  window.setInterval(updateCountdown, 1000);
   runProgress();
 })();
 </script>
