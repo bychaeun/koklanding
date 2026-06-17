@@ -5,12 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="light dark" name="color-scheme"/>
+<meta content="light dark" name="supported-color-schemes"/>
+
 <title>콕 찝어주는 부동산 학원</title>
 <meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/>
 <link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/>
 <meta content="ko_KR" property="og:locale"/>
 <meta content="콕 찝어주는 부동산 학원" property="og:site_name"/>
 <meta content="#42E686" name="theme-color"/>
+<meta content="#FFFDF4" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#111111" media="(prefers-color-scheme: dark)" name="theme-color"/>
 <style>/* ==========================================================================
    콕 찝어주는 부동산 학원 · v68 Clean Build
    수정 위치: Ctrl + F → "여기만 수정"
@@ -2107,6 +2111,210 @@ img{display:block;width:100%;height:auto}
 
   .map-pin.is-active {
     opacity: 1 !important;
+  }
+}
+
+
+/* ==========================================================================
+   v98 Browser Dark Compatibility
+   - 카카오 인앱브라우저와 일반 모바일 브라우저의 다크모드 차이 보정
+   - 브라우저 자동/강제 다크모드가 색을 한 번 더 바꾸는 현상 완화
+   - 자체 다크모드 지원을 명확히 선언
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  background: var(--paper);
+}
+
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    color-scheme: light;
+    background: #FFFDF4 !important;
+    color: #101513 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body,
+  .nav,
+  .hero,
+  .metrics,
+  .method,
+  .curriculum,
+  .trust,
+  .deadline-section-final,
+  .apply,
+  .footer,
+  .deadline-bar {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    background: #111111 !important;
+    color: #F3F3F0 !important;
+  }
+
+  /* 강제 다크모드에서 브라우저가 글자/배경을 재해석하지 않도록 주요 요소 색상 재명시 */
+  .hero,
+  .curriculum,
+  .metrics,
+  .method,
+  .trust {
+    background-color: #111111 !important;
+  }
+
+  .nav {
+    background-color: rgba(17,17,17,.88) !important;
+  }
+
+  .brand,
+  .nav a,
+  .hero-display,
+  .hero-display .line-1,
+  .hero-display .line-3,
+  .section-title,
+  .method-title,
+  .method-item h3,
+  .trust-point h3,
+  .week-roadmap-card strong,
+  .mobile-week-detail strong,
+  .metric strong {
+    color: #F3F3F0 !important;
+    -webkit-text-fill-color: #F3F3F0 !important;
+  }
+
+  .hero-fill-text,
+  .method-green,
+  .section-title .green,
+  .section-title .title-green,
+  .eyebrow,
+  .hero-badge {
+    color: #42E686 !important;
+    -webkit-text-fill-color: #42E686 !important;
+  }
+
+  .hero-lead,
+  .section-desc,
+  .curriculum .section-desc,
+  .method-item p,
+  .trust-point p,
+  .week-roadmap-card p,
+  .mobile-week-detail p,
+  .metric span {
+    color: rgba(243,243,240,.62) !important;
+    -webkit-text-fill-color: rgba(243,243,240,.62) !important;
+  }
+
+  .method-item,
+  .trust-point {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .week-roadmap-card,
+  .mobile-week-detail {
+    background: #181818 !important;
+    border-color: rgba(255,255,255,.075) !important;
+  }
+
+  .tag {
+    background: rgba(255,255,255,.055) !important;
+    border-color: rgba(255,255,255,.075) !important;
+    color: rgba(243,243,240,.64) !important;
+    -webkit-text-fill-color: rgba(243,243,240,.64) !important;
+  }
+
+  .tag b {
+    color: #42E686 !important;
+    -webkit-text-fill-color: #42E686 !important;
+  }
+
+  .btn-primary,
+  .deadline-bar-btn {
+    background: #42E686 !important;
+    color: #062D1A !important;
+    -webkit-text-fill-color: #062D1A !important;
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,.035) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: #F3F3F0 !important;
+    -webkit-text-fill-color: #F3F3F0 !important;
+  }
+
+  .deadline-section-final,
+  .deadline-section-final .urg,
+  .deadline-bar,
+  .footer {
+    background: #080808 !important;
+    color: #fff !important;
+  }
+
+  .apply {
+    background: #108452 !important;
+    color: #fff !important;
+  }
+
+  .apply h2,
+  .apply .eyebrow,
+  .apply .info-value,
+  .apply .tuition-strong,
+  .deadline-section-final .headline,
+  .deadline-section-final .cd-num,
+  .bar-time-box strong,
+  .bar-time-box em,
+  .footer b {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+
+  .apply p,
+  .apply .info-label,
+  .apply .info-value span,
+  .footer,
+  .footer a {
+    color: rgba(255,255,255,.74) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.74) !important;
+  }
+
+  .map-base {
+    opacity: .50 !important;
+  }
+
+  .map-visual[data-active-group="cheonan"] .cheonan-label,
+  .map-visual[data-active-group="asan"] .asan-label {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    opacity: 1 !important;
+  }
+
+  .map-visual[data-active-group="cheonan"] .asan-label,
+  .map-visual[data-active-group="asan"] .cheonan-label {
+    color: rgba(255,255,255,.46) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.46) !important;
+    opacity: .50 !important;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  iframe,
+  svg {
+    filter: none !important;
   }
 }
 </style>
