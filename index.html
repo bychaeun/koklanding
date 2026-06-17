@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="light dark" name="color-scheme"/>
 <title>콕 찝어주는 부동산 학원</title>
 <meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/>
 <link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/>
@@ -1430,6 +1431,583 @@ img{display:block;width:100%;height:auto}
 
   .bar-time-box em {
     font-size: 7px !important;
+  }
+}
+
+
+/* ==========================================================================
+   v94 Adaptive Dark Mode
+   - 강제 라이트모드 제거
+   - 시스템 다크모드에서는 자연스러운 다크 테마로 전환
+   - OG/에셋/기존 레이아웃 유지
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #101513;
+    --paper-soft: #151B18;
+    --ink: #F4F8F5;
+    --muted: rgba(244,248,245,.62);
+    --line: rgba(255,255,255,.14);
+    --line-soft: rgba(255,255,255,.08);
+    --white: #171E1A;
+    --green: #42E686;
+    --green-strong: #35DD7B;
+    --green-deep: #8EF4BA;
+    --green-pale: rgba(66,230,134,.12);
+    --blue: #6FA2FF;
+    --blue-deep: #A8C7FF;
+    --blue-pale: rgba(111,162,255,.14);
+  }
+
+  html,
+  body {
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+  }
+
+  .nav {
+    background: rgba(16,21,19,.88) !important;
+    border-bottom-color: rgba(255,255,255,.08) !important;
+  }
+
+  .brand,
+  .nav-links a,
+  .hero-display .line-1,
+  .hero-display .line-3,
+  .section-title,
+  .method-title,
+  .metric strong,
+  .method-item h3,
+  .trust-point h3,
+  .week-roadmap-card strong,
+  .mobile-week-detail strong {
+    color: var(--ink) !important;
+  }
+
+  .nav-links {
+    color: rgba(244,248,245,.58) !important;
+  }
+
+  .hero {
+    background:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+      var(--paper) !important;
+    background-size: 68px 68px, 68px 68px, auto !important;
+  }
+
+  .hero-lead,
+  .section-desc,
+  .curriculum .section-desc,
+  .method-item p,
+  .trust-point p,
+  .mobile-week-detail p,
+  .week-roadmap-card p {
+    color: var(--muted) !important;
+  }
+
+  .hero-fill-text,
+  .method-green,
+  .section-title .green,
+  .section-title .title-green,
+  .eyebrow,
+  .hero-badge {
+    color: var(--green-strong) !important;
+    -webkit-text-fill-color: var(--green-strong) !important;
+  }
+
+  .btn-secondary {
+    color: var(--ink) !important;
+    border-color: rgba(255,255,255,.20) !important;
+    background: rgba(255,255,255,.03) !important;
+  }
+
+  .btn-secondary:hover {
+    color: var(--green) !important;
+    border-color: rgba(66,230,134,.55) !important;
+  }
+
+  .tag,
+  .method,
+  .trust,
+  .method-item,
+  .trust-point,
+  .week-roadmap-card,
+  .mobile-week-detail {
+    background: #171E1A !important;
+    color: var(--ink) !important;
+  }
+
+  .metrics {
+    background: #111713 !important;
+    color: var(--ink) !important;
+    border-top-color: rgba(255,255,255,.08) !important;
+    border-bottom-color: rgba(255,255,255,.08) !important;
+  }
+
+  .metric {
+    border-right-color: rgba(255,255,255,.08) !important;
+    border-bottom-color: rgba(255,255,255,.08) !important;
+  }
+
+  .metric span,
+  .tag,
+  .week-roadmap-card.is-muted,
+  .week-roadmap-card strong {
+    color: rgba(244,248,245,.58) !important;
+  }
+
+  .tag b {
+    color: var(--green) !important;
+  }
+
+  .icon-wrap {
+    background: rgba(66,230,134,.10) !important;
+    color: var(--green) !important;
+  }
+
+  .week-roadmap-card,
+  .mobile-week-detail,
+  .method-item,
+  .trust-point {
+    box-shadow: 0 8px 24px rgba(0,0,0,.20) !important;
+  }
+
+  .week-roadmap-card.is-active strong,
+  .week-roadmap-card:hover strong {
+    color: var(--ink) !important;
+  }
+
+  .mobile-week-region {
+    background: rgba(255,255,255,.08) !important;
+    color: rgba(244,248,245,.62) !important;
+  }
+
+  .map-region-label {
+    color: rgba(244,248,245,.24) !important;
+  }
+
+  .map-pin {
+    background: #F4F8F5 !important;
+    color: #101513 !important;
+  }
+
+  .map-pin span {
+    color: #101513 !important;
+  }
+
+  .photo-slider {
+    background: #171E1A !important;
+  }
+
+  .slide-caption {
+    background: rgba(16,21,19,.72) !important;
+    color: #fff !important;
+  }
+
+  .slider-arrow {
+    background: rgba(16,21,19,.42) !important;
+    color: rgba(255,255,255,.72) !important;
+  }
+
+  .deadline-section-final,
+  .deadline-section-final .urg,
+  .deadline-bar,
+  .footer {
+    background: #080C0A !important;
+    color: #fff !important;
+  }
+
+  .deadline-section-final .cd-cell,
+  .bar-time-box {
+    background: rgba(255,255,255,.075) !important;
+    border-color: rgba(255,255,255,.13) !important;
+  }
+
+  .deadline-section-final .headline,
+  .deadline-section-final .cd-num,
+  .bar-time-box strong,
+  .bar-time-box em,
+  .footer b {
+    color: #fff !important;
+  }
+
+  .deadline-section-final .acc,
+  .deadline-section-final .badge,
+  .deadline-section-final .prog-label span {
+    color: var(--green) !important;
+  }
+
+  .apply {
+    background: #108F55 !important;
+    color: #fff !important;
+  }
+
+  .apply h2,
+  .apply .eyebrow,
+  .apply .info-value,
+  .apply .tuition-strong {
+    color: #fff !important;
+  }
+
+  .apply p,
+  .apply .info-label,
+  .apply .info-value span {
+    color: rgba(255,255,255,.78) !important;
+  }
+
+  .apply .btn-primary {
+    background: #fff !important;
+    border-color: #fff !important;
+    color: #086A3E !important;
+  }
+
+  .apply .btn-secondary,
+  .apply-detail-summary,
+  .map-fallback-link {
+    color: rgba(255,255,255,.86) !important;
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.24) !important;
+  }
+
+  .apply-detail-toggle .info-row {
+    background: rgba(255,255,255,.10) !important;
+    border-color: rgba(255,255,255,.22) !important;
+  }
+
+  .apply-map-card {
+    background: rgba(255,255,255,.12) !important;
+  }
+
+  .footer,
+  .footer a {
+    color: rgba(255,255,255,.70) !important;
+  }
+
+  img,
+  video,
+  iframe,
+  svg {
+    filter: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   v95 Neutral Dark Mode Color Fix
+   - 다크모드 전체 배경에서 초록 채도 제거
+   - 히어로 그라데이션 원 투명도 35%
+   - 글자/태그 주변에 깔리는 과한 박스감 정리
+   - 라이트모드는 그대로 유지
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #111111;
+    --paper-soft: #151515;
+    --ink: #F3F3F0;
+    --muted: rgba(243,243,240,.62);
+    --line: rgba(255,255,255,.13);
+    --line-soft: rgba(255,255,255,.075);
+    --white: #181818;
+    --green: #42E686;
+    --green-strong: #42E686;
+    --green-deep: #B7F5CC;
+    --green-pale: rgba(255,255,255,.06);
+    --blue: #7EA6FF;
+    --blue-deep: #BCD0FF;
+    --blue-pale: rgba(255,255,255,.06);
+  }
+
+  html,
+  body,
+  .hero,
+  .curriculum,
+  .metrics {
+    background-color: #111111 !important;
+    color: var(--ink) !important;
+  }
+
+  .hero {
+    background:
+      linear-gradient(rgba(255,255,255,.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.032) 1px, transparent 1px),
+      #111111 !important;
+    background-size: 68px 68px, 68px 68px, auto !important;
+  }
+
+  .section,
+  .method,
+  .trust {
+    background-color: #111111 !important;
+  }
+
+  .nav {
+    background: rgba(17,17,17,.88) !important;
+    border-bottom-color: rgba(255,255,255,.075) !important;
+  }
+
+  /* 히어로 블러 원: 다크모드에서만 35% */
+  .orb {
+    opacity: .35 !important;
+    mix-blend-mode: screen !important;
+    filter: blur(56px) saturate(.82) !important;
+  }
+
+  .orb-green {
+    background: rgba(66,230,134,.58) !important;
+  }
+
+  .orb-blue {
+    background: rgba(126,166,255,.42) !important;
+  }
+
+  .orb-yellow {
+    background: rgba(255,240,106,.34) !important;
+  }
+
+  /* 텍스트 자체에는 박스가 깔려 보이지 않도록 */
+  .hero-display span,
+  .hero-fill-text,
+  .hero-eul,
+  .section-title span,
+  .method-title span,
+  .mobile-week-detail strong,
+  .week-roadmap-card strong,
+  .trust-point h3,
+  .method-item h3 {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .hero-fill-text,
+  .method-green,
+  .section-title .green,
+  .section-title .title-green,
+  .eyebrow,
+  .hero-badge {
+    color: var(--green-strong) !important;
+    -webkit-text-fill-color: var(--green-strong) !important;
+  }
+
+  .brand,
+  .nav-links a,
+  .hero-display .line-1,
+  .hero-display .line-3,
+  .section-title,
+  .method-title,
+  .metric strong,
+  .method-item h3,
+  .trust-point h3,
+  .week-roadmap-card strong,
+  .mobile-week-detail strong {
+    color: var(--ink) !important;
+  }
+
+  .hero-lead,
+  .section-desc,
+  .curriculum .section-desc,
+  .method-item p,
+  .trust-point p,
+  .mobile-week-detail p,
+  .week-roadmap-card p,
+  .metric span {
+    color: var(--muted) !important;
+  }
+
+  /* 카드/상자는 초록기 없는 무채색 */
+  .method-item,
+  .trust-point,
+  .week-roadmap-card,
+  .mobile-week-detail {
+    background: #181818 !important;
+    color: var(--ink) !important;
+    border: 1px solid rgba(255,255,255,.075) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+  }
+
+  .method,
+  .trust {
+    background: #111111 !important;
+  }
+
+  .icon-wrap {
+    background: rgba(255,255,255,.055) !important;
+    color: var(--green-strong) !important;
+    box-shadow: none !important;
+  }
+
+  /* 태그는 이상한 박스감이 덜 보이게 투명한 라인 칩으로 */
+  .tag {
+    background: rgba(255,255,255,.055) !important;
+    border: 1px solid rgba(255,255,255,.075) !important;
+    color: rgba(243,243,240,.64) !important;
+    box-shadow: none !important;
+  }
+
+  .tag b {
+    color: var(--green-strong) !important;
+  }
+
+  .metrics {
+    border-top-color: rgba(255,255,255,.075) !important;
+    border-bottom-color: rgba(255,255,255,.075) !important;
+  }
+
+  .metric {
+    border-right-color: rgba(255,255,255,.075) !important;
+    border-bottom-color: rgba(255,255,255,.075) !important;
+  }
+
+  .week-roadmap-card.is-muted,
+  .week-roadmap-card strong {
+    color: rgba(243,243,240,.50) !important;
+  }
+
+  .week-roadmap-card.is-active strong,
+  .week-roadmap-card:hover strong {
+    color: var(--ink) !important;
+  }
+
+  .week-code,
+  .mobile-week-code {
+    background: rgba(66,230,134,.13) !important;
+    color: var(--green-strong) !important;
+  }
+
+  .asan-card .week-code,
+  .mobile-week-detail[data-group="asan"] .mobile-week-code {
+    background: rgba(126,166,255,.14) !important;
+    color: #AFC7FF !important;
+  }
+
+  .mobile-week-region {
+    background: rgba(255,255,255,.055) !important;
+    color: rgba(243,243,240,.56) !important;
+  }
+
+  .map-region-label {
+    color: rgba(243,243,240,.20) !important;
+  }
+
+  .map-pin {
+    background: #F3F3F0 !important;
+    color: #111111 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,.28) !important;
+  }
+
+  .map-pin span {
+    color: #111111 !important;
+  }
+
+  .route-line {
+    stroke: rgba(255,255,255,.18) !important;
+  }
+
+  .route-line.is-active {
+    stroke: rgba(255,255,255,.82) !important;
+  }
+
+  .photo-slider {
+    background: #181818 !important;
+  }
+
+  .slide-caption {
+    background: rgba(17,17,17,.72) !important;
+    color: #F3F3F0 !important;
+    box-shadow: none !important;
+  }
+
+  .slider-arrow {
+    background: rgba(17,17,17,.54) !important;
+    color: rgba(255,255,255,.72) !important;
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,.035) !important;
+    color: var(--ink) !important;
+    border-color: rgba(255,255,255,.18) !important;
+  }
+
+  .btn-primary,
+  .deadline-bar-btn {
+    background: var(--green-strong) !important;
+    color: #062D1A !important;
+  }
+
+  .deadline-section-final,
+  .deadline-section-final .urg,
+  .deadline-bar,
+  .footer {
+    background: #080808 !important;
+    color: #fff !important;
+  }
+
+  .deadline-section-final .cd-cell,
+  .bar-time-box {
+    background: rgba(255,255,255,.075) !important;
+    border-color: rgba(255,255,255,.12) !important;
+  }
+
+  .deadline-section-final .headline,
+  .deadline-section-final .cd-num,
+  .bar-time-box strong,
+  .bar-time-box em,
+  .footer b {
+    color: #fff !important;
+  }
+
+  .apply {
+    background: #108452 !important;
+    color: #fff !important;
+  }
+
+  .apply h2,
+  .apply .eyebrow,
+  .apply .info-value,
+  .apply .tuition-strong {
+    color: #fff !important;
+  }
+
+  .apply p,
+  .apply .info-label,
+  .apply .info-value span {
+    color: rgba(255,255,255,.78) !important;
+  }
+
+  .apply .btn-primary {
+    background: #fff !important;
+    border-color: #fff !important;
+    color: #086A3E !important;
+  }
+
+  .apply .btn-secondary,
+  .apply-detail-summary,
+  .map-fallback-link {
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.22) !important;
+    color: rgba(255,255,255,.86) !important;
+  }
+
+  .apply-detail-toggle .info-row {
+    background: rgba(255,255,255,.09) !important;
+    border-color: rgba(255,255,255,.18) !important;
+  }
+
+  .footer,
+  .footer a {
+    color: rgba(255,255,255,.70) !important;
+  }
+
+  img,
+  iframe,
+  svg {
+    filter: none !important;
   }
 }
 </style>
