@@ -3417,6 +3417,267 @@ img{display:block;width:100%;height:auto}
     min-height: 62px !important;
   }
 }
+
+
+/* ==========================================================================
+   v90 Mobile Visual Refinement
+   - 히어로 블러 원 절반 크기 + 우측 상단 이동
+   - 수업방식 체크 아이콘 모바일 숨김
+   - 신청안내 자세히 보기 버튼 톤 다운
+   - 지도 iframe 오류 대비 링크 보강
+   - 푸터 하단 여백 축소
+   - 모바일 하단 고정바를 좌/우 여백 기준으로 재배치
+   ========================================================================== */
+
+@keyframes orbMobileCornerA {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-26px, 20px, 0) scale(1.08); }
+  100% { transform: translate3d(12px, -16px, 0) scale(.96); }
+}
+
+@keyframes orbMobileCornerB {
+  0% { transform: translate3d(0, 0, 0) scale(.94); }
+  50% { transform: translate3d(-34px, -14px, 0) scale(1.04); }
+  100% { transform: translate3d(20px, 22px, 0) scale(.9); }
+}
+
+@keyframes orbMobileCornerC {
+  0% { transform: translate3d(0, 0, 0) scale(.92); }
+  50% { transform: translate3d(24px, -20px, 0) scale(1.02); }
+  100% { transform: translate3d(-18px, 14px, 0) scale(.88); }
+}
+
+.map-fallback-link {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  /* 히어로 그라데이션 블러 원: 절반 크기 + 우측 상단 */
+  .hero-orbs {
+    inset: 0 !important;
+  }
+
+  .orb {
+    filter: blur(34px) !important;
+    opacity: .42 !important;
+  }
+
+  .orb-green {
+    width: 180px !important;
+    height: 180px !important;
+    right: -38px !important;
+    top: 52px !important;
+    animation: orbMobileCornerA 13s ease-in-out infinite alternate !important;
+  }
+
+  .orb-blue {
+    width: 210px !important;
+    height: 210px !important;
+    right: 8px !important;
+    top: 8px !important;
+    animation: orbMobileCornerB 16s ease-in-out infinite alternate !important;
+  }
+
+  .orb-yellow {
+    width: 150px !important;
+    height: 150px !important;
+    right: -26px !important;
+    top: 168px !important;
+    animation: orbMobileCornerC 14s ease-in-out infinite alternate !important;
+  }
+
+  /* 수업방식 체크 아이콘 숨김 */
+  .trust-num {
+    display: none !important;
+  }
+
+  .trust-point {
+    padding-top: 15px !important;
+  }
+
+  .trust-point h3 {
+    margin-top: 0 !important;
+  }
+
+  /* 신청안내 자세히 보기: 메인 CTA와 다른 작고 가벼운 형태 */
+  .apply-detail-summary {
+    width: fit-content !important;
+    min-width: 0 !important;
+    min-height: 30px !important;
+    margin: 0 auto !important;
+    padding: 0 13px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, .08) !important;
+    border: 1px solid rgba(255, 255, 255, .22) !important;
+    color: rgba(255, 255, 255, .76) !important;
+    font-size: 10.8px !important;
+    font-weight: 750 !important;
+    letter-spacing: -.02em !important;
+  }
+
+  .apply-detail-summary::after {
+    margin-left: 6px !important;
+    font-size: 10.5px !important;
+  }
+
+  .map-fallback-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 9px !important;
+    min-height: 34px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, .12) !important;
+    border: 1px solid rgba(255, 255, 255, .18) !important;
+    color: rgba(255, 255, 255, .82) !important;
+    font-size: 11.2px !important;
+    font-weight: 800 !important;
+  }
+
+  /* 푸터 검정 배경 하단 여백 축소 */
+  .footer {
+    padding-top: 22px !important;
+    padding-bottom: 22px !important;
+  }
+
+  .footer-inner {
+    gap: 7px !important;
+    font-size: 10px !important;
+    line-height: 1.48 !important;
+  }
+
+  .footer b {
+    font-size: 10.5px !important;
+  }
+
+  /* 하단 고정바: 기존 모바일 좌우 레이아웃 여백에 맞춰 좌/우 정렬 */
+  body {
+    padding-bottom: 58px !important;
+  }
+
+  .deadline-bar {
+    padding: 7px 0 calc(7px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .deadline-bar-inner {
+    width: calc(100% - 56px) !important;
+    max-width: 430px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  .deadline-bar-count {
+    width: 148px !important;
+    max-width: 148px !important;
+    flex: 0 0 148px !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2px !important;
+  }
+
+  .bar-time-box {
+    height: 29px !important;
+    padding: 0 2px !important;
+    border-radius: 8px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 10.4px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 6.8px !important;
+  }
+
+  .deadline-bar-btn {
+    flex: 0 0 118px !important;
+    width: 118px !important;
+    min-width: 118px !important;
+    max-width: 118px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 12px !important;
+    font-weight: 950 !important;
+    letter-spacing: -.02em !important;
+    white-space: nowrap !important;
+  }
+
+  .deadline-bar-btn::after {
+    content: "" !important;
+  }
+
+  .deadline-bar-btn .pencil-icon,
+  .deadline-bar-btn svg,
+  .deadline-bar-btn i {
+    display: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .orb-green {
+    width: 162px !important;
+    height: 162px !important;
+    right: -42px !important;
+    top: 50px !important;
+  }
+
+  .orb-blue {
+    width: 188px !important;
+    height: 188px !important;
+    right: 0 !important;
+    top: 10px !important;
+  }
+
+  .orb-yellow {
+    width: 134px !important;
+    height: 134px !important;
+    right: -30px !important;
+    top: 152px !important;
+  }
+
+  .deadline-bar-inner {
+    width: calc(100% - 42px) !important;
+    gap: 12px !important;
+  }
+
+  .deadline-bar-count {
+    width: 136px !important;
+    max-width: 136px !important;
+    flex-basis: 136px !important;
+  }
+
+  .bar-time-box {
+    height: 28px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 9.9px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 6.4px !important;
+  }
+
+  .deadline-bar-btn {
+    flex-basis: 104px !important;
+    width: 104px !important;
+    min-width: 104px !important;
+    max-width: 104px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    font-size: 11.2px !important;
+  }
+
+  .footer {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+}
 </style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
@@ -3731,8 +3992,8 @@ img{display:block;width:100%;height:auto}
 <div class="info-row"><div class="info-label">문의</div><div class="info-value">041-575-1102</div></div>
 <div class="info-row recommend-row"><div class="info-label">추천 대상</div><div class="info-value">천안·아산 투자 타이밍을 제대로 배우고 싶은 분</div></div>
 </div><div class="apply-map-wrap reveal delay-2"><div class="apply-map-title">오시는 길</div><div aria-label="교육 장소 지도" class="apply-map-card">
-<iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%EC%B6%A9%EB%82%A8%20%EC%B2%9C%EC%95%88%EC%8B%9C%20%EB%8F%99%EB%82%A8%EA%B5%AC%20%EB%B4%89%EC%84%9C10%EA%B8%B8%2019%20%EA%B8%88%EA%B0%95%EC%84%BC%ED%8A%B8%EB%9F%B4%EB%B9%8C%EB%94%A9%203%EC%B8%B5&amp;output=embed" title="콕 찝어주는 부동산 학원 위치 지도"></iframe>
-</div></div></details>
+<iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?hl=ko&amp;q=%EC%B6%A9%EB%82%A8%20%EC%B2%9C%EC%95%88%EC%8B%9C%20%EB%8F%99%EB%82%A8%EA%B5%AC%20%EB%B4%89%EC%84%9C10%EA%B8%B8%2019%20%EA%B8%88%EA%B0%95%EC%84%BC%ED%8A%B8%EB%9F%B4%EB%B9%8C%EB%94%A9%203%EC%B8%B5&amp;z=17&amp;output=embed" title="콕 찝어주는 부동산 학원 위치 지도"></iframe>
+</div><a class="map-fallback-link" href="https://map.naver.com/p/search/%EC%B6%A9%EB%82%A8%20%EC%B2%9C%EC%95%88%EC%8B%9C%20%EB%8F%99%EB%82%A8%EA%B5%AC%20%EB%B4%89%EC%84%9C10%EA%B8%B8%2019%20%EA%B8%88%EA%B0%95%EC%84%BC%ED%8A%B8%EB%9F%B4%EB%B9%8C%EB%94%A9%203%EC%B8%B5" rel="noopener" target="_blank">네이버지도에서 오시는 길 보기</a></div></details>
 </div>
 </section>
 <footer class="footer">
