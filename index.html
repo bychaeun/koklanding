@@ -1675,7 +1675,436 @@ img{display:block;width:100%;height:auto}
     width: min(104%, 450px) !important;
   }
 }
-</style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-custom.png" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-custom.png" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-custom.png" name="twitter:image"/></head>
+
+
+/* ==========================================================================
+   v80 Mobile Layout Compact
+   - OG/assets unchanged
+   - mobile nav buttons equal
+   - hero buttons 2 columns
+   - hero tags 3 + 2
+   - wider side margins and shorter vertical rhythm
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  body {
+    line-height: 1.54 !important;
+    padding-bottom: 104px !important;
+  }
+
+  .container {
+    width: calc(100% - 56px) !important;
+    max-width: 100% !important;
+  }
+
+  .section {
+    padding: 50px 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 26px !important;
+    gap: 16px !important;
+  }
+
+  .section-title,
+  .method-title {
+    font-size: clamp(25px, 7.6vw, 35px) !important;
+    line-height: 1.22 !important;
+  }
+
+  .section-desc,
+  .curriculum .section-desc {
+    font-size: 12.8px !important;
+    line-height: 1.62 !important;
+  }
+
+  /* menu buttons equal */
+  .nav-inner {
+    height: 56px !important;
+    gap: 10px !important;
+  }
+
+  .brand {
+    font-size: 12.5px !important;
+    gap: 7px !important;
+    min-width: 0 !important;
+  }
+
+  .brand-mark {
+    width: 28px !important;
+    height: 28px !important;
+    flex: 0 0 28px !important;
+  }
+
+  .nav-actions {
+    display: flex !important;
+    gap: 6px !important;
+    flex: 0 0 auto !important;
+  }
+
+  .nav-actions .btn,
+  .nav-actions .btn-primary,
+  .nav-actions .btn-secondary {
+    display: inline-flex !important;
+    width: 74px !important;
+    min-width: 74px !important;
+    max-width: 74px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+    gap: 4px !important;
+  }
+
+  .nav-youtube-icon {
+    width: 14px !important;
+    height: 14px !important;
+    flex: 0 0 14px !important;
+  }
+
+  /* hero compact */
+  .hero {
+    padding: 38px 0 38px !important;
+    min-height: auto !important;
+    background-size: 46px 46px, 46px 46px, auto !important;
+  }
+
+  .hero-badge {
+    margin-bottom: 16px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .hero-display {
+    line-height: 1.07 !important;
+  }
+
+  .hero-display .line-1 {
+    font-size: clamp(18px, 5vw, 23px) !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(33px, 10.4vw, 48px) !important;
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(30px, 9.4vw, 44px) !important;
+    margin-top: 7px !important;
+  }
+
+  .hero-lead {
+    margin-top: 18px !important;
+    font-size: 12.8px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* hero buttons: 2 in one row */
+  .hero-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    margin-top: 20px !important;
+  }
+
+  .hero-actions .btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+    height: 46px !important;
+    padding: 0 8px !important;
+    font-size: 12px !important;
+    border-radius: 999px !important;
+    white-space: nowrap !important;
+  }
+
+  .hero-actions .youtube-icon {
+    width: 14px !important;
+    height: 14px !important;
+    flex: 0 0 14px !important;
+  }
+
+  /* hero tags: 3 + 2 */
+  .hero-tags {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 7px !important;
+    margin-top: 16px !important;
+  }
+
+  .hero-tags .tag {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 29px !important;
+    padding: 0 7px !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    font-size: 10.6px !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  .hero-tags .tag:nth-child(-n+3) {
+    grid-column: span 2 !important;
+  }
+
+  .hero-tags .tag:nth-child(n+4) {
+    grid-column: span 3 !important;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .metric {
+    padding: 16px 8px !important;
+    text-align: center !important;
+  }
+
+  .metric strong {
+    font-size: clamp(22px, 6.8vw, 31px) !important;
+  }
+
+  .metric span {
+    margin-top: 5px !important;
+    font-size: 10.4px !important;
+    line-height: 1.35 !important;
+  }
+
+  .method {
+    padding: 52px 0 !important;
+  }
+
+  .method-row {
+    margin-top: 28px !important;
+    gap: 20px !important;
+  }
+
+  .icon-wrap {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .method-item h3,
+  .trust-point h3 {
+    font-size: 17px !important;
+    line-height: 1.3 !important;
+  }
+
+  .method-item p,
+  .trust-point p {
+    font-size: 12.7px !important;
+    line-height: 1.58 !important;
+  }
+
+  .curriculum .section-header {
+    margin-bottom: 24px !important;
+  }
+
+  .curriculum-layout {
+    gap: 20px !important;
+  }
+
+  .map-stage {
+    height: 315px !important;
+    min-height: 315px !important;
+    margin-top: 0 !important;
+  }
+
+  .map-visual {
+    width: min(100%, 430px) !important;
+    max-width: 430px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+
+  .map-pin {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .map-pin span {
+    font-size: 8.5px !important;
+  }
+
+  .week-roadmap {
+    gap: 8px !important;
+  }
+
+  .week-roadmap-card {
+    padding: 13px 14px 12px !important;
+    border-radius: 16px !important;
+  }
+
+  .week-code {
+    min-height: 22px !important;
+    padding: 0 9px !important;
+    font-size: 10.5px !important;
+  }
+
+  .week-roadmap-card strong {
+    margin-top: 8px !important;
+    font-size: 15.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  .week-roadmap-card p {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    font-size: 11.8px !important;
+    line-height: 1.52 !important;
+  }
+
+  .trust-layout {
+    gap: 26px !important;
+  }
+
+  .trust-points {
+    gap: 17px !important;
+  }
+
+  .photo-slider {
+    margin-top: 26px !important;
+    border-radius: 17px !important;
+  }
+
+  .slide {
+    height: 200px !important;
+  }
+
+  .deadline-section-final .urg {
+    padding: 40px 18px !important;
+  }
+
+  .deadline-section-final .headline {
+    font-size: clamp(24px, 8vw, 36px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.45rem !important;
+  }
+
+  .deadline-section-final .cd-grid {
+    gap: 5px !important;
+    margin-bottom: 1.45rem !important;
+  }
+
+  .deadline-section-final .cd-cell {
+    padding: 10px 3px 7px !important;
+    border-radius: 8px !important;
+  }
+
+  .deadline-section-final .cd-num {
+    font-size: clamp(19px, 7vw, 28px) !important;
+  }
+
+  .apply {
+    padding: 54px 0 !important;
+  }
+
+  .apply h2 {
+    font-size: clamp(27px, 8.2vw, 39px) !important;
+    line-height: 1.16 !important;
+  }
+
+  .apply p {
+    margin-top: 12px !important;
+    font-size: 12.8px !important;
+    line-height: 1.6 !important;
+  }
+
+  .apply-actions {
+    margin-top: 20px !important;
+    gap: 8px !important;
+  }
+
+  .apply .btn {
+    width: 100% !important;
+    min-height: 46px !important;
+    font-size: 12.8px !important;
+  }
+
+  .info-row {
+    padding: 11px 0 !important;
+  }
+
+  .info-value {
+    font-size: 13.8px !important;
+  }
+
+  .apply-map-wrap {
+    margin-top: 24px !important;
+  }
+
+  .apply-map-card {
+    height: 205px !important;
+    border-radius: 18px !important;
+  }
+
+  .deadline-bar {
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .bar-time-box {
+    height: 32px !important;
+    border-radius: 8px !important;
+  }
+
+  .deadline-bar-btn {
+    min-height: 43px !important;
+    font-size: 12.7px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: calc(100% - 42px) !important;
+  }
+
+  .brand {
+    font-size: 11.7px !important;
+  }
+
+  .nav-actions .btn,
+  .nav-actions .btn-primary,
+  .nav-actions .btn-secondary {
+    width: 66px !important;
+    min-width: 66px !important;
+    max-width: 66px !important;
+    font-size: 10.5px !important;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(31px, 9.8vw, 43px) !important;
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(29px, 8.9vw, 40px) !important;
+  }
+
+  .hero-actions .btn {
+    font-size: 11.2px !important;
+    padding: 0 5px !important;
+  }
+
+  .hero-tags .tag {
+    font-size: 9.8px !important;
+    padding: 0 5px !important;
+  }
+
+  .map-stage {
+    height: 285px !important;
+    min-height: 285px !important;
+  }
+
+  .map-visual {
+    width: min(104%, 405px) !important;
+  }
+}
+</style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
   여기만 수정하면 됩니다.
