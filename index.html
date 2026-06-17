@@ -2967,6 +2967,123 @@ img{display:block;width:100%;height:auto}
     padding-bottom: 72px !important;
   }
 }
+
+
+/* ==========================================================================
+   v87 Mobile Bottom Countdown Refinement
+   - 모바일 하단 고정 디데이 축소
+   - 디데이와 신청 버튼 사이 간격 확대
+   - 버튼 문구는 신청하기만 표시
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  body {
+    padding-bottom: 58px !important;
+  }
+
+  .deadline-bar {
+    padding: 7px 13px calc(7px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .deadline-bar-inner {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 74px !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .deadline-bar-count {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 3px !important;
+    min-width: 0 !important;
+  }
+
+  .bar-count-label {
+    display: none !important;
+  }
+
+  .bar-time-box {
+    min-width: 0 !important;
+    height: 30px !important;
+    padding: 0 3px !important;
+    border-radius: 8px !important;
+    grid-template-columns: auto auto !important;
+    gap: 1px !important;
+    background: rgba(255, 255, 255, .075) !important;
+    border-color: rgba(255, 255, 255, .11) !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 11.5px !important;
+    line-height: 1 !important;
+    min-width: auto !important;
+  }
+
+  .bar-time-box em {
+    font-size: 7.5px !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  .deadline-bar-btn {
+    width: 74px !important;
+    min-width: 74px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    font-size: 11.5px !important;
+    font-weight: 950 !important;
+    letter-spacing: -.02em !important;
+    gap: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .deadline-bar-btn .pencil-icon,
+  .deadline-bar-btn svg,
+  .deadline-bar-btn i {
+    display: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  body {
+    padding-bottom: 56px !important;
+  }
+
+  .deadline-bar {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .deadline-bar-inner {
+    grid-template-columns: minmax(0, 1fr) 68px !important;
+    gap: 11px !important;
+  }
+
+  .bar-time-box {
+    height: 29px !important;
+    border-radius: 7px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 10.8px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 7px !important;
+  }
+
+  .deadline-bar-btn {
+    width: 68px !important;
+    min-width: 68px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    font-size: 10.8px !important;
+  }
+}
 </style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
@@ -3283,7 +3400,6 @@ img{display:block;width:100%;height:auto}
 </div><div class="apply-map-wrap reveal delay-2"><div class="apply-map-title">오시는 길</div><div aria-label="교육 장소 지도" class="apply-map-card">
 <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%EC%B6%A9%EB%82%A8%20%EC%B2%9C%EC%95%88%EC%8B%9C%20%EB%8F%99%EB%82%A8%EA%B5%AC%20%EB%B4%89%EC%84%9C10%EA%B8%B8%2019%20%EA%B8%88%EA%B0%95%EC%84%BC%ED%8A%B8%EB%9F%B4%EB%B9%8C%EB%94%A9%203%EC%B8%B5&amp;output=embed" title="콕 찝어주는 부동산 학원 위치 지도"></iframe>
 </div></div></details>
-
 </div>
 </section>
 <footer class="footer">
@@ -3301,7 +3417,7 @@ img{display:block;width:100%;height:auto}
 <span class="bar-time-box"><strong data-bar-minutes="">00</strong><em>분</em></span>
 <span class="bar-time-box"><strong data-bar-seconds="">00</strong><em>초</em></span>
 </div>
-<a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank"><span aria-hidden="true" class="pencil-icon">✎</span><span>4기 당장 신청하기 →</span></a>
+<a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank"><span aria-hidden="true" class="pencil-icon">✎</span>신청하기</a>
 </div>
 </div>
 <script>
