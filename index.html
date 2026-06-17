@@ -2264,6 +2264,146 @@ img{display:block;width:100%;height:auto}
     font-size: 11.2px !important;
   }
 }
+
+
+/* ==========================================================================
+   v83 Mobile Hero Breathing + Compact Curriculum
+   - 히어로 본문/버튼/태그 간격 확대
+   - 지도 클릭 잔상 제거 강화
+   - 모바일 8주 카드 4 + 4 압축 배열
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* Hero spacing */
+  .hero {
+    padding-bottom: 58px !important;
+  }
+
+  .hero-actions {
+    margin-top: 40px !important;
+  }
+
+  .hero-tags {
+    margin-top: 54px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* 지도 클릭/활성화 시 생기는 잔상 제거 */
+  .map-region-hit,
+  .map-region-hit::before,
+  .map-region-hit::after,
+  .map-region-hit:hover::before,
+  .map-region-hit:hover::after,
+  .map-region-hit.is-active::before,
+  .map-region-hit.is-active::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .map-area-highlight,
+  .map-area-highlight.is-active,
+  .map-visual[data-active-group="cheonan"] .highlight-cheonan,
+  .map-visual[data-active-group="asan"] .highlight-asan {
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    mix-blend-mode: normal !important;
+  }
+
+  .map-region-hit {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* 8주 카드: 모바일에서 4개 + 4개로 압축 */
+  .week-roadmap {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  .week-roadmap-card {
+    min-height: 88px !important;
+    padding: 10px 6px 9px !important;
+    border-radius: 14px !important;
+    align-content: start !important;
+    text-align: center !important;
+  }
+
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: 88px !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .week-code {
+    justify-self: center !important;
+    min-height: 21px !important;
+    padding: 0 7px !important;
+    font-size: 10px !important;
+    margin: 0 auto !important;
+  }
+
+  .week-roadmap-card strong {
+    margin-top: 8px !important;
+    font-size: 10.8px !important;
+    line-height: 1.22 !important;
+    letter-spacing: -.035em !important;
+    word-break: keep-all !important;
+  }
+
+  .week-roadmap-card strong .title-sub {
+    display: none !important;
+  }
+
+  .week-roadmap-card p {
+    display: none !important;
+  }
+
+  .week-roadmap-card.is-active {
+    box-shadow: 0 5px 13px rgba(16, 21, 19, .06) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-actions {
+    margin-top: 36px !important;
+  }
+
+  .hero-tags {
+    margin-top: 48px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .week-roadmap {
+    gap: 6px !important;
+  }
+
+  .week-roadmap-card {
+    min-height: 82px !important;
+    padding: 9px 5px 8px !important;
+    border-radius: 13px !important;
+  }
+
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: 82px !important;
+  }
+
+  .week-code {
+    min-height: 20px !important;
+    font-size: 9.4px !important;
+    padding: 0 6px !important;
+  }
+
+  .week-roadmap-card strong {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+}
 </style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
