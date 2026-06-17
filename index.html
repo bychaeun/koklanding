@@ -2059,6 +2059,56 @@ img{display:block;width:100%;height:auto}
     box-shadow: none !important;
   }
 }
+
+
+/* ==========================================================================
+   v97 Dark Map Contrast
+   - 다크모드에서 비활성 지도는 50% 투명도
+   - 활성 지역명은 더 선명한 흰색
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  .map-base {
+    opacity: .50 !important;
+  }
+
+  .map-area-highlight {
+    opacity: 0 !important;
+  }
+
+  .map-area-highlight.is-active,
+  .map-visual[data-active-group="cheonan"] .highlight-cheonan,
+  .map-visual[data-active-group="asan"] .highlight-asan {
+    opacity: 1 !important;
+  }
+
+  .map-region-label {
+    color: rgba(255,255,255,.38) !important;
+    opacity: .50 !important;
+  }
+
+  .map-visual[data-active-group="cheonan"] .cheonan-label,
+  .map-visual[data-active-group="asan"] .asan-label {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 14px rgba(255,255,255,.24) !important;
+  }
+
+  .map-visual[data-active-group="cheonan"] .asan-label,
+  .map-visual[data-active-group="asan"] .cheonan-label {
+    color: rgba(255,255,255,.46) !important;
+    opacity: .50 !important;
+    text-shadow: none !important;
+  }
+
+  .map-pin.is-muted {
+    opacity: .50 !important;
+  }
+
+  .map-pin.is-active {
+    opacity: 1 !important;
+  }
+}
 </style>
 <meta content="website" property="og:type"/>
 <meta content="https://bychaeun.github.io/koklanding/" property="og:url"/>
