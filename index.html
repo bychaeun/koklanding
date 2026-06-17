@@ -41,14 +41,15 @@
     const body = document.body;
     if (!body) return false;
 
-    const previousDark = root.classList.contains("theme-dark");
-    const previousLight = root.classList.contains("theme-light");
+    const hadDark = root.classList.contains("theme-dark");
+    const hadLight = root.classList.contains("theme-light");
 
     root.classList.remove("theme-dark", "theme-light");
 
     const color = window.getComputedStyle(body).backgroundColor || "";
-    if (previousDark) root.classList.add("theme-dark");
-    if (previousLight) root.classList.add("theme-light");
+
+    if (hadDark) root.classList.add("theme-dark");
+    if (hadLight) root.classList.add("theme-light");
 
     const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
     if (!match) return false;
@@ -65,7 +66,6 @@
     const stored = readQueryTheme();
     const prefersDark = media ? media.matches : false;
     const browserLooksDark = isBackgroundAlreadyDark();
-
     const isDark = stored === "dark" || (!stored && (prefersDark || browserLooksDark));
 
     root.classList.toggle("theme-dark", isDark);
@@ -2031,17 +2031,6 @@ html.theme-dark svg {
 }
 
 
-/* ==========================================================================
-   v104 Browser Dark + Apply Lines Cleanup
-   - 모바일 웹브라우저 다크모드 보강: prefers-color-scheme + html.theme-dark 병행
-   - 상단 4기 신청 버튼 글자 검정 고정
-   - 신청안내 우측 정보 영역: 박스 제거 + 아래 구분선 복구
-   - 라이트모드는 기존 디자인 유지
-   ========================================================================== */
-
-:root {
-  color-scheme: light dark;
-}
 
 /* Dark token */
 @media (prefers-color-scheme: dark) {
@@ -2582,6 +2571,649 @@ html.theme-dark .bar-time-box em,
 html.theme-dark .footer b {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
+}
+
+html.theme-dark .deadline-section-final .cd-cell,
+html.theme-dark .bar-time-box {
+  background: rgba(255,255,255,.075) !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+
+html.theme-dark .footer,
+html.theme-dark .footer a {
+  color: rgba(255,255,255,.70) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.70) !important;
+}
+
+html.theme-dark img,
+html.theme-dark picture,
+html.theme-dark video,
+html.theme-dark canvas,
+html.theme-dark iframe,
+html.theme-dark svg {
+  filter: none !important;
+}
+
+
+/* ==========================================================================
+   v105 Stable Dark Cleanup
+   - 다크모드 지도 핀 숫자 대비 수정
+   - 디데이 문구 "이 기회는 사라집니다." 초록 강조 복구
+   - 신청안내 우측 정보 영역 아래 구분선 유지
+   - 모바일 브라우저 다크모드 대응: prefers-color-scheme + html.theme-dark 병행
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+}
+
+/* Dark token */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #111111;
+    --paper-soft: #151515;
+    --ink: #F3F3F0;
+    --muted: rgba(243,243,240,.66);
+    --line: rgba(255,255,255,.10);
+    --line-soft: rgba(255,255,255,.07);
+    --white: #181818;
+    --green: #42E686;
+    --green-strong: #42E686;
+    --green-deep: #B7F5CC;
+    --blue: #8FAEFF;
+    --blue-deep: #C4D4FF;
+  }
+}
+
+html.theme-dark {
+  color-scheme: dark;
+  --paper: #111111;
+  --paper-soft: #151515;
+  --ink: #F3F3F0;
+  --muted: rgba(243,243,240,.66);
+  --line: rgba(255,255,255,.10);
+  --line-soft: rgba(255,255,255,.07);
+  --white: #181818;
+  --green: #42E686;
+  --green-strong: #42E686;
+  --green-deep: #B7F5CC;
+  --blue: #8FAEFF;
+  --blue-deep: #C4D4FF;
+}
+
+/* Base dark background */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: #111111 !important;
+    color: #F3F3F0 !important;
+  }
+}
+
+html.theme-dark,
+html.theme-dark body {
+  background: #111111 !important;
+  color: #F3F3F0 !important;
+}
+
+/* Section surfaces */
+@media (prefers-color-scheme: dark) {
+  .hero,
+  .metrics,
+  .method,
+  .curriculum,
+  .trust {
+    background-color: #111111 !important;
+    color: #F3F3F0 !important;
+  }
+
+  .hero {
+    background:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+      #111111 !important;
+  }
+
+  .nav {
+    background: rgba(17,17,17,.90) !important;
+    border-bottom-color: rgba(255,255,255,.07) !important;
+  }
+
+  .orb {
+    opacity: .35 !important;
+    mix-blend-mode: screen !important;
+    filter: blur(56px) saturate(.82) !important;
+  }
+}
+
+html.theme-dark .hero,
+html.theme-dark .metrics,
+html.theme-dark .method,
+html.theme-dark .curriculum,
+html.theme-dark .trust {
+  background-color: #111111 !important;
+  color: #F3F3F0 !important;
+}
+
+html.theme-dark .hero {
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+    #111111 !important;
+}
+
+html.theme-dark .nav {
+  background: rgba(17,17,17,.90) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
+
+html.theme-dark .orb {
+  opacity: .35 !important;
+  mix-blend-mode: screen !important;
+  filter: blur(56px) saturate(.82) !important;
+}
+
+/* Text */
+@media (prefers-color-scheme: dark) {
+  .brand,
+  .nav a,
+  .hero-display,
+  .hero-display .line-1,
+  .hero-display .line-3,
+  .section-title,
+  .method-title,
+  .method-item h3,
+  .trust-point h3,
+  .week-roadmap-card strong,
+  .mobile-week-detail strong,
+  .metric strong {
+    color: #F3F3F0 !important;
+    -webkit-text-fill-color: #F3F3F0 !important;
+  }
+
+  .hero-fill-text,
+  .method-green,
+  .section-title .green,
+  .section-title .title-green,
+  .eyebrow,
+  .hero-badge,
+  .tag b {
+    color: #42E686 !important;
+    -webkit-text-fill-color: #42E686 !important;
+  }
+
+  .hero-lead,
+  .section-desc,
+  .curriculum .section-desc,
+  .method-item p,
+  .trust-point p,
+  .week-roadmap-card p,
+  .mobile-week-detail p,
+  .metric span {
+    color: rgba(243,243,240,.66) !important;
+    -webkit-text-fill-color: rgba(243,243,240,.66) !important;
+  }
+}
+
+html.theme-dark .brand,
+html.theme-dark .nav a,
+html.theme-dark .hero-display,
+html.theme-dark .hero-display .line-1,
+html.theme-dark .hero-display .line-3,
+html.theme-dark .section-title,
+html.theme-dark .method-title,
+html.theme-dark .method-item h3,
+html.theme-dark .trust-point h3,
+html.theme-dark .week-roadmap-card strong,
+html.theme-dark .mobile-week-detail strong,
+html.theme-dark .metric strong {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+html.theme-dark .hero-fill-text,
+html.theme-dark .method-green,
+html.theme-dark .section-title .green,
+html.theme-dark .section-title .title-green,
+html.theme-dark .eyebrow,
+html.theme-dark .hero-badge,
+html.theme-dark .tag b {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-dark .hero-lead,
+html.theme-dark .section-desc,
+html.theme-dark .curriculum .section-desc,
+html.theme-dark .method-item p,
+html.theme-dark .trust-point p,
+html.theme-dark .week-roadmap-card p,
+html.theme-dark .mobile-week-detail p,
+html.theme-dark .metric span {
+  color: rgba(243,243,240,.66) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
+}
+
+/* Top 신청 button: black text in dark mode */
+@media (prefers-color-scheme: dark) {
+  .nav-actions .btn-primary,
+  .nav-actions .btn-primary:visited,
+  .nav-actions .btn-primary:hover {
+    background: #42E686 !important;
+    border-color: #42E686 !important;
+    color: #06170E !important;
+    -webkit-text-fill-color: #06170E !important;
+  }
+}
+
+html.theme-dark .nav-actions .btn-primary,
+html.theme-dark .nav-actions .btn-primary:visited,
+html.theme-dark .nav-actions .btn-primary:hover {
+  background: #42E686 !important;
+  border-color: #42E686 !important;
+  color: #06170E !important;
+  -webkit-text-fill-color: #06170E !important;
+}
+
+/* Cards */
+@media (prefers-color-scheme: dark) {
+  .method-item,
+  .trust-point {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .icon-wrap,
+  .trust-num {
+    background: rgba(255,255,255,.045) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .tag,
+  .week-roadmap-card,
+  .mobile-week-detail {
+    background: #181818 !important;
+    border: 1px solid rgba(255,255,255,.075) !important;
+    box-shadow: none !important;
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,.035) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: #F3F3F0 !important;
+    -webkit-text-fill-color: #F3F3F0 !important;
+  }
+
+  .btn-primary,
+  .deadline-bar-btn {
+    background: #42E686 !important;
+    color: #062D1A !important;
+    -webkit-text-fill-color: #062D1A !important;
+  }
+}
+
+html.theme-dark .method-item,
+html.theme-dark .trust-point {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .icon-wrap,
+html.theme-dark .trust-num {
+  background: rgba(255,255,255,.045) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .tag,
+html.theme-dark .week-roadmap-card,
+html.theme-dark .mobile-week-detail {
+  background: #181818 !important;
+  border: 1px solid rgba(255,255,255,.075) !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .btn-secondary {
+  background: rgba(255,255,255,.035) !important;
+  border-color: rgba(255,255,255,.18) !important;
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+html.theme-dark .btn-primary,
+html.theme-dark .deadline-bar-btn {
+  background: #42E686 !important;
+  color: #062D1A !important;
+  -webkit-text-fill-color: #062D1A !important;
+}
+
+/* Map */
+@media (prefers-color-scheme: dark) {
+  .map-base {
+    opacity: .50 !important;
+  }
+
+  .map-area-highlight {
+    opacity: 0 !important;
+  }
+
+  .map-area-highlight.is-active,
+  .map-visual[data-active-group="cheonan"] .highlight-cheonan,
+  .map-visual[data-active-group="asan"] .highlight-asan {
+    opacity: 1 !important;
+  }
+
+  .map-region-label {
+    color: rgba(255,255,255,.38) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.38) !important;
+    opacity: .50 !important;
+  }
+
+  .map-visual[data-active-group="cheonan"] .cheonan-label,
+  .map-visual[data-active-group="asan"] .asan-label {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 14px rgba(255,255,255,.22) !important;
+  }
+
+  .map-visual[data-active-group="cheonan"] .asan-label,
+  .map-visual[data-active-group="asan"] .cheonan-label {
+    color: rgba(255,255,255,.46) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.46) !important;
+    opacity: .50 !important;
+    text-shadow: none !important;
+  }
+
+  .map-pin {
+    opacity: 1 !important;
+  }
+
+  .map-pin span {
+    color: #5E6560 !important;
+    -webkit-text-fill-color: #5E6560 !important;
+    opacity: 1 !important;
+  }
+
+  .map-pin.is-muted {
+    opacity: .62 !important;
+  }
+
+  .map-pin.is-muted span {
+    color: #7B827D !important;
+    -webkit-text-fill-color: #7B827D !important;
+    opacity: 1 !important;
+  }
+
+  .map-pin.is-active {
+    opacity: 1 !important;
+  }
+
+  .map-pin.is-active span {
+    color: #06170E !important;
+    -webkit-text-fill-color: #06170E !important;
+    opacity: 1 !important;
+  }
+}
+
+html.theme-dark .map-base {
+  opacity: .50 !important;
+}
+
+html.theme-dark .map-area-highlight {
+  opacity: 0 !important;
+}
+
+html.theme-dark .map-area-highlight.is-active,
+html.theme-dark .map-visual[data-active-group="cheonan"] .highlight-cheonan,
+html.theme-dark .map-visual[data-active-group="asan"] .highlight-asan {
+  opacity: 1 !important;
+}
+
+html.theme-dark .map-region-label {
+  color: rgba(255,255,255,.38) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.38) !important;
+  opacity: .50 !important;
+}
+
+html.theme-dark .map-visual[data-active-group="cheonan"] .cheonan-label,
+html.theme-dark .map-visual[data-active-group="asan"] .asan-label {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 14px rgba(255,255,255,.22) !important;
+}
+
+html.theme-dark .map-visual[data-active-group="cheonan"] .asan-label,
+html.theme-dark .map-visual[data-active-group="asan"] .cheonan-label {
+  color: rgba(255,255,255,.46) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.46) !important;
+  opacity: .50 !important;
+  text-shadow: none !important;
+}
+
+html.theme-dark .map-pin {
+  opacity: 1 !important;
+}
+
+html.theme-dark .map-pin span {
+  color: #5E6560 !important;
+  -webkit-text-fill-color: #5E6560 !important;
+  opacity: 1 !important;
+}
+
+html.theme-dark .map-pin.is-muted {
+  opacity: .62 !important;
+}
+
+html.theme-dark .map-pin.is-muted span {
+  color: #7B827D !important;
+  -webkit-text-fill-color: #7B827D !important;
+  opacity: 1 !important;
+}
+
+html.theme-dark .map-pin.is-active {
+  opacity: 1 !important;
+}
+
+html.theme-dark .map-pin.is-active span {
+  color: #06170E !important;
+  -webkit-text-fill-color: #06170E !important;
+  opacity: 1 !important;
+}
+
+/* Apply section: lines visible, no rounded boxes */
+@media (prefers-color-scheme: dark) {
+  .apply {
+    background: #108452 !important;
+    color: #fff !important;
+  }
+
+  .apply h2,
+  .apply .eyebrow,
+  .apply .info-value,
+  .apply .tuition-strong {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+
+  .apply p,
+  .apply .info-label,
+  .apply .info-value span {
+    color: rgba(255,255,255,.78) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.78) !important;
+  }
+
+  .apply .btn-primary {
+    background: #fff !important;
+    border-color: #fff !important;
+    color: #086A3E !important;
+    -webkit-text-fill-color: #086A3E !important;
+  }
+
+  .apply .btn-secondary,
+  .apply-detail-summary,
+  .map-fallback-link {
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.22) !important;
+    color: rgba(255,255,255,.86) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.86) !important;
+  }
+
+  .apply-info,
+  .apply-detail-toggle .apply-info {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .info-row,
+  .apply-detail-toggle .info-row {
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.28) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .info-row:last-child,
+  .apply-detail-toggle .info-row:last-child {
+    border-bottom: 0 !important;
+  }
+}
+
+html.theme-dark .apply {
+  background: #108452 !important;
+  color: #fff !important;
+}
+
+html.theme-dark .apply h2,
+html.theme-dark .apply .eyebrow,
+html.theme-dark .apply .info-value,
+html.theme-dark .apply .tuition-strong {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+html.theme-dark .apply p,
+html.theme-dark .apply .info-label,
+html.theme-dark .apply .info-value span {
+  color: rgba(255,255,255,.78) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.78) !important;
+}
+
+html.theme-dark .apply .btn-primary {
+  background: #fff !important;
+  border-color: #fff !important;
+  color: #086A3E !important;
+  -webkit-text-fill-color: #086A3E !important;
+}
+
+html.theme-dark .apply .btn-secondary,
+html.theme-dark .apply-detail-summary,
+html.theme-dark .map-fallback-link {
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.22) !important;
+  color: rgba(255,255,255,.86) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.86) !important;
+}
+
+html.theme-dark .apply-info,
+html.theme-dark .apply-detail-toggle .apply-info {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .info-row,
+html.theme-dark .apply-detail-toggle .info-row {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.28) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .info-row:last-child,
+html.theme-dark .apply-detail-toggle .info-row:last-child {
+  border-bottom: 0 !important;
+}
+
+/* Deadline / footer / media */
+@media (prefers-color-scheme: dark) {
+  .deadline-section-final,
+  .deadline-section-final .urg,
+  .deadline-bar,
+  .footer {
+    background: #080808 !important;
+    color: #fff !important;
+  }
+
+  .deadline-section-final .headline,
+  .deadline-section-final .cd-num,
+  .bar-time-box strong,
+  .bar-time-box em,
+  .footer b {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+
+  .deadline-section-final .headline .acc,
+  .deadline-section-final .acc,
+  .deadline-section-final .deadline-accent,
+  .deadline-section-final [class*="accent"] {
+    color: #42E686 !important;
+    -webkit-text-fill-color: #42E686 !important;
+  }
+
+  .deadline-section-final .cd-cell,
+  .bar-time-box {
+    background: rgba(255,255,255,.075) !important;
+    border-color: rgba(255,255,255,.12) !important;
+  }
+
+  .footer,
+  .footer a {
+    color: rgba(255,255,255,.70) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.70) !important;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  iframe,
+  svg {
+    filter: none !important;
+  }
+}
+
+html.theme-dark .deadline-section-final,
+html.theme-dark .deadline-section-final .urg,
+html.theme-dark .deadline-bar,
+html.theme-dark .footer {
+  background: #080808 !important;
+  color: #fff !important;
+}
+
+html.theme-dark .deadline-section-final .headline,
+html.theme-dark .deadline-section-final .cd-num,
+html.theme-dark .bar-time-box strong,
+html.theme-dark .bar-time-box em,
+html.theme-dark .footer b {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+html.theme-dark .deadline-section-final .headline .acc,
+html.theme-dark .deadline-section-final .acc,
+html.theme-dark .deadline-section-final .deadline-accent,
+html.theme-dark .deadline-section-final [class*="accent"] {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
 }
 
 html.theme-dark .deadline-section-final .cd-cell,
