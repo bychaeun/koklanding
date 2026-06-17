@@ -5,7 +5,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>콕 찝어주는 부동산 학원</title>
-<meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/><link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/><meta content="ko_KR" property="og:locale"/><meta content="콕 찝어주는 부동산 학원" property="og:site_name"/>
+<meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/>
+<link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/>
+<meta content="ko_KR" property="og:locale"/>
+<meta content="콕 찝어주는 부동산 학원" property="og:site_name"/>
 <meta content="#42E686" name="theme-color"/>
 <style>/* ==========================================================================
    콕 찝어주는 부동산 학원 · v68 Clean Build
@@ -323,935 +326,14 @@ img{display:block;width:100%;height:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
 
-
-
-/* 지도 하이라이트 기본 상태 */
-.map-area-highlight {
-  opacity: 0;
-  transition: opacity .32s var(--ease), transform .36s var(--ease);
-}
-
-.map-area-highlight.is-active {
-  opacity: 1;
-  transform: scale(1.07);
-}
-
-/* 데스크톱에서도 지도 하이라이트가 정상 보이게 보정 */
-.map-base {
-  opacity: 1;
-}
-
-.map-visual[data-active-group="cheonan"] .highlight-cheonan,
-.map-visual[data-active-group="asan"] .highlight-asan {
-  opacity: 1;
-}
-
-@media (max-width: 760px) {
-  body {
-    line-height: 1.62;
-    padding-bottom: 116px;
-  }
-
-  .container {
-    width: calc(100% - 44px);
-  }
-
-  .section {
-    padding: 74px 0;
-  }
-
-  .section-header {
-    margin-bottom: 42px;
-    gap: 24px;
-  }
-
-  .section-title,
-  .method-title {
-    font-size: clamp(31px, 9.4vw, 44px);
-    line-height: 1.28;
-    letter-spacing: -.052em;
-  }
-
-  .section-desc,
-  .curriculum .section-desc {
-    font-size: 14px;
-    line-height: 1.82;
-  }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: .12em;
-  }
-
-  /* HERO */
-  .hero {
-    min-height: auto;
-    padding: 68px 0 62px;
-    background-size: 52px 52px, 52px 52px, auto;
-  }
-
-  .hero-badge {
-    margin-bottom: 26px;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .hero-display {
-    line-height: 1.14;
-    letter-spacing: -.064em;
-  }
-
-  .hero-display .line-1 {
-    font-size: clamp(22px, 6vw, 29px);
-    margin-bottom: 12px;
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(43px, 13.2vw, 62px);
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(38px, 11.7vw, 56px);
-    margin-top: 10px;
-  }
-
-  .hero-lead {
-    margin-top: 28px;
-    font-size: 14.5px;
-    line-height: 1.82;
-  }
-
-  .hero-actions {
-    margin-top: 28px;
-    gap: 10px;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    min-height: 54px;
-    font-size: 14px;
-    padding: 0 20px;
-  }
-
-  .hero-tags {
-    margin-top: 24px;
-    display: grid;
-    gap: 9px;
-  }
-
-  .tag {
-    width: 100%;
-    min-height: 34px;
-    justify-content: center;
-    font-size: 12.5px;
-    border-radius: 15px;
-  }
-
-  .orb {
-    filter: blur(54px);
-    opacity: .36;
-  }
-
-  /* METRICS */
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .metric {
-    padding: 26px 20px;
-  }
-
-  .metric strong {
-    font-size: clamp(30px, 9.5vw, 42px);
-  }
-
-  .metric span {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  /* METHOD */
-  .method {
-    padding: 76px 0;
-  }
-
-  .method-row {
-    margin-top: 46px;
-    gap: 34px;
-  }
-
-  .icon-wrap {
-    width: 52px;
-    height: 52px;
-    border-radius: 17px;
-    margin-bottom: 19px;
-  }
-
-  .icon-wrap svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .method-item h3 {
-    font-size: 20px;
-    margin-bottom: 9px;
-  }
-
-  .method-item p {
-    font-size: 14px;
-    line-height: 1.78;
-  }
-
-  /* CURRICULUM / MAP */
-  .curriculum .section-header {
-    margin-bottom: 36px;
-  }
-
-  .curriculum .section-desc {
-    margin-top: 20px;
-  }
-
-  .curriculum-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .map-stage {
-    width: 100%;
-    min-height: 420px;
-    height: 420px;
-    overflow: visible;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-    margin: 4px auto 0;
-  }
-
-  .map-visual {
-    width: min(100%, 520px);
-    max-width: 520px;
-    margin: 0 auto;
-    transform: none;
-    aspect-ratio: 4660 / 3504;
-  }
-
-  .map-base,
-  .map-area-highlight {
-    display: block;
-    visibility: visible;
-  }
-
-  .map-base {
-    opacity: 1;
-  }
-
-  .map-area-highlight {
-    opacity: 0;
-  }
-
-  .map-area-highlight.is-active {
-    opacity: 1;
-    transform: scale(1.045);
-  }
-
-  .map-region-label {
-    font-size: clamp(20px, 7vw, 30px);
-  }
-
-  .map-pin {
-    width: 21px;
-    height: 21px;
-  }
-
-  .map-pin.is-active {
-    transform: translate(-50%, -122%) rotate(-45deg) scale(1.42);
-  }
-
-  .curriculum-panel {
-    width: 100%;
-    max-width: none;
-  }
-
-  .week-roadmap {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .week-roadmap-card {
-    min-height: auto;
-    padding: 18px 18px 16px;
-    border-radius: 20px;
-  }
-
-  .week-roadmap-card strong {
-    font-size: 18px;
-    line-height: 1.32;
-    margin-top: 12px;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: auto;
-    transform: translateY(-2px);
-  }
-
-  .week-roadmap-card p {
-    font-size: 13px;
-    line-height: 1.68;
-  }
-
-  /* TRUST / PHOTO */
-  .trust-layout {
-    gap: 40px;
-  }
-
-  .trust-points {
-    gap: 24px;
-  }
-
-  .trust-point {
-    gap: 17px;
-  }
-
-  .trust-point h3 {
-    font-size: 20px;
-  }
-
-  .trust-point p {
-    font-size: 14px;
-    line-height: 1.76;
-  }
-
-  .photo-slider {
-    margin-top: 44px;
-    border-radius: 22px;
-  }
-
-  .slide {
-    height: 260px;
-  }
-
-  .slide-caption {
-    left: 16px;
-    bottom: 14px;
-    font-size: 12px;
-  }
-
-  .slider-arrow {
-    width: 38px;
-    height: 38px;
-  }
-
-  /* DEADLINE */
-  .deadline-section-final .urg {
-    padding: 58px 22px;
-  }
-
-  .deadline-section-final .inner {
-    max-width: 100%;
-  }
-
-  .deadline-section-final .badge {
-    margin-bottom: 18px;
-    font-size: 10px;
-    padding: 8px 12px;
-  }
-
-  .deadline-section-final .headline {
-    font-size: clamp(30px, 10vw, 45px);
-    line-height: 1.2;
-    margin-bottom: 2.2rem;
-    letter-spacing: -.052em;
-  }
-
-  .deadline-section-final .cd-grid {
-    gap: 8px;
-    margin-bottom: 2.2rem;
-  }
-
-  .deadline-section-final .cd-cell {
-    padding: 14px 5px 10px;
-    border-radius: 11px;
-  }
-
-  .deadline-section-final .cd-num {
-    font-size: clamp(23px, 8.6vw, 35px);
-  }
-
-  .deadline-section-final .cd-unit {
-    font-size: 10px;
-  }
-
-  .deadline-section-final .prog-label {
-    font-size: 10.8px;
-    line-height: 1.55;
-  }
-
-  /* APPLY */
-  .apply {
-    padding: 78px 0;
-  }
-
-  .apply h2 {
-    font-size: clamp(33px, 10vw, 49px);
-    line-height: 1.24;
-  }
-
-  .apply p {
-    margin-top: 18px;
-    font-size: 14px;
-    line-height: 1.78;
-  }
-
-  .apply-actions {
-    margin-top: 32px;
-  }
-
-  .apply .btn {
-    width: 100%;
-    min-height: 53px;
-    font-size: 14px;
-  }
-
-  .info-row {
-    padding: 17px 0;
-  }
-
-  .info-value {
-    font-size: 16px;
-  }
-
-  .tuition-strong {
-    font-size: 29px;
-  }
-
-  .apply-map-wrap {
-    margin-top: 38px;
-  }
-
-  .apply-map-card {
-    height: 245px;
-    border-radius: 24px;
-  }
-
-  /* BOTTOM BAR */
-  .deadline-bar {
-    padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
-  }
-
-  .deadline-bar-inner {
-    gap: 8px;
-  }
-
-  .deadline-bar-count {
-    gap: 5px;
-  }
-
-  .bar-time-box {
-    height: 36px;
-    border-radius: 9px;
-  }
-
-  .bar-time-box strong {
-    font-size: 15px;
-  }
-
-  .bar-time-box em {
-    font-size: 10px;
-  }
-
-  .deadline-bar-btn {
-    min-height: 48px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 390px) {
-  .container {
-    width: calc(100% - 36px);
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(40px, 12.6vw, 54px);
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(36px, 11.5vw, 50px);
-  }
-
-  .map-stage {
-    height: 370px;
-    min-height: 370px;
-  }
-
-  .map-visual {
-    width: min(106%, 500px);
-  }
-
-  .deadline-section-final .headline {
-    font-size: clamp(28px, 9.6vw, 40px);
-  }
-}
-
-
 /* ==========================================================================
-   v73 Map Surface Interaction
-   - 지도 바탕 클릭 영역 추가
-   - 천안/아산 면 클릭 시 해당 주차 라인 활성화
-   - 핀/카드/하이라이트 전환 안정화
+   Final Clean Overrides · v92
+   유지보수용 최종 정리 블록
+   - 데스크톱 기본 스타일은 위쪽 원본 유지
+   - 모바일 최종 레이아웃/지도/신청안내/하단바만 이 블록에서 관리
    ========================================================================== */
 
-.map-visual {
-  will-change: transform;
-}
-
-.map-region-hit {
-  position: absolute;
-  z-index: 15;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: background .18s var(--ease), opacity .18s var(--ease), transform .18s var(--ease);
-}
-
-.map-region-hit::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: rgba(31, 201, 110, 0);
-  transition: background .18s var(--ease);
-}
-
-.map-region-hit:hover::after,
-.map-region-hit.is-active::after {
-  background: rgba(31, 201, 110, .045);
-}
-
-.map-region-hit:focus-visible {
-  outline: 2px solid var(--green-strong);
-  outline-offset: 4px;
-}
-
-.hit-asan {
-  left: 5%;
-  top: 12%;
-  width: 43%;
-  height: 80%;
-  clip-path: polygon(12% 22%, 50% 2%, 87% 14%, 82% 52%, 92% 80%, 48% 100%, 18% 82%, 0 50%);
-}
-
-.hit-cheonan {
-  left: 39%;
-  top: 4%;
-  width: 57%;
-  height: 88%;
-  clip-path: polygon(18% 0, 62% 8%, 100% 36%, 91% 65%, 62% 88%, 22% 100%, 0 74%, 10% 43%);
-}
-
-.map-area-highlight {
-  opacity: 0;
-  transform: scale(1);
-  transition: opacity .26s var(--ease), transform .34s var(--ease);
-}
-
-.map-area-highlight.is-active,
-.map-visual[data-active-group="cheonan"] .highlight-cheonan,
-.map-visual[data-active-group="asan"] .highlight-asan {
-  opacity: 1;
-  transform: scale(1.052);
-}
-
-.map-pin {
-  z-index: 24;
-  will-change: transform, opacity;
-}
-
-.map-pin.is-muted {
-  opacity: .44;
-}
-
-.map-pin.is-active {
-  opacity: 1;
-  transition-duration: .22s;
-}
-
-.pin-routes {
-  z-index: 20;
-}
-
-.map-region-label {
-  z-index: 22;
-}
-
-.week-roadmap-card {
-  will-change: transform;
-}
-
-.week-roadmap-card.is-muted {
-  opacity: .78;
-}
-
-.week-roadmap-card.is-active {
-  opacity: 1;
-}
-
-.week-roadmap-card:focus-visible,
-.map-pin:focus-visible {
-  outline: 2px solid var(--green-strong);
-  outline-offset: 4px;
-}
-
-@media (hover: none) {
-  .map-region-hit:hover::after {
-    background: transparent;
-  }
-
-  .week-roadmap-card:hover {
-    transform: none;
-  }
-
-  .map-pin.is-active {
-    transform: translate(-50%, -122%) rotate(-45deg) scale(1.42);
-  }
-}
-
-@media (max-width: 760px) {
-  body {
-    line-height: 1.64;
-    padding-bottom: 116px;
-  }
-
-  .container {
-    width: calc(100% - 46px);
-  }
-
-  .section {
-    padding: 78px 0;
-  }
-
-  .section-header {
-    margin-bottom: 44px;
-    gap: 26px;
-  }
-
-  .section-title,
-  .method-title {
-    font-size: clamp(31px, 9.3vw, 44px);
-    line-height: 1.3;
-    letter-spacing: -.05em;
-  }
-
-  .section-desc,
-  .curriculum .section-desc {
-    font-size: 14px;
-    line-height: 1.86;
-  }
-
-  .hero {
-    padding: 72px 0 64px;
-  }
-
-  .hero-inner {
-    max-width: 100%;
-  }
-
-  .hero-badge {
-    margin-bottom: 28px;
-    font-size: 14px;
-    line-height: 1.52;
-  }
-
-  .hero-display {
-    line-height: 1.15;
-  }
-
-  .hero-display .line-1 {
-    font-size: clamp(22px, 5.9vw, 29px);
-    margin-bottom: 13px;
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(42px, 13vw, 62px);
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(38px, 11.6vw, 56px);
-    margin-top: 10px;
-  }
-
-  .hero-lead {
-    margin-top: 30px;
-    font-size: 14.5px;
-    line-height: 1.86;
-  }
-
-  .hero-actions {
-    margin-top: 30px;
-    gap: 10px;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    min-height: 54px;
-    font-size: 14px;
-  }
-
-  .hero-tags {
-    display: grid;
-    gap: 10px;
-    margin-top: 26px;
-  }
-
-  .tag {
-    width: 100%;
-    justify-content: center;
-    min-height: 35px;
-    font-size: 12.6px;
-  }
-
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .metric {
-    padding: 28px 20px;
-  }
-
-  .method {
-    padding: 78px 0;
-  }
-
-  .method-row {
-    margin-top: 46px;
-    gap: 36px;
-  }
-
-  .method-item p,
-  .trust-point p {
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .curriculum .section-header {
-    margin-bottom: 38px;
-  }
-
-  .curriculum-layout {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .map-stage {
-    width: 100%;
-    min-height: 430px;
-    height: 430px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-    margin: 6px auto 0;
-    overflow: visible;
-  }
-
-  .map-visual {
-    width: min(100%, 520px);
-    max-width: 520px;
-    margin: 0 auto;
-    transform: none;
-    aspect-ratio: 4660 / 3504;
-  }
-
-  .map-base,
-  .map-area-highlight {
-    display: block;
-    visibility: visible;
-  }
-
-  .map-pin {
-    width: 21px;
-    height: 21px;
-  }
-
-  .map-pin.is-active {
-    transform: translate(-50%, -122%) rotate(-45deg) scale(1.42);
-  }
-
-  .map-region-label {
-    font-size: clamp(20px, 7vw, 30px);
-  }
-
-  .week-roadmap {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .week-roadmap-card {
-    min-height: auto;
-    padding: 18px 18px 16px;
-    border-radius: 20px;
-  }
-
-  .week-roadmap-card strong {
-    font-size: 18px;
-    line-height: 1.34;
-    margin-top: 12px;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: auto;
-    transform: translateY(-2px);
-  }
-
-  .week-roadmap-card p {
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  .trust-layout {
-    gap: 42px;
-  }
-
-  .trust-points {
-    gap: 25px;
-  }
-
-  .photo-slider {
-    margin-top: 46px;
-    border-radius: 22px;
-  }
-
-  .slide {
-    height: 260px;
-  }
-
-  .deadline-section-final .urg {
-    padding: 60px 22px;
-  }
-
-  .deadline-section-final .headline {
-    font-size: clamp(30px, 10vw, 45px);
-    line-height: 1.2;
-    margin-bottom: 2.2rem;
-  }
-
-  .deadline-section-final .cd-grid {
-    gap: 8px;
-  }
-
-  .deadline-section-final .cd-cell {
-    padding: 14px 5px 10px;
-  }
-
-  .apply {
-    padding: 80px 0;
-  }
-
-  .apply h2 {
-    font-size: clamp(33px, 10vw, 49px);
-    line-height: 1.25;
-  }
-
-  .apply p {
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .apply .btn {
-    width: 100%;
-  }
-
-  .apply-map-card {
-    height: 245px;
-    border-radius: 24px;
-  }
-}
-
-@media (max-width: 390px) {
-  .container {
-    width: calc(100% - 38px);
-  }
-
-  .map-stage {
-    height: 380px;
-    min-height: 380px;
-  }
-
-  .map-visual {
-    width: min(106%, 500px);
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(40px, 12.4vw, 54px);
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(36px, 11.4vw, 50px);
-  }
-}
-
-
-/* 지도 활성 영역이 커지면서 보이던 그림자/잔상 제거 */
-.map-area-highlight {
-  transform: none !important;
-  filter: none !important;
-  box-shadow: none !important;
-  mix-blend-mode: normal !important;
-}
-
-.map-area-highlight.is-active,
-.map-visual[data-active-group="cheonan"] .highlight-cheonan,
-.map-visual[data-active-group="asan"] .highlight-asan {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
-  box-shadow: none !important;
-  mix-blend-mode: normal !important;
-}
-
-/* 지도 바탕 클릭 영역의 은은한 hover overlay도 제거 */
-.map-region-hit::after,
-.map-region-hit:hover::after,
-.map-region-hit.is-active::after {
-  background: transparent !important;
-}
-
-/* 데스크톱 히어로 상단 여백 축소 */
-@media (min-width: 761px) {
-  .hero {
-    padding-top: 82px !important;
-  }
-
-  .hero-badge {
-    margin-bottom: 34px !important;
-  }
-}
-
-/* 모바일도 첫 화면 답답하지 않게 상단 여백 소폭 축소 */
-@media (max-width: 760px) {
-  .hero {
-    padding-top: 58px !important;
-  }
-
-  .hero-badge {
-    margin-bottom: 22px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v76 Mobile Compact + OG Ready
-   - 모바일 글자 크기/여백 재정리
-   - 스크롤 압박 완화
-   - 지도 하이라이트 잔상 제거 유지
-   ========================================================================== */
-
+/* 지도 잔상/그림자 방지 */
 .map-area-highlight,
 .map-area-highlight.is-active,
 .map-visual[data-active-group="cheonan"] .highlight-cheonan,
@@ -1262,12 +344,48 @@ img{display:block;width:100%;height:auto}
   transform: none !important;
 }
 
-.map-region-hit::after,
-.map-region-hit:hover::after,
-.map-region-hit.is-active::after {
-  background: transparent !important;
+.map-area-highlight {
+  opacity: 0;
+  transition: opacity .26s var(--ease);
 }
 
+.map-area-highlight.is-active,
+.map-visual[data-active-group="cheonan"] .highlight-cheonan,
+.map-visual[data-active-group="asan"] .highlight-asan {
+  opacity: 1 !important;
+}
+
+.map-region-hit,
+.map-region-hit::before,
+.map-region-hit::after,
+.map-region-hit:hover::before,
+.map-region-hit:hover::after,
+.map-region-hit:hover::after,
+.map-region-hit.is-active::before,
+.map-region-hit.is-active::after {
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.map-region-hit {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-week-detail,
+.map-fallback-link {
+  display: none;
+}
+
+.apply-detail-toggle {
+  display: block;
+}
+
+.apply-detail-summary {
+  display: none;
+}
+
+/* 데스크톱 히어로 높이 보정 */
 @media (min-width: 761px) {
   .hero {
     padding-top: 76px !important;
@@ -1280,416 +398,11 @@ img{display:block;width:100%;height:auto}
   }
 }
 
-@media (max-width: 760px) {
-  body {
-    line-height: 1.58 !important;
-    padding-bottom: 108px !important;
-  }
-
-  .container {
-    width: calc(100% - 42px) !important;
-  }
-
-  .section {
-    padding: 58px 0 !important;
-  }
-
-  .section-header {
-    margin-bottom: 30px !important;
-    gap: 18px !important;
-  }
-
-  .section-title,
-  .method-title {
-    font-size: clamp(27px, 8.2vw, 38px) !important;
-    line-height: 1.22 !important;
-    letter-spacing: -.048em !important;
-  }
-
-  .section-desc,
-  .curriculum .section-desc {
-    font-size: 13.2px !important;
-    line-height: 1.68 !important;
-  }
-
-  .eyebrow {
-    font-size: 10px !important;
-    letter-spacing: .1em !important;
-  }
-
-  .nav-inner {
-    height: 58px !important;
-  }
-
-  .brand {
-    font-size: 13px !important;
-  }
-
-  .brand-mark {
-    width: 28px !important;
-    height: 28px !important;
-  }
-
-  .nav-actions .btn-primary {
-    min-height: 36px !important;
-    padding: 0 12px !important;
-    font-size: 11px !important;
-  }
-
-  .hero {
-    padding: 46px 0 46px !important;
-    min-height: auto !important;
-    background-size: 48px 48px, 48px 48px, auto !important;
-  }
-
-  .hero-badge {
-    margin-bottom: 18px !important;
-    font-size: 12.5px !important;
-    line-height: 1.42 !important;
-  }
-
-  .hero-display {
-    line-height: 1.08 !important;
-  }
-
-  .hero-display .line-1 {
-    font-size: clamp(20px, 5.3vw, 25px) !important;
-    margin-bottom: 9px !important;
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(36px, 11.2vw, 52px) !important;
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(33px, 10vw, 48px) !important;
-    margin-top: 8px !important;
-  }
-
-  .hero-lead {
-    margin-top: 21px !important;
-    font-size: 13.2px !important;
-    line-height: 1.66 !important;
-  }
-
-  .hero-actions {
-    margin-top: 23px !important;
-    gap: 8px !important;
-  }
-
-  .hero-actions .btn {
-    width: 100% !important;
-    min-height: 48px !important;
-    font-size: 13px !important;
-    padding: 0 16px !important;
-  }
-
-  .hero-tags {
-    margin-top: 19px !important;
-    gap: 7px !important;
-  }
-
-  .tag {
-    min-height: 30px !important;
-    font-size: 11.6px !important;
-    border-radius: 13px !important;
-  }
-
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  .metric {
-    padding: 20px 16px !important;
-  }
-
-  .metric strong {
-    font-size: clamp(26px, 8vw, 36px) !important;
-  }
-
-  .metric span {
-    margin-top: 6px !important;
-    font-size: 11.2px !important;
-  }
-
-  .method {
-    padding: 60px 0 !important;
-  }
-
-  .method-row {
-    margin-top: 32px !important;
-    gap: 24px !important;
-  }
-
-  .icon-wrap {
-    width: 46px !important;
-    height: 46px !important;
-    border-radius: 15px !important;
-    margin-bottom: 15px !important;
-  }
-
-  .method-item h3,
-  .trust-point h3 {
-    font-size: 18px !important;
-    line-height: 1.32 !important;
-  }
-
-  .method-item p,
-  .trust-point p {
-    font-size: 13.2px !important;
-    line-height: 1.64 !important;
-  }
-
-  .curriculum .section-header {
-    margin-bottom: 28px !important;
-  }
-
-  .curriculum .section-desc {
-    margin-top: 14px !important;
-  }
-
-  .curriculum-layout {
-    gap: 24px !important;
-  }
-
-  .map-stage {
-    height: 360px !important;
-    min-height: 360px !important;
-    margin-top: 0 !important;
-  }
-
-  .map-visual {
-    width: min(100%, 470px) !important;
-    max-width: 470px !important;
-    margin: 0 auto !important;
-    transform: none !important;
-  }
-
-  .map-pin {
-    width: 19px !important;
-    height: 19px !important;
-  }
-
-  .map-pin span {
-    font-size: 9px !important;
-  }
-
-  .map-pin.is-active {
-    transform: translate(-50%, -122%) rotate(-45deg) scale(1.34) !important;
-  }
-
-  .map-region-label {
-    font-size: clamp(18px, 6vw, 25px) !important;
-  }
-
-  .week-roadmap {
-    gap: 9px !important;
-  }
-
-  .week-roadmap-card {
-    padding: 15px 15px 13px !important;
-    border-radius: 17px !important;
-  }
-
-  .week-roadmap-card strong {
-    margin-top: 10px !important;
-    font-size: 16.2px !important;
-    line-height: 1.26 !important;
-  }
-
-  .week-code {
-    min-height: 24px !important;
-    padding: 0 10px !important;
-    font-size: 11px !important;
-  }
-
-  .week-roadmap-card p {
-    font-size: 12.2px !important;
-    line-height: 1.56 !important;
-  }
-
-  .trust-layout {
-    gap: 30px !important;
-  }
-
-  .trust-points {
-    gap: 19px !important;
-  }
-
-  .trust-point {
-    grid-template-columns: 30px 1fr !important;
-    gap: 14px !important;
-  }
-
-  .trust-num {
-    width: 30px !important;
-    height: 30px !important;
-    font-size: 16px !important;
-  }
-
-  .photo-slider {
-    margin-top: 32px !important;
-    border-radius: 18px !important;
-  }
-
-  .slide {
-    height: 220px !important;
-  }
-
-  .slide-caption {
-    left: 13px !important;
-    bottom: 12px !important;
-    font-size: 11.2px !important;
-  }
-
-  .deadline-section-final .urg {
-    padding: 46px 18px !important;
-  }
-
-  .deadline-section-final .badge {
-    margin-bottom: 14px !important;
-    font-size: 9.5px !important;
-    padding: 7px 10px !important;
-  }
-
-  .deadline-section-final .headline {
-    font-size: clamp(26px, 8.8vw, 39px) !important;
-    line-height: 1.16 !important;
-    margin-bottom: 1.65rem !important;
-  }
-
-  .deadline-section-final .cd-grid {
-    gap: 6px !important;
-    margin-bottom: 1.7rem !important;
-  }
-
-  .deadline-section-final .cd-cell {
-    padding: 11px 4px 8px !important;
-    border-radius: 9px !important;
-  }
-
-  .deadline-section-final .cd-num {
-    font-size: clamp(21px, 7.5vw, 31px) !important;
-  }
-
-  .deadline-section-final .cd-unit {
-    font-size: 9px !important;
-  }
-
-  .apply {
-    padding: 62px 0 !important;
-  }
-
-  .apply h2 {
-    font-size: clamp(29px, 8.8vw, 42px) !important;
-    line-height: 1.18 !important;
-  }
-
-  .apply p {
-    margin-top: 14px !important;
-    font-size: 13.2px !important;
-    line-height: 1.66 !important;
-  }
-
-  .apply-actions {
-    margin-top: 24px !important;
-  }
-
-  .apply .btn {
-    width: 100% !important;
-    min-height: 49px !important;
-    font-size: 13px !important;
-  }
-
-  .info-row {
-    padding: 13px 0 !important;
-  }
-
-  .info-label {
-    font-size: 10.4px !important;
-  }
-
-  .info-value {
-    font-size: 14.5px !important;
-  }
-
-  .tuition-strong {
-    font-size: 25px !important;
-  }
-
-  .apply-map-wrap {
-    margin-top: 28px !important;
-  }
-
-  .apply-map-card {
-    height: 220px !important;
-    border-radius: 20px !important;
-  }
-
-  .deadline-bar {
-    padding: 7px 10px calc(7px + env(safe-area-inset-bottom)) !important;
-  }
-
-  .deadline-bar-inner {
-    gap: 7px !important;
-  }
-
-  .bar-time-box {
-    height: 34px !important;
-    border-radius: 8px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 14px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 9px !important;
-  }
-
-  .deadline-bar-btn {
-    min-height: 45px !important;
-    font-size: 13px !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .container {
-    width: calc(100% - 34px) !important;
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(34px, 10.7vw, 47px) !important;
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(31px, 9.6vw, 44px) !important;
-  }
-
-  .map-stage {
-    height: 330px !important;
-    min-height: 330px !important;
-  }
-
-  .map-visual {
-    width: min(104%, 450px) !important;
-  }
-}
-
-
-/* ==========================================================================
-   v80 Mobile Layout Compact
-   - OG/assets unchanged
-   - mobile nav buttons equal
-   - hero buttons 2 columns
-   - hero tags 3 + 2
-   - wider side margins and shorter vertical rhythm
-   ========================================================================== */
-
+/* 모바일 최종 레이아웃 */
 @media (max-width: 760px) {
   body {
     line-height: 1.54 !important;
-    padding-bottom: 104px !important;
+    padding-bottom: 68px !important;
   }
 
   .container {
@@ -1710,6 +423,7 @@ img{display:block;width:100%;height:auto}
   .method-title {
     font-size: clamp(25px, 7.6vw, 35px) !important;
     line-height: 1.22 !important;
+    letter-spacing: -.048em !important;
   }
 
   .section-desc,
@@ -1718,16 +432,21 @@ img{display:block;width:100%;height:auto}
     line-height: 1.62 !important;
   }
 
-  /* menu buttons equal */
+  .eyebrow {
+    font-size: 10px !important;
+    letter-spacing: .1em !important;
+  }
+
+  /* 모바일 NAV */
   .nav-inner {
     height: 56px !important;
     gap: 10px !important;
   }
 
   .brand {
-    font-size: 12.5px !important;
-    gap: 7px !important;
     min-width: 0 !important;
+    gap: 7px !important;
+    font-size: 12.5px !important;
   }
 
   .brand-mark {
@@ -1764,9 +483,9 @@ img{display:block;width:100%;height:auto}
     flex: 0 0 14px !important;
   }
 
-  /* hero compact */
+  /* 모바일 HERO */
   .hero {
-    padding: 38px 0 38px !important;
+    padding: 42px 0 44px !important;
     min-height: auto !important;
     background-size: 46px 46px, 46px 46px, auto !important;
   }
@@ -1782,8 +501,8 @@ img{display:block;width:100%;height:auto}
   }
 
   .hero-display .line-1 {
-    font-size: clamp(18px, 5vw, 23px) !important;
     margin-bottom: 8px !important;
+    font-size: clamp(18px, 5vw, 23px) !important;
   }
 
   .hero-display .line-2 {
@@ -1791,32 +510,31 @@ img{display:block;width:100%;height:auto}
   }
 
   .hero-display .line-3 {
-    font-size: clamp(30px, 9.4vw, 44px) !important;
     margin-top: 7px !important;
+    font-size: clamp(30px, 9.4vw, 44px) !important;
   }
 
   .hero-lead {
     margin-top: 18px !important;
     font-size: 12.8px !important;
-    line-height: 1.6 !important;
+    line-height: 1.64 !important;
   }
 
-  /* hero buttons: 2 in one row */
   .hero-actions {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 8px !important;
-    margin-top: 20px !important;
+    margin-top: 28px !important;
   }
 
   .hero-actions .btn {
     width: 100% !important;
     min-width: 0 !important;
-    min-height: 46px !important;
     height: 46px !important;
+    min-height: 46px !important;
     padding: 0 8px !important;
-    font-size: 12px !important;
     border-radius: 999px !important;
+    font-size: 12px !important;
     white-space: nowrap !important;
   }
 
@@ -1826,22 +544,22 @@ img{display:block;width:100%;height:auto}
     flex: 0 0 14px !important;
   }
 
-  /* hero tags: 3 + 2 */
   .hero-tags {
     display: grid !important;
     grid-template-columns: repeat(6, 1fr) !important;
-    gap: 7px !important;
-    margin-top: 16px !important;
+    gap: 8px !important;
+    margin-top: 25px !important;
+    margin-bottom: 6px !important;
   }
 
   .hero-tags .tag {
     width: auto !important;
     min-width: 0 !important;
     min-height: 29px !important;
-    padding: 0 7px !important;
+    padding: 0 6px !important;
     justify-content: center !important;
-    border-radius: 12px !important;
-    font-size: 10.6px !important;
+    border-radius: 13px !important;
+    font-size: 10.2px !important;
     line-height: 1.15 !important;
     text-align: center !important;
     white-space: nowrap !important;
@@ -1855,1604 +573,7 @@ img{display:block;width:100%;height:auto}
     grid-column: span 3 !important;
   }
 
-  .metrics-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-
-  .metric {
-    padding: 16px 8px !important;
-    text-align: center !important;
-  }
-
-  .metric strong {
-    font-size: clamp(22px, 6.8vw, 31px) !important;
-  }
-
-  .metric span {
-    margin-top: 5px !important;
-    font-size: 10.4px !important;
-    line-height: 1.35 !important;
-  }
-
-  .method {
-    padding: 52px 0 !important;
-  }
-
-  .method-row {
-    margin-top: 28px !important;
-    gap: 20px !important;
-  }
-
-  .icon-wrap {
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 14px !important;
-    margin-bottom: 12px !important;
-  }
-
-  .method-item h3,
-  .trust-point h3 {
-    font-size: 17px !important;
-    line-height: 1.3 !important;
-  }
-
-  .method-item p,
-  .trust-point p {
-    font-size: 12.7px !important;
-    line-height: 1.58 !important;
-  }
-
-  .curriculum .section-header {
-    margin-bottom: 24px !important;
-  }
-
-  .curriculum-layout {
-    gap: 20px !important;
-  }
-
-  .map-stage {
-    height: 315px !important;
-    min-height: 315px !important;
-    margin-top: 0 !important;
-  }
-
-  .map-visual {
-    width: min(100%, 430px) !important;
-    max-width: 430px !important;
-    margin: 0 auto !important;
-    transform: none !important;
-  }
-
-  .map-pin {
-    width: 18px !important;
-    height: 18px !important;
-  }
-
-  .map-pin span {
-    font-size: 8.5px !important;
-  }
-
-  .week-roadmap {
-    gap: 8px !important;
-  }
-
-  .week-roadmap-card {
-    padding: 13px 14px 12px !important;
-    border-radius: 16px !important;
-  }
-
-  .week-code {
-    min-height: 22px !important;
-    padding: 0 9px !important;
-    font-size: 10.5px !important;
-  }
-
-  .week-roadmap-card strong {
-    margin-top: 8px !important;
-    font-size: 15.5px !important;
-    line-height: 1.25 !important;
-  }
-
-  .week-roadmap-card p {
-    margin-top: 10px !important;
-    padding-top: 10px !important;
-    font-size: 11.8px !important;
-    line-height: 1.52 !important;
-  }
-
-  .trust-layout {
-    gap: 26px !important;
-  }
-
-  .trust-points {
-    gap: 17px !important;
-  }
-
-  .photo-slider {
-    margin-top: 26px !important;
-    border-radius: 17px !important;
-  }
-
-  .slide {
-    height: 200px !important;
-  }
-
-  .deadline-section-final .urg {
-    padding: 40px 18px !important;
-  }
-
-  .deadline-section-final .headline {
-    font-size: clamp(24px, 8vw, 36px) !important;
-    line-height: 1.15 !important;
-    margin-bottom: 1.45rem !important;
-  }
-
-  .deadline-section-final .cd-grid {
-    gap: 5px !important;
-    margin-bottom: 1.45rem !important;
-  }
-
-  .deadline-section-final .cd-cell {
-    padding: 10px 3px 7px !important;
-    border-radius: 8px !important;
-  }
-
-  .deadline-section-final .cd-num {
-    font-size: clamp(19px, 7vw, 28px) !important;
-  }
-
-  .apply {
-    padding: 54px 0 !important;
-  }
-
-  .apply h2 {
-    font-size: clamp(27px, 8.2vw, 39px) !important;
-    line-height: 1.16 !important;
-  }
-
-  .apply p {
-    margin-top: 12px !important;
-    font-size: 12.8px !important;
-    line-height: 1.6 !important;
-  }
-
-  .apply-actions {
-    margin-top: 20px !important;
-    gap: 8px !important;
-  }
-
-  .apply .btn {
-    width: 100% !important;
-    min-height: 46px !important;
-    font-size: 12.8px !important;
-  }
-
-  .info-row {
-    padding: 11px 0 !important;
-  }
-
-  .info-value {
-    font-size: 13.8px !important;
-  }
-
-  .apply-map-wrap {
-    margin-top: 24px !important;
-  }
-
-  .apply-map-card {
-    height: 205px !important;
-    border-radius: 18px !important;
-  }
-
-  .deadline-bar {
-    padding: 6px 10px calc(6px + env(safe-area-inset-bottom)) !important;
-  }
-
-  .bar-time-box {
-    height: 32px !important;
-    border-radius: 8px !important;
-  }
-
-  .deadline-bar-btn {
-    min-height: 43px !important;
-    font-size: 12.7px !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .container {
-    width: calc(100% - 42px) !important;
-  }
-
-  .brand {
-    font-size: 11.7px !important;
-  }
-
-  .nav-actions .btn,
-  .nav-actions .btn-primary,
-  .nav-actions .btn-secondary {
-    width: 66px !important;
-    min-width: 66px !important;
-    max-width: 66px !important;
-    font-size: 10.5px !important;
-  }
-
-  .hero-display .line-2 {
-    font-size: clamp(31px, 9.8vw, 43px) !important;
-  }
-
-  .hero-display .line-3 {
-    font-size: clamp(29px, 8.9vw, 40px) !important;
-  }
-
-  .hero-actions .btn {
-    font-size: 11.2px !important;
-    padding: 0 5px !important;
-  }
-
-  .hero-tags .tag {
-    font-size: 9.8px !important;
-    padding: 0 5px !important;
-  }
-
-  .map-stage {
-    height: 285px !important;
-    min-height: 285px !important;
-  }
-
-  .map-visual {
-    width: min(104%, 405px) !important;
-  }
-}
-
-
-/* ==========================================================================
-   v81 Mobile Hero Spacing + Metrics Size
-   - 버튼과 태그 사이 간격 확대
-   - 8주/30명/임장/20만원 영역 글자 크기 축소
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  .hero-actions {
-    margin-top: 20px !important;
-    margin-bottom: 0 !important;
-  }
-
-  .hero-tags {
-    margin-top: 26px !important;
-    gap: 8px !important;
-  }
-
-  .hero-tags .tag {
-    min-height: 28px !important;
-    font-size: 10.2px !important;
-    padding: 0 6px !important;
-  }
-
-  .metric {
-    padding: 14px 6px !important;
-  }
-
-  .metric strong {
-    font-size: clamp(19px, 5.6vw, 27px) !important;
-    letter-spacing: -.045em !important;
-  }
-
-  .metric span {
-    margin-top: 4px !important;
-    font-size: 9.5px !important;
-    line-height: 1.3 !important;
-    font-weight: 500 !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .hero-tags {
-    margin-top: 24px !important;
-    gap: 7px !important;
-  }
-
-  .hero-tags .tag {
-    font-size: 9.3px !important;
-    min-height: 27px !important;
-    padding: 0 4px !important;
-  }
-
-  .metric {
-    padding: 13px 4px !important;
-  }
-
-  .metric strong {
-    font-size: clamp(18px, 5.2vw, 24px) !important;
-  }
-
-  .metric span {
-    font-size: 9px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v82 Mobile Hero Tags + Method Cards
-   - 히어로 버튼/태그 사이 간격 추가 확대
-   - 분석 방식 3항목을 모바일에서 2 + 1 카드형으로 압축
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  /* Hero: 버튼과 태그 사이 더 여유 있게 */
-  .hero-tags {
-    margin-top: 36px !important;
-  }
-
-  /* 분석 방식: 2개 + 1개 카드형 */
-  .method-row {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 10px !important;
-    margin-top: 30px !important;
-  }
-
-  .method-item {
-    min-height: 178px !important;
-    padding: 18px 16px 16px !important;
-    border-radius: 20px !important;
-    background: #fff !important;
-    box-shadow: 0 5px 14px rgba(16, 21, 19, .045) !important;
-    transform: none !important;
-  }
-
-  .method-item:nth-child(3) {
-    grid-column: 1 / -1 !important;
-    min-height: 142px !important;
-  }
-
-  .method-item:nth-child(3) p {
-    max-width: 92% !important;
-  }
-
-  .icon-wrap {
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 13px !important;
-    margin-bottom: 12px !important;
-    box-shadow: none !important;
-    background: rgba(31, 201, 110, .08) !important;
-  }
-
-  .icon-wrap svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .method-item h3 {
-    font-size: 15.8px !important;
-    line-height: 1.28 !important;
-    margin-bottom: 7px !important;
-    letter-spacing: -.04em !important;
-  }
-
-  .method-item p {
-    font-size: 11.8px !important;
-    line-height: 1.5 !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .hero-tags {
-    margin-top: 32px !important;
-  }
-
-  .method-row {
-    gap: 8px !important;
-  }
-
-  .method-item {
-    min-height: 168px !important;
-    padding: 16px 13px 14px !important;
-    border-radius: 18px !important;
-  }
-
-  .method-item:nth-child(3) {
-    min-height: 136px !important;
-  }
-
-  .method-item h3 {
-    font-size: 14.8px !important;
-  }
-
-  .method-item p {
-    font-size: 11.2px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v83 Mobile Hero Breathing + Compact Curriculum
-   - 히어로 본문/버튼/태그 간격 확대
-   - 지도 클릭 잔상 제거 강화
-   - 모바일 8주 카드 4 + 4 압축 배열
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  /* Hero spacing */
-  .hero {
-    padding-bottom: 58px !important;
-  }
-
-  .hero-actions {
-    margin-top: 40px !important;
-  }
-
-  .hero-tags {
-    margin-top: 54px !important;
-    margin-bottom: 10px !important;
-  }
-
-  /* 지도 클릭/활성화 시 생기는 잔상 제거 */
-  .map-region-hit,
-  .map-region-hit::before,
-  .map-region-hit::after,
-  .map-region-hit:hover::before,
-  .map-region-hit:hover::after,
-  .map-region-hit.is-active::before,
-  .map-region-hit.is-active::after {
-    background: transparent !important;
-    box-shadow: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-  }
-
-  .map-area-highlight,
-  .map-area-highlight.is-active,
-  .map-visual[data-active-group="cheonan"] .highlight-cheonan,
-  .map-visual[data-active-group="asan"] .highlight-asan {
-    transform: none !important;
-    filter: none !important;
-    box-shadow: none !important;
-    mix-blend-mode: normal !important;
-  }
-
-  .map-region-hit {
-    -webkit-tap-highlight-color: transparent !important;
-  }
-
-  /* 8주 카드: 모바일에서 4개 + 4개로 압축 */
-  .week-roadmap {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 7px !important;
-  }
-
-  .week-roadmap-card {
-    min-height: 88px !important;
-    padding: 10px 6px 9px !important;
-    border-radius: 14px !important;
-    align-content: start !important;
-    text-align: center !important;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: 88px !important;
-    transform: translateY(-1px) !important;
-  }
-
-  .week-code {
-    justify-self: center !important;
-    min-height: 21px !important;
-    padding: 0 7px !important;
-    font-size: 10px !important;
-    margin: 0 auto !important;
-  }
-
-  .week-roadmap-card strong {
-    margin-top: 8px !important;
-    font-size: 10.8px !important;
-    line-height: 1.22 !important;
-    letter-spacing: -.035em !important;
-    word-break: keep-all !important;
-  }
-
-  .week-roadmap-card strong .title-sub {
-    display: none !important;
-  }
-
-  .week-roadmap-card p {
-    display: none !important;
-  }
-
-  .week-roadmap-card.is-active {
-    box-shadow: 0 5px 13px rgba(16, 21, 19, .06) !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .hero-actions {
-    margin-top: 36px !important;
-  }
-
-  .hero-tags {
-    margin-top: 48px !important;
-    margin-bottom: 8px !important;
-  }
-
-  .week-roadmap {
-    gap: 6px !important;
-  }
-
-  .week-roadmap-card {
-    min-height: 82px !important;
-    padding: 9px 5px 8px !important;
-    border-radius: 13px !important;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: 82px !important;
-  }
-
-  .week-code {
-    min-height: 20px !important;
-    font-size: 9.4px !important;
-    padding: 0 6px !important;
-  }
-
-  .week-roadmap-card strong {
-    font-size: 10px !important;
-    line-height: 1.2 !important;
-  }
-}
-
-
-/* ==========================================================================
-   v84 Mobile Curriculum Detail Panel
-   - 지도/핀 클릭 시 지도와 선택 주차 상세를 함께 볼 수 있게 조정
-   - 4x2 주차 카드는 유지하되 상세는 별도 패널에 표시
-   ========================================================================== */
-
-.mobile-week-detail {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .curriculum-layout {
-    gap: 16px !important;
-  }
-
-  .map-stage {
-    height: 305px !important;
-    min-height: 305px !important;
-  }
-
-  .mobile-week-detail {
-    display: block !important;
-    margin: 2px 0 12px !important;
-    padding: 15px 16px 14px !important;
-    border-radius: 18px !important;
-    background: #fff !important;
-    box-shadow: 0 6px 16px rgba(16, 21, 19, .05) !important;
-  }
-
-  .mobile-week-detail-top {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 8px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .mobile-week-code,
-  .mobile-week-region {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 24px !important;
-    padding: 0 10px !important;
-    border-radius: 999px !important;
-    font-size: 10.5px !important;
-    font-weight: 850 !important;
-    line-height: 1 !important;
-  }
-
-  .mobile-week-code {
-    background: rgba(31, 201, 110, .12) !important;
-    color: var(--green-deep) !important;
-  }
-
-  .mobile-week-region {
-    background: rgba(16, 21, 19, .055) !important;
-    color: rgba(16, 21, 19, .56) !important;
-  }
-
-  .mobile-week-detail[data-group="asan"] .mobile-week-code {
-    background: rgba(67, 135, 255, .12) !important;
-    color: var(--blue-deep) !important;
-  }
-
-  .mobile-week-detail strong {
-    display: block !important;
-    color: var(--ink) !important;
-    font-size: 17px !important;
-    line-height: 1.32 !important;
-    letter-spacing: -.045em !important;
-    font-weight: 900 !important;
-  }
-
-  .mobile-week-detail p {
-    margin-top: 8px !important;
-    color: rgba(16, 21, 19, .58) !important;
-    font-size: 12.5px !important;
-    line-height: 1.62 !important;
-  }
-
-  .week-roadmap {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 7px !important;
-  }
-
-  .week-roadmap-card {
-    min-height: 76px !important;
-    padding: 9px 5px 8px !important;
-    border-radius: 14px !important;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: 76px !important;
-    transform: translateY(-1px) !important;
-  }
-
-  .week-roadmap-card strong {
-    margin-top: 7px !important;
-    font-size: 10.5px !important;
-    line-height: 1.18 !important;
-  }
-
-  .week-roadmap-card p {
-    display: none !important;
-  }
-
-  .week-code {
-    min-height: 20px !important;
-    padding: 0 6px !important;
-    font-size: 9.6px !important;
-  }
-
-  .week-roadmap-card.is-active {
-    box-shadow: 0 5px 12px rgba(16, 21, 19, .055) !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .map-stage {
-    height: 285px !important;
-    min-height: 285px !important;
-  }
-
-  .mobile-week-detail {
-    padding: 14px 14px 13px !important;
-    border-radius: 16px !important;
-  }
-
-  .mobile-week-detail strong {
-    font-size: 15.8px !important;
-  }
-
-  .mobile-week-detail p {
-    font-size: 11.8px !important;
-    line-height: 1.56 !important;
-  }
-
-  .week-roadmap-card {
-    min-height: 72px !important;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: 72px !important;
-  }
-
-  .week-roadmap-card strong {
-    font-size: 9.8px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v85 Mobile Hero Balance + One Line Bottom Bar
-   - 히어로 간격을 다시 균형 있게 조정
-   - 지도 클릭 시 지도+상세+카드가 같이 보이도록 여백 압축
-   - 하단 고정 디데이/신청 버튼 1줄화
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  /* 히어로: 너무 벌어진 느낌 제거, 대신 그룹감 유지 */
-  .hero {
-    padding-top: 42px !important;
-    padding-bottom: 44px !important;
-  }
-
-  .hero-lead {
-    margin-top: 18px !important;
-    line-height: 1.64 !important;
-  }
-
-  .hero-actions {
-    margin-top: 28px !important;
-    gap: 8px !important;
-  }
-
-  .hero-tags {
-    margin-top: 25px !important;
-    margin-bottom: 6px !important;
-    gap: 8px !important;
-  }
-
-  .hero-tags .tag {
-    min-height: 29px !important;
-    border-radius: 13px !important;
-  }
-
-  /* 지도 영역: 한 화면에 지도 + 선택 상세 + 카드가 더 잘 들어오게 */
-  .curriculum-layout {
-    gap: 14px !important;
-  }
-
-  .map-stage {
-    height: 275px !important;
-    min-height: 275px !important;
-    margin-top: 0 !important;
-  }
-
-  .map-visual {
-    width: min(100%, 405px) !important;
-    max-width: 405px !important;
-  }
-
-  .mobile-week-detail {
-    margin: 0 0 9px !important;
-    padding: 13px 14px 12px !important;
-    border-radius: 16px !important;
-  }
-
-  .mobile-week-detail-top {
-    margin-bottom: 8px !important;
-  }
-
-  .mobile-week-detail strong {
-    font-size: 15.8px !important;
-    line-height: 1.26 !important;
-  }
-
-  .mobile-week-detail p {
-    margin-top: 6px !important;
-    font-size: 11.8px !important;
-    line-height: 1.5 !important;
-  }
-
-  .week-roadmap {
-    gap: 6px !important;
-  }
-
-  .week-roadmap-card {
-    min-height: 68px !important;
-    padding: 8px 5px 7px !important;
-    border-radius: 13px !important;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: 68px !important;
-  }
-
-  .week-code {
-    min-height: 19px !important;
-    padding: 0 6px !important;
-    font-size: 9.2px !important;
-  }
-
-  .week-roadmap-card strong {
-    margin-top: 6px !important;
-    font-size: 9.7px !important;
-    line-height: 1.14 !important;
-  }
-
-  /* 하단 고정바: 1줄 구조 */
-  body {
-    padding-bottom: 64px !important;
-  }
-
-  .deadline-bar {
-    padding: 8px 12px calc(8px + env(safe-area-inset-bottom)) !important;
-  }
-
-  .deadline-bar-inner {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: 1fr auto !important;
-    align-items: center !important;
-    gap: 8px !important;
-  }
-
-  .deadline-bar-count {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 4px !important;
-    min-width: 0 !important;
-  }
-
-  .bar-count-label {
-    display: none !important;
-  }
-
-  .bar-time-box {
-    min-width: 0 !important;
-    height: 34px !important;
-    padding: 0 4px !important;
-    border-radius: 9px !important;
-    grid-template-columns: auto auto !important;
-    gap: 2px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 13px !important;
-    min-width: auto !important;
-  }
-
-  .bar-time-box em {
-    font-size: 8.5px !important;
-  }
-
-  .deadline-bar-btn {
-    width: 72px !important;
-    min-width: 72px !important;
-    height: 36px !important;
-    min-height: 36px !important;
-    padding: 0 !important;
-    border-radius: 11px !important;
-    font-size: 12px !important;
-    gap: 4px !important;
-  }
-
-  .pencil-icon {
-    display: none !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .hero-actions {
-    margin-top: 26px !important;
-  }
-
-  .hero-tags {
-    margin-top: 23px !important;
-  }
-
-  .map-stage {
-    height: 255px !important;
-    min-height: 255px !important;
-  }
-
-  .map-visual {
-    width: min(104%, 390px) !important;
-  }
-
-  .mobile-week-detail {
-    padding: 12px 13px 11px !important;
-  }
-
-  .mobile-week-detail strong {
-    font-size: 15px !important;
-  }
-
-  .mobile-week-detail p {
-    font-size: 11.2px !important;
-  }
-
-  .week-roadmap-card {
-    min-height: 64px !important;
-  }
-
-  .week-roadmap-card:hover,
-  .week-roadmap-card:focus-visible,
-  .week-roadmap-card.is-active {
-    min-height: 64px !important;
-  }
-
-  .week-roadmap-card strong {
-    font-size: 9.2px !important;
-  }
-
-  .deadline-bar-inner {
-    gap: 6px !important;
-  }
-
-  .bar-time-box {
-    height: 32px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 12px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 8px !important;
-  }
-
-  .deadline-bar-btn {
-    width: 66px !important;
-    min-width: 66px !important;
-    height: 34px !important;
-    min-height: 34px !important;
-    font-size: 11px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v86 Mobile Lesson Photo + Deadline + Apply Detail
-   - 수업방식 사진 화살표/캡션 축소
-   - 디데이 제목과 카운트 간격 확대
-   - 신청안내 모바일 2칸 카드 + 자세히 보기 접힘
-   - 푸터 검정 영역 텍스트/여백 축소
-   ========================================================================== */
-
-.apply-detail-toggle {
-  display: block;
-}
-
-.apply-detail-summary {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  /* 수업방식/사진 섹션: 화살표와 사진 제목 0.8 스케일 */
-  .photo-slider .slider-arrow {
-    width: 27px !important;
-    height: 27px !important;
-  }
-
-  .photo-slider .slider-arrow svg {
-    width: 19px !important;
-    height: 19px !important;
-  }
-
-  .slide-caption {
-    font-size: 8.6px !important;
-    padding: 6px 9px !important;
-    left: 10px !important;
-    bottom: 10px !important;
-  }
-
-  /* 디데이: 제목과 카운트 사이 긴장감 있는 여백 */
-  .deadline-section-final .urg {
-    padding-top: 44px !important;
-    padding-bottom: 46px !important;
-  }
-
-  .deadline-section-final .headline {
-    margin-bottom: 2.35rem !important;
-  }
-
-  .deadline-section-final .cd-grid {
-    margin-bottom: 1.55rem !important;
-  }
-
-  /* 신청안내: 버튼 하단 내용은 자세히 보기로 접기 */
-  .apply-detail-toggle {
-    margin-top: 24px !important;
-  }
-
-  .apply-detail-summary {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    min-height: 46px !important;
-    border-radius: 999px !important;
-    background: rgba(255, 255, 255, .18) !important;
-    border: 1px solid rgba(255, 255, 255, .36) !important;
-    color: #fff !important;
-    font-size: 13px !important;
-    font-weight: 900 !important;
-    list-style: none !important;
-    cursor: pointer !important;
-  }
-
-  .apply-detail-summary::-webkit-details-marker {
-    display: none !important;
-  }
-
-  .apply-detail-summary::after {
-    content: "＋";
-    margin-left: 8px;
-    font-size: 13px;
-    font-weight: 900;
-  }
-
-  .apply-detail-toggle[open] .apply-detail-summary::after {
-    content: "－";
-  }
-
-  .apply-detail-toggle .apply-info {
-    margin-top: 16px !important;
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-  }
-
-  .apply-detail-toggle .info-row {
-    padding: 12px 10px !important;
-    border: 1px solid rgba(255, 255, 255, .22) !important;
-    border-radius: 14px !important;
-    background: rgba(255, 255, 255, .10) !important;
-    min-height: 74px !important;
-  }
-
-  .apply-detail-toggle .info-label {
-    font-size: 9.2px !important;
-    line-height: 1.2 !important;
-    margin-bottom: 5px !important;
-    color: rgba(255, 255, 255, .72) !important;
-  }
-
-  .apply-detail-toggle .info-value {
-    font-size: 12.6px !important;
-    line-height: 1.42 !important;
-  }
-
-  .apply-detail-toggle .info-value span {
-    font-size: 10.3px !important;
-    line-height: 1.35 !important;
-  }
-
-  .apply-detail-toggle .tuition-row {
-    grid-column: span 2 !important;
-    min-height: 68px !important;
-  }
-
-  .apply-detail-toggle .tuition-strong {
-    font-size: 22px !important;
-  }
-
-  .apply-detail-toggle .apply-map-wrap {
-    margin-top: 16px !important;
-  }
-
-  .apply-detail-toggle .apply-map-card {
-    height: 190px !important;
-    border-radius: 18px !important;
-  }
-
-  /* 푸터 검정 영역: 더 작고 얇게 */
-  .footer {
-    padding: 22px 0 76px !important;
-  }
-
-  .footer-inner {
-    gap: 8px !important;
-    font-size: 10.5px !important;
-    line-height: 1.55 !important;
-  }
-
-  .footer b {
-    font-size: 11px !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .deadline-section-final .headline {
-    margin-bottom: 2.05rem !important;
-  }
-
-  .apply-detail-toggle .apply-info {
-    gap: 7px !important;
-  }
-
-  .apply-detail-toggle .info-row {
-    padding: 11px 8px !important;
-    min-height: 70px !important;
-  }
-
-  .apply-detail-toggle .info-value {
-    font-size: 11.8px !important;
-  }
-
-  .footer {
-    padding-bottom: 72px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v87 Mobile Bottom Countdown Refinement
-   - 모바일 하단 고정 디데이 축소
-   - 디데이와 신청 버튼 사이 간격 확대
-   - 버튼 문구는 신청하기만 표시
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  body {
-    padding-bottom: 58px !important;
-  }
-
-  .deadline-bar {
-    padding: 7px 13px calc(7px + env(safe-area-inset-bottom)) !important;
-  }
-
-  .deadline-bar-inner {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 74px !important;
-    align-items: center !important;
-    gap: 14px !important;
-  }
-
-  .deadline-bar-count {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 3px !important;
-    min-width: 0 !important;
-  }
-
-  .bar-count-label {
-    display: none !important;
-  }
-
-  .bar-time-box {
-    min-width: 0 !important;
-    height: 30px !important;
-    padding: 0 3px !important;
-    border-radius: 8px !important;
-    grid-template-columns: auto auto !important;
-    gap: 1px !important;
-    background: rgba(255, 255, 255, .075) !important;
-    border-color: rgba(255, 255, 255, .11) !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 11.5px !important;
-    line-height: 1 !important;
-    min-width: auto !important;
-  }
-
-  .bar-time-box em {
-    font-size: 7.5px !important;
-    line-height: 1 !important;
-    transform: none !important;
-  }
-
-  .deadline-bar-btn {
-    width: 74px !important;
-    min-width: 74px !important;
-    height: 34px !important;
-    min-height: 34px !important;
-    padding: 0 !important;
-    border-radius: 10px !important;
-    font-size: 11.5px !important;
-    font-weight: 950 !important;
-    letter-spacing: -.02em !important;
-    gap: 0 !important;
-    white-space: nowrap !important;
-  }
-
-  .deadline-bar-btn .pencil-icon,
-  .deadline-bar-btn svg,
-  .deadline-bar-btn i {
-    display: none !important;
-  }
-}
-
-@media (max-width: 390px) {
-  body {
-    padding-bottom: 56px !important;
-  }
-
-  .deadline-bar {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  .deadline-bar-inner {
-    grid-template-columns: minmax(0, 1fr) 68px !important;
-    gap: 11px !important;
-  }
-
-  .bar-time-box {
-    height: 29px !important;
-    border-radius: 7px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 10.8px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 7px !important;
-  }
-
-  .deadline-bar-btn {
-    width: 68px !important;
-    min-width: 68px !important;
-    height: 32px !important;
-    min-height: 32px !important;
-    font-size: 10.8px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v88 Mobile Bottom Bar Gap + Apply Detail Fix
-   - 모바일 하단 디데이 박스 가로 폭 축소
-   - 디데이와 신청하기 버튼 사이 간격 확대
-   - 신청안내 자세히 보기 스크롤 중 자동 닫힘 방지
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  .deadline-bar {
-    padding: 7px 12px calc(7px + env(safe-area-inset-bottom)) !important;
-  }
-
-  .deadline-bar-inner {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: 168px 72px !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 34px !important;
-  }
-
-  .deadline-bar-count {
-    width: 168px !important;
-    max-width: 168px !important;
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 3px !important;
-    justify-self: end !important;
-  }
-
-  .bar-time-box {
-    width: 100% !important;
-    min-width: 0 !important;
-    height: 29px !important;
-    padding: 0 2px !important;
-    border-radius: 8px !important;
-    border-width: 1px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 10.8px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 7px !important;
-  }
-
-  .deadline-bar-btn {
-    justify-self: start !important;
-    width: 72px !important;
-    min-width: 72px !important;
-    max-width: 72px !important;
-    height: 34px !important;
-    min-height: 34px !important;
-    padding: 0 !important;
-    font-size: 11.4px !important;
-    border-radius: 10px !important;
-  }
-
-  .deadline-bar-btn .pencil-icon,
-  .deadline-bar-btn svg,
-  .deadline-bar-btn i {
-    display: none !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .deadline-bar {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
-  .deadline-bar-inner {
-    grid-template-columns: 150px 66px !important;
-    gap: 26px !important;
-  }
-
-  .deadline-bar-count {
-    width: 150px !important;
-    max-width: 150px !important;
-    gap: 2px !important;
-  }
-
-  .bar-time-box {
-    height: 28px !important;
-    border-radius: 7px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 10.2px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 6.7px !important;
-  }
-
-  .deadline-bar-btn {
-    width: 66px !important;
-    min-width: 66px !important;
-    max-width: 66px !important;
-    height: 32px !important;
-    min-height: 32px !important;
-    font-size: 10.6px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v89 Mobile Bottom + Lesson Method + Apply Grid
-   - 하단 고정바: 디데이 좌측, 더 긴 신청 버튼 우측
-   - 수업방식 핵심포인트: 2칸 + 1칸 2줄 배치
-   - 신청안내 자세히 보기: 추천대상/수강료는 한 줄 전체폭, 나머지는 2칸
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  /* 하단 고정바: 좌측 디데이, 우측 긴 버튼 */
-  .deadline-bar {
-    padding: 7px 14px calc(7px + env(safe-area-inset-bottom)) !important;
-  }
-
-  .deadline-bar-inner {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: 152px 108px !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 28px !important;
-  }
-
-  .deadline-bar-count {
-    width: 152px !important;
-    max-width: 152px !important;
-    justify-self: end !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 2px !important;
-  }
-
-  .bar-time-box {
-    height: 29px !important;
-    padding: 0 2px !important;
-    border-radius: 8px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 10.6px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 6.9px !important;
-  }
-
-  .deadline-bar-btn {
-    justify-self: start !important;
-    width: 108px !important;
-    min-width: 108px !important;
-    max-width: 108px !important;
-    height: 34px !important;
-    min-height: 34px !important;
-    padding: 0 !important;
-    border-radius: 999px !important;
-    font-size: 12px !important;
-    font-weight: 950 !important;
-    letter-spacing: -.02em !important;
-    white-space: nowrap !important;
-  }
-
-  .deadline-bar-btn::after {
-    content: " >";
-    font-weight: 950;
-  }
-
-  .deadline-bar-btn .pencil-icon,
-  .deadline-bar-btn svg,
-  .deadline-bar-btn i {
-    display: none !important;
-  }
-
-  /* 수업방식 섹션: 소수정예/상담/임장 포인트를 2칸 + 1칸 */
-  .trust-points {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 9px !important;
-  }
-
-  .trust-point {
-    display: block !important;
-    min-height: 132px !important;
-    padding: 15px 13px 14px !important;
-    border-radius: 18px !important;
-    background: #fff !important;
-    box-shadow: 0 5px 14px rgba(16, 21, 19, .045) !important;
-  }
-
-  .trust-point:nth-child(3) {
-    grid-column: 1 / -1 !important;
-    min-height: 108px !important;
-  }
-
-  .trust-point:nth-child(3) p {
-    max-width: 92% !important;
-  }
-
-  .trust-num {
-    width: 26px !important;
-    height: 26px !important;
-    margin-bottom: 10px !important;
-    font-size: 13px !important;
-  }
-
-  .trust-point h3 {
-    font-size: 14.8px !important;
-    line-height: 1.25 !important;
-    margin-bottom: 6px !important;
-    letter-spacing: -.04em !important;
-  }
-
-  .trust-point p {
-    font-size: 11.3px !important;
-    line-height: 1.48 !important;
-  }
-
-  /* 신청안내 자세히 보기 내부 배치 */
-  .apply-detail-toggle .apply-info {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-  }
-
-  .apply-detail-toggle .info-row {
-    grid-column: span 1 !important;
-    min-height: 72px !important;
-  }
-
-  .apply-detail-toggle .recommend-row,
-  .apply-detail-toggle .tuition-row {
-    grid-column: 1 / -1 !important;
-    min-height: 64px !important;
-  }
-
-  .apply-detail-toggle .recommend-row {
-    order: 98 !important;
-  }
-
-  .apply-detail-toggle .tuition-row {
-    order: 99 !important;
-  }
-
-  .apply-detail-toggle .recommend-row .info-value,
-  .apply-detail-toggle .tuition-row .info-value {
-    font-size: 13.4px !important;
-    line-height: 1.42 !important;
-  }
-
-  .apply-detail-toggle .tuition-strong {
-    font-size: 23px !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .deadline-bar {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  .deadline-bar-inner {
-    grid-template-columns: 138px 96px !important;
-    gap: 20px !important;
-  }
-
-  .deadline-bar-count {
-    width: 138px !important;
-    max-width: 138px !important;
-    gap: 2px !important;
-  }
-
-  .bar-time-box {
-    height: 28px !important;
-  }
-
-  .bar-time-box strong {
-    font-size: 10px !important;
-  }
-
-  .bar-time-box em {
-    font-size: 6.5px !important;
-  }
-
-  .deadline-bar-btn {
-    width: 96px !important;
-    min-width: 96px !important;
-    max-width: 96px !important;
-    height: 32px !important;
-    min-height: 32px !important;
-    font-size: 11.2px !important;
-  }
-
-  .trust-points {
-    gap: 8px !important;
-  }
-
-  .trust-point {
-    min-height: 126px !important;
-    padding: 14px 11px 13px !important;
-    border-radius: 16px !important;
-  }
-
-  .trust-point:nth-child(3) {
-    min-height: 102px !important;
-  }
-
-  .trust-point h3 {
-    font-size: 13.8px !important;
-  }
-
-  .trust-point p {
-    font-size: 10.8px !important;
-  }
-
-  .apply-detail-toggle .apply-info {
-    gap: 7px !important;
-  }
-
-  .apply-detail-toggle .info-row {
-    min-height: 68px !important;
-  }
-
-  .apply-detail-toggle .recommend-row,
-  .apply-detail-toggle .tuition-row {
-    min-height: 62px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v90 Mobile Visual Refinement
-   - 히어로 블러 원 절반 크기 + 우측 상단 이동
-   - 수업방식 체크 아이콘 모바일 숨김
-   - 신청안내 자세히 보기 버튼 톤 다운
-   - 지도 iframe 오류 대비 링크 보강
-   - 푸터 하단 여백 축소
-   - 모바일 하단 고정바를 좌/우 여백 기준으로 재배치
-   ========================================================================== */
-
-@keyframes orbMobileCornerA {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-26px, 20px, 0) scale(1.08); }
-  100% { transform: translate3d(12px, -16px, 0) scale(.96); }
-}
-
-@keyframes orbMobileCornerB {
-  0% { transform: translate3d(0, 0, 0) scale(.94); }
-  50% { transform: translate3d(-34px, -14px, 0) scale(1.04); }
-  100% { transform: translate3d(20px, 22px, 0) scale(.9); }
-}
-
-@keyframes orbMobileCornerC {
-  0% { transform: translate3d(0, 0, 0) scale(.92); }
-  50% { transform: translate3d(24px, -20px, 0) scale(1.02); }
-  100% { transform: translate3d(-18px, 14px, 0) scale(.88); }
-}
-
-.map-fallback-link {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  /* 히어로 그라데이션 블러 원: 절반 크기 + 우측 상단 */
+  /* 히어로 블러 오브젝트 */
   .hero-orbs {
     inset: 0 !important;
   }
@@ -3486,58 +607,497 @@ img{display:block;width:100%;height:auto}
     animation: orbMobileCornerC 14s ease-in-out infinite alternate !important;
   }
 
-  /* 수업방식 체크 아이콘 숨김 */
+  /* 모바일 지표 */
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .metric {
+    padding: 14px 6px !important;
+    text-align: center !important;
+  }
+
+  .metric strong {
+    font-size: clamp(19px, 5.6vw, 27px) !important;
+    letter-spacing: -.045em !important;
+  }
+
+  .metric span {
+    margin-top: 4px !important;
+    font-size: 9.5px !important;
+    line-height: 1.3 !important;
+    font-weight: 500 !important;
+  }
+
+  /* 분석 방식 카드 */
+  .method {
+    padding: 52px 0 !important;
+  }
+
+  .method-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-top: 30px !important;
+  }
+
+  .method-item {
+    min-height: 178px !important;
+    padding: 18px 16px 16px !important;
+    border-radius: 20px !important;
+    background: #fff !important;
+    box-shadow: 0 5px 14px rgba(16, 21, 19, .045) !important;
+    transform: none !important;
+  }
+
+  .method-item:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    min-height: 142px !important;
+  }
+
+  .method-item:nth-child(3) p {
+    max-width: 92% !important;
+  }
+
+  .icon-wrap {
+    width: 38px !important;
+    height: 38px !important;
+    margin-bottom: 12px !important;
+    border-radius: 13px !important;
+    background: rgba(31, 201, 110, .08) !important;
+    box-shadow: none !important;
+  }
+
+  .icon-wrap svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .method-item h3 {
+    margin-bottom: 7px !important;
+    font-size: 15.8px !important;
+    line-height: 1.28 !important;
+    letter-spacing: -.04em !important;
+  }
+
+  .method-item p {
+    font-size: 11.8px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 지도 + 8주 과정 */
+  .curriculum .section-header {
+    margin-bottom: 24px !important;
+  }
+
+  .curriculum .section-desc {
+    margin-top: 12px !important;
+  }
+
+  .curriculum-layout {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .map-stage {
+    width: 100% !important;
+    height: 275px !important;
+    min-height: 275px !important;
+    margin-top: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+  }
+
+  .map-visual {
+    width: min(100%, 405px) !important;
+    max-width: 405px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+
+  .map-pin {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .map-pin span {
+    font-size: 8.5px !important;
+  }
+
+  .map-pin.is-active {
+    transform: translate(-50%, -122%) rotate(-45deg) scale(1.34) !important;
+  }
+
+  .map-region-label {
+    font-size: clamp(16px, 5.4vw, 23px) !important;
+  }
+
+  .curriculum-panel {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .mobile-week-detail {
+    display: block !important;
+    margin: 0 0 9px !important;
+    padding: 13px 14px 12px !important;
+    border-radius: 16px !important;
+    background: #fff !important;
+    box-shadow: 0 6px 16px rgba(16, 21, 19, .05) !important;
+  }
+
+  .mobile-week-detail-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .mobile-week-code,
+  .mobile-week-region {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 24px !important;
+    padding: 0 10px !important;
+    border-radius: 999px !important;
+    font-size: 10.5px !important;
+    font-weight: 850 !important;
+    line-height: 1 !important;
+  }
+
+  .mobile-week-code {
+    background: rgba(31, 201, 110, .12) !important;
+    color: var(--green-deep) !important;
+  }
+
+  .mobile-week-region {
+    background: rgba(16, 21, 19, .055) !important;
+    color: rgba(16, 21, 19, .56) !important;
+  }
+
+  .mobile-week-detail[data-group="asan"] .mobile-week-code {
+    background: rgba(67, 135, 255, .12) !important;
+    color: var(--blue-deep) !important;
+  }
+
+  .mobile-week-detail strong {
+    display: block !important;
+    color: var(--ink) !important;
+    font-size: 15.8px !important;
+    line-height: 1.26 !important;
+    letter-spacing: -.045em !important;
+    font-weight: 900 !important;
+  }
+
+  .mobile-week-detail p {
+    margin-top: 6px !important;
+    color: rgba(16, 21, 19, .58) !important;
+    font-size: 11.8px !important;
+    line-height: 1.5 !important;
+  }
+
+  .week-roadmap {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .week-roadmap-card,
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: 68px !important;
+    padding: 8px 5px 7px !important;
+    border-radius: 13px !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .week-code {
+    justify-self: center !important;
+    min-height: 19px !important;
+    margin: 0 auto !important;
+    padding: 0 6px !important;
+    font-size: 9.2px !important;
+  }
+
+  .week-roadmap-card strong {
+    margin-top: 6px !important;
+    font-size: 9.7px !important;
+    line-height: 1.14 !important;
+    letter-spacing: -.035em !important;
+    text-align: center !important;
+    word-break: keep-all !important;
+  }
+
+  .week-roadmap-card strong .title-sub,
+  .week-roadmap-card p {
+    display: none !important;
+  }
+
+  /* 수업 방식 */
+  .trust-layout {
+    gap: 26px !important;
+  }
+
+  .trust-points {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .trust-point {
+    display: block !important;
+    min-height: 132px !important;
+    padding: 15px 13px 14px !important;
+    border-radius: 18px !important;
+    background: #fff !important;
+    box-shadow: 0 5px 14px rgba(16, 21, 19, .045) !important;
+  }
+
+  .trust-point:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    min-height: 108px !important;
+  }
+
+  .trust-point:nth-child(3) p {
+    max-width: 92% !important;
+  }
+
   .trust-num {
     display: none !important;
   }
 
-  .trust-point {
-    padding-top: 15px !important;
-  }
-
   .trust-point h3 {
     margin-top: 0 !important;
+    margin-bottom: 6px !important;
+    font-size: 14.8px !important;
+    line-height: 1.25 !important;
+    letter-spacing: -.04em !important;
   }
 
-  /* 신청안내 자세히 보기: 메인 CTA와 다른 작고 가벼운 형태 */
+  .trust-point p {
+    font-size: 11.3px !important;
+    line-height: 1.48 !important;
+  }
+
+  .photo-slider {
+    margin-top: 26px !important;
+    border-radius: 17px !important;
+  }
+
+  .slide {
+    height: 200px !important;
+  }
+
+  .slide-caption {
+    left: 10px !important;
+    bottom: 10px !important;
+    padding: 6px 9px !important;
+    font-size: 8.6px !important;
+  }
+
+  .photo-slider .slider-arrow {
+    width: 27px !important;
+    height: 27px !important;
+  }
+
+  .photo-slider .slider-arrow svg {
+    width: 19px !important;
+    height: 19px !important;
+  }
+
+  /* 디데이 마감 */
+  .deadline-section-final .urg {
+    padding: 44px 18px 46px !important;
+  }
+
+  .deadline-section-final .badge {
+    margin-bottom: 12px !important;
+    padding: 6px 9px !important;
+    font-size: 9px !important;
+  }
+
+  .deadline-section-final .headline {
+    margin-bottom: 2.35rem !important;
+    font-size: clamp(24px, 8vw, 36px) !important;
+    line-height: 1.15 !important;
+  }
+
+  .deadline-section-final .cd-grid {
+    gap: 5px !important;
+    margin-bottom: 1.55rem !important;
+  }
+
+  .deadline-section-final .cd-cell {
+    padding: 10px 3px 7px !important;
+    border-radius: 8px !important;
+  }
+
+  .deadline-section-final .cd-num {
+    font-size: clamp(19px, 7vw, 28px) !important;
+  }
+
+  .deadline-section-final .cd-unit {
+    font-size: 8.5px !important;
+  }
+
+  .deadline-section-final .prog-label {
+    font-size: 9.6px !important;
+  }
+
+  /* 신청 안내 */
+  .apply {
+    padding: 54px 0 !important;
+  }
+
+  .apply h2 {
+    font-size: clamp(27px, 8.2vw, 39px) !important;
+    line-height: 1.16 !important;
+  }
+
+  .apply p {
+    margin-top: 12px !important;
+    font-size: 12.8px !important;
+    line-height: 1.6 !important;
+  }
+
+  .apply-actions {
+    gap: 8px !important;
+    margin-top: 20px !important;
+  }
+
+  .apply .btn {
+    width: 100% !important;
+    min-height: 46px !important;
+    font-size: 12.8px !important;
+  }
+
+  .apply-detail-toggle {
+    margin-top: 24px !important;
+  }
+
   .apply-detail-summary {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     width: fit-content !important;
     min-width: 0 !important;
     min-height: 30px !important;
     margin: 0 auto !important;
     padding: 0 13px !important;
+    border: 1px solid rgba(255,255,255,.22) !important;
     border-radius: 999px !important;
-    background: rgba(255, 255, 255, .08) !important;
-    border: 1px solid rgba(255, 255, 255, .22) !important;
-    color: rgba(255, 255, 255, .76) !important;
+    background: rgba(255,255,255,.08) !important;
+    color: rgba(255,255,255,.76) !important;
     font-size: 10.8px !important;
     font-weight: 750 !important;
     letter-spacing: -.02em !important;
+    list-style: none !important;
+    cursor: pointer !important;
+  }
+
+  .apply-detail-summary::-webkit-details-marker {
+    display: none !important;
   }
 
   .apply-detail-summary::after {
+    content: "＋";
     margin-left: 6px !important;
     font-size: 10.5px !important;
+    font-weight: 900;
+  }
+
+  .apply-detail-toggle[open] .apply-detail-summary::after {
+    content: "－";
+  }
+
+  .apply-detail-toggle .apply-info {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    margin-top: 16px !important;
+  }
+
+  .apply-detail-toggle .info-row {
+    grid-column: span 1 !important;
+    min-height: 72px !important;
+    padding: 12px 10px !important;
+    border: 1px solid rgba(255,255,255,.22) !important;
+    border-radius: 14px !important;
+    background: rgba(255,255,255,.10) !important;
+  }
+
+  .apply-detail-toggle .info-label {
+    margin-bottom: 5px !important;
+    color: rgba(255,255,255,.72) !important;
+    font-size: 9.2px !important;
+    line-height: 1.2 !important;
+  }
+
+  .apply-detail-toggle .info-value {
+    font-size: 12.6px !important;
+    line-height: 1.42 !important;
+  }
+
+  .apply-detail-toggle .info-value span {
+    font-size: 10.3px !important;
+    line-height: 1.35 !important;
+  }
+
+  .apply-detail-toggle .recommend-row,
+  .apply-detail-toggle .tuition-row {
+    grid-column: 1 / -1 !important;
+    min-height: 64px !important;
+  }
+
+  .apply-detail-toggle .recommend-row {
+    order: 98 !important;
+  }
+
+  .apply-detail-toggle .tuition-row {
+    order: 99 !important;
+  }
+
+  .apply-detail-toggle .recommend-row .info-value,
+  .apply-detail-toggle .tuition-row .info-value {
+    font-size: 13.4px !important;
+    line-height: 1.42 !important;
+  }
+
+  .apply-detail-toggle .tuition-strong {
+    font-size: 23px !important;
+  }
+
+  .apply-detail-toggle .apply-map-wrap {
+    margin-top: 16px !important;
+  }
+
+  .apply-detail-toggle .apply-map-card {
+    height: 190px !important;
+    border-radius: 18px !important;
   }
 
   .map-fallback-link {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-top: 9px !important;
     min-height: 34px !important;
+    margin-top: 9px !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
     border-radius: 999px !important;
-    background: rgba(255, 255, 255, .12) !important;
-    border: 1px solid rgba(255, 255, 255, .18) !important;
-    color: rgba(255, 255, 255, .82) !important;
+    background: rgba(255,255,255,.12) !important;
+    color: rgba(255,255,255,.82) !important;
     font-size: 11.2px !important;
     font-weight: 800 !important;
   }
 
-  /* 푸터 검정 배경 하단 여백 축소 */
+  /* 푸터 */
   .footer {
-    padding-top: 22px !important;
-    padding-bottom: 22px !important;
+    padding: 22px 0 !important;
   }
 
   .footer-inner {
@@ -3550,13 +1110,9 @@ img{display:block;width:100%;height:auto}
     font-size: 10.5px !important;
   }
 
-  /* 하단 고정바: 기존 모바일 좌우 레이아웃 여백에 맞춰 좌/우 정렬 */
-  body {
-    padding-bottom: 58px !important;
-  }
-
+  /* 하단 고정 디데이 */
   .deadline-bar {
-    padding: 7px 0 calc(7px + env(safe-area-inset-bottom)) !important;
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom)) !important;
   }
 
   .deadline-bar-inner {
@@ -3564,44 +1120,59 @@ img{display:block;width:100%;height:auto}
     max-width: 430px !important;
     margin: 0 auto !important;
     display: flex !important;
-    justify-content: space-between !important;
     align-items: center !important;
+    justify-content: space-between !important;
     gap: 16px !important;
   }
 
   .deadline-bar-count {
-    width: 148px !important;
-    max-width: 148px !important;
-    flex: 0 0 148px !important;
+    width: 178px !important;
+    max-width: 178px !important;
+    flex: 0 0 178px !important;
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 2px !important;
+    gap: 3px !important;
+  }
+
+  .bar-count-label {
+    display: none !important;
   }
 
   .bar-time-box {
-    height: 29px !important;
-    padding: 0 2px !important;
-    border-radius: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 35px !important;
+    padding: 0 3px !important;
+    border-radius: 9px !important;
+    border-width: 1px !important;
+    background: rgba(255,255,255,.075) !important;
+    border-color: rgba(255,255,255,.11) !important;
+    grid-template-columns: auto auto !important;
+    gap: 2px !important;
   }
 
   .bar-time-box strong {
-    font-size: 10.4px !important;
+    min-width: auto !important;
+    font-size: 12.5px !important;
+    line-height: 1 !important;
   }
 
   .bar-time-box em {
-    font-size: 6.8px !important;
+    font-size: 8.2px !important;
+    line-height: 1 !important;
+    transform: none !important;
   }
 
   .deadline-bar-btn {
-    flex: 0 0 118px !important;
-    width: 118px !important;
-    min-width: 118px !important;
-    max-width: 118px !important;
-    height: 34px !important;
-    min-height: 34px !important;
+    flex: 0 0 142px !important;
+    width: 142px !important;
+    min-width: 142px !important;
+    max-width: 142px !important;
+    height: 41px !important;
+    min-height: 41px !important;
     padding: 0 !important;
     border-radius: 999px !important;
-    font-size: 12px !important;
+    font-size: 14.3px !important;
     font-weight: 950 !important;
     letter-spacing: -.02em !important;
     white-space: nowrap !important;
@@ -3619,6 +1190,51 @@ img{display:block;width:100%;height:auto}
 }
 
 @media (max-width: 390px) {
+  body {
+    padding-bottom: 66px !important;
+  }
+
+  .container {
+    width: calc(100% - 42px) !important;
+  }
+
+  .brand {
+    font-size: 11.7px !important;
+  }
+
+  .nav-actions .btn,
+  .nav-actions .btn-primary,
+  .nav-actions .btn-secondary {
+    width: 66px !important;
+    min-width: 66px !important;
+    max-width: 66px !important;
+    font-size: 10.5px !important;
+  }
+
+  .hero-display .line-2 {
+    font-size: clamp(31px, 9.8vw, 43px) !important;
+  }
+
+  .hero-display .line-3 {
+    font-size: clamp(29px, 8.9vw, 40px) !important;
+  }
+
+  .hero-actions .btn {
+    padding: 0 5px !important;
+    font-size: 11.2px !important;
+  }
+
+  .hero-tags {
+    margin-top: 23px !important;
+    gap: 7px !important;
+  }
+
+  .hero-tags .tag {
+    min-height: 27px !important;
+    padding: 0 4px !important;
+    font-size: 9.3px !important;
+  }
+
   .orb-green {
     width: 162px !important;
     height: 162px !important;
@@ -3640,103 +1256,114 @@ img{display:block;width:100%;height:auto}
     top: 152px !important;
   }
 
-  .deadline-bar-inner {
-    width: calc(100% - 42px) !important;
-    gap: 12px !important;
+  .metric {
+    padding: 13px 4px !important;
   }
 
-  .deadline-bar-count {
-    width: 136px !important;
-    max-width: 136px !important;
-    flex-basis: 136px !important;
+  .metric strong {
+    font-size: clamp(18px, 5.2vw, 24px) !important;
   }
 
-  .bar-time-box {
-    height: 28px !important;
+  .metric span {
+    font-size: 9px !important;
   }
 
-  .bar-time-box strong {
-    font-size: 9.9px !important;
+  .method-row {
+    gap: 8px !important;
   }
 
-  .bar-time-box em {
-    font-size: 6.4px !important;
+  .method-item {
+    min-height: 168px !important;
+    padding: 16px 13px 14px !important;
+    border-radius: 18px !important;
   }
 
-  .deadline-bar-btn {
-    flex-basis: 104px !important;
-    width: 104px !important;
-    min-width: 104px !important;
-    max-width: 104px !important;
-    height: 32px !important;
-    min-height: 32px !important;
+  .method-item:nth-child(3) {
+    min-height: 136px !important;
+  }
+
+  .method-item h3 {
+    font-size: 14.8px !important;
+  }
+
+  .method-item p {
     font-size: 11.2px !important;
   }
 
-  .footer {
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-  }
-}
-
-
-/* ==========================================================================
-   v91 Mobile Bottom Scale Up
-   - 모바일 하단 고정 디데이와 신청 버튼 약 1.2배 확대
-   ========================================================================== */
-
-@media (max-width: 760px) {
-  body {
-    padding-bottom: 68px !important;
+  .map-stage {
+    height: 255px !important;
+    min-height: 255px !important;
   }
 
-  .deadline-bar {
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom)) !important;
+  .map-visual {
+    width: min(104%, 390px) !important;
   }
 
-  .deadline-bar-inner {
-    width: calc(100% - 56px) !important;
-    max-width: 430px !important;
-    gap: 16px !important;
+  .mobile-week-detail {
+    padding: 12px 13px 11px !important;
   }
 
-  .deadline-bar-count {
-    width: 178px !important;
-    max-width: 178px !important;
-    flex: 0 0 178px !important;
-    gap: 3px !important;
+  .mobile-week-detail strong {
+    font-size: 15px !important;
   }
 
-  .bar-time-box {
-    height: 35px !important;
-    border-radius: 9px !important;
-    padding: 0 3px !important;
+  .mobile-week-detail p {
+    font-size: 11.2px !important;
   }
 
-  .bar-time-box strong {
-    font-size: 12.5px !important;
+  .week-roadmap-card,
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: 64px !important;
   }
 
-  .bar-time-box em {
-    font-size: 8.2px !important;
+  .week-roadmap-card strong {
+    font-size: 9.2px !important;
   }
 
-  .deadline-bar-btn {
-    flex: 0 0 142px !important;
-    width: 142px !important;
-    min-width: 142px !important;
-    max-width: 142px !important;
-    height: 41px !important;
-    min-height: 41px !important;
-    border-radius: 999px !important;
-    font-size: 14.3px !important;
-    font-weight: 950 !important;
+  .trust-points {
+    gap: 8px !important;
   }
-}
 
-@media (max-width: 390px) {
-  body {
-    padding-bottom: 66px !important;
+  .trust-point {
+    min-height: 126px !important;
+    padding: 14px 11px 13px !important;
+    border-radius: 16px !important;
+  }
+
+  .trust-point:nth-child(3) {
+    min-height: 102px !important;
+  }
+
+  .trust-point h3 {
+    font-size: 13.8px !important;
+  }
+
+  .trust-point p {
+    font-size: 10.8px !important;
+  }
+
+  .deadline-section-final .headline {
+    margin-bottom: 2.05rem !important;
+  }
+
+  .apply-detail-toggle .apply-info {
+    gap: 7px !important;
+  }
+
+  .apply-detail-toggle .info-row {
+    min-height: 68px !important;
+    padding: 11px 8px !important;
+  }
+
+  .apply-detail-toggle .info-value {
+    font-size: 11.8px !important;
+  }
+
+  .apply-detail-toggle .recommend-row,
+  .apply-detail-toggle .tuition-row {
+    min-height: 62px !important;
   }
 
   .deadline-bar-inner {
@@ -3772,8 +1399,53 @@ img{display:block;width:100%;height:auto}
     min-height: 39px !important;
     font-size: 13.4px !important;
   }
+
+  .footer {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
 }
-</style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
+
+@media (max-width: 360px) {
+  .deadline-bar-inner {
+    width: calc(100% - 34px) !important;
+    gap: 10px !important;
+  }
+
+  .deadline-bar-count {
+    width: 148px !important;
+    flex-basis: 148px !important;
+  }
+
+  .deadline-bar-btn {
+    width: 112px !important;
+    min-width: 112px !important;
+    flex-basis: 112px !important;
+    font-size: 12.5px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 11px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 7px !important;
+  }
+}
+</style>
+<meta content="website" property="og:type"/>
+<meta content="https://bychaeun.github.io/koklanding/" property="og:url"/>
+<meta content="콕 찝어주는 부동산 학원" property="og:title"/>
+<meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/>
+<meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/>
+<meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="콕 찝어주는 부동산 학원" name="twitter:title"/>
+<meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/>
+<meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/>
+<meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
   여기만 수정하면 됩니다.
@@ -4478,5 +2150,6 @@ img{display:block;width:100%;height:auto}
     mq.addListener(setInitialState);
   }
 })();
-</script></body>
+</script>
+</body>
 </html>
