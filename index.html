@@ -3191,6 +3191,232 @@ img{display:block;width:100%;height:auto}
     font-size: 10.6px !important;
   }
 }
+
+
+/* ==========================================================================
+   v89 Mobile Bottom + Lesson Method + Apply Grid
+   - 하단 고정바: 디데이 좌측, 더 긴 신청 버튼 우측
+   - 수업방식 핵심포인트: 2칸 + 1칸 2줄 배치
+   - 신청안내 자세히 보기: 추천대상/수강료는 한 줄 전체폭, 나머지는 2칸
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* 하단 고정바: 좌측 디데이, 우측 긴 버튼 */
+  .deadline-bar {
+    padding: 7px 14px calc(7px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .deadline-bar-inner {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 152px 108px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 28px !important;
+  }
+
+  .deadline-bar-count {
+    width: 152px !important;
+    max-width: 152px !important;
+    justify-self: end !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2px !important;
+  }
+
+  .bar-time-box {
+    height: 29px !important;
+    padding: 0 2px !important;
+    border-radius: 8px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 10.6px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 6.9px !important;
+  }
+
+  .deadline-bar-btn {
+    justify-self: start !important;
+    width: 108px !important;
+    min-width: 108px !important;
+    max-width: 108px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 12px !important;
+    font-weight: 950 !important;
+    letter-spacing: -.02em !important;
+    white-space: nowrap !important;
+  }
+
+  .deadline-bar-btn::after {
+    content: " >";
+    font-weight: 950;
+  }
+
+  .deadline-bar-btn .pencil-icon,
+  .deadline-bar-btn svg,
+  .deadline-bar-btn i {
+    display: none !important;
+  }
+
+  /* 수업방식 섹션: 소수정예/상담/임장 포인트를 2칸 + 1칸 */
+  .trust-points {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .trust-point {
+    display: block !important;
+    min-height: 132px !important;
+    padding: 15px 13px 14px !important;
+    border-radius: 18px !important;
+    background: #fff !important;
+    box-shadow: 0 5px 14px rgba(16, 21, 19, .045) !important;
+  }
+
+  .trust-point:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    min-height: 108px !important;
+  }
+
+  .trust-point:nth-child(3) p {
+    max-width: 92% !important;
+  }
+
+  .trust-num {
+    width: 26px !important;
+    height: 26px !important;
+    margin-bottom: 10px !important;
+    font-size: 13px !important;
+  }
+
+  .trust-point h3 {
+    font-size: 14.8px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 6px !important;
+    letter-spacing: -.04em !important;
+  }
+
+  .trust-point p {
+    font-size: 11.3px !important;
+    line-height: 1.48 !important;
+  }
+
+  /* 신청안내 자세히 보기 내부 배치 */
+  .apply-detail-toggle .apply-info {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .apply-detail-toggle .info-row {
+    grid-column: span 1 !important;
+    min-height: 72px !important;
+  }
+
+  .apply-detail-toggle .recommend-row,
+  .apply-detail-toggle .tuition-row {
+    grid-column: 1 / -1 !important;
+    min-height: 64px !important;
+  }
+
+  .apply-detail-toggle .recommend-row {
+    order: 98 !important;
+  }
+
+  .apply-detail-toggle .tuition-row {
+    order: 99 !important;
+  }
+
+  .apply-detail-toggle .recommend-row .info-value,
+  .apply-detail-toggle .tuition-row .info-value {
+    font-size: 13.4px !important;
+    line-height: 1.42 !important;
+  }
+
+  .apply-detail-toggle .tuition-strong {
+    font-size: 23px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .deadline-bar {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .deadline-bar-inner {
+    grid-template-columns: 138px 96px !important;
+    gap: 20px !important;
+  }
+
+  .deadline-bar-count {
+    width: 138px !important;
+    max-width: 138px !important;
+    gap: 2px !important;
+  }
+
+  .bar-time-box {
+    height: 28px !important;
+  }
+
+  .bar-time-box strong {
+    font-size: 10px !important;
+  }
+
+  .bar-time-box em {
+    font-size: 6.5px !important;
+  }
+
+  .deadline-bar-btn {
+    width: 96px !important;
+    min-width: 96px !important;
+    max-width: 96px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    font-size: 11.2px !important;
+  }
+
+  .trust-points {
+    gap: 8px !important;
+  }
+
+  .trust-point {
+    min-height: 126px !important;
+    padding: 14px 11px 13px !important;
+    border-radius: 16px !important;
+  }
+
+  .trust-point:nth-child(3) {
+    min-height: 102px !important;
+  }
+
+  .trust-point h3 {
+    font-size: 13.8px !important;
+  }
+
+  .trust-point p {
+    font-size: 10.8px !important;
+  }
+
+  .apply-detail-toggle .apply-info {
+    gap: 7px !important;
+  }
+
+  .apply-detail-toggle .info-row {
+    min-height: 68px !important;
+  }
+
+  .apply-detail-toggle .recommend-row,
+  .apply-detail-toggle .tuition-row {
+    min-height: 62px !important;
+  }
+}
 </style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
@@ -3499,11 +3725,11 @@ img{display:block;width:100%;height:auto}
 <div class="info-row"><div class="info-label">교육 일정</div><div class="info-value">8~9월 · 총 8회<span>매주 수·목요일</span></div></div>
 <div class="info-row"><div class="info-label">강의 시간</div><div class="info-value">19:00 ~ 20:30</div></div>
 <div class="info-row"><div class="info-label">수강 인원</div><div class="info-value">선착순 30명</div></div>
-<div class="info-row tuition-row"><div class="info-label">수강료</div><div class="info-value"><strong class="tuition-strong">20만원</strong><span class="tuition-sub">2개월 과정</span></div></div>
+<div class="tuition-row info-row"><div class="info-label">수강료</div><div class="info-value"><strong class="tuition-strong">20만원</strong><span class="tuition-sub">2개월 과정</span></div></div>
 <div class="info-row"><div class="info-label">교육 장소</div><div class="info-value">금강센트럴빌딩 3층<span>천안 동남구 봉서10길 19</span></div></div>
 <div class="info-row"><div class="info-label">주차</div><div class="info-value">봉서초등학교 주차장<span>도보 1분</span></div></div>
 <div class="info-row"><div class="info-label">문의</div><div class="info-value">041-575-1102</div></div>
-<div class="info-row"><div class="info-label">추천 대상</div><div class="info-value">천안·아산 투자 타이밍을 제대로 배우고 싶은 분</div></div>
+<div class="info-row recommend-row"><div class="info-label">추천 대상</div><div class="info-value">천안·아산 투자 타이밍을 제대로 배우고 싶은 분</div></div>
 </div><div class="apply-map-wrap reveal delay-2"><div class="apply-map-title">오시는 길</div><div aria-label="교육 장소 지도" class="apply-map-card">
 <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%EC%B6%A9%EB%82%A8%20%EC%B2%9C%EC%95%88%EC%8B%9C%20%EB%8F%99%EB%82%A8%EA%B5%AC%20%EB%B4%89%EC%84%9C10%EA%B8%B8%2019%20%EA%B8%88%EA%B0%95%EC%84%BC%ED%8A%B8%EB%9F%B4%EB%B9%8C%EB%94%A9%203%EC%B8%B5&amp;output=embed" title="콕 찝어주는 부동산 학원 위치 지도"></iframe>
 </div></div></details>
@@ -3524,7 +3750,7 @@ img{display:block;width:100%;height:auto}
 <span class="bar-time-box"><strong data-bar-minutes="">00</strong><em>분</em></span>
 <span class="bar-time-box"><strong data-bar-seconds="">00</strong><em>초</em></span>
 </div>
-<a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank"><span aria-hidden="true" class="pencil-icon">✎</span>신청하기</a>
+<a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank">신청하기</a>
 </div>
 </div>
 <script>
