@@ -2404,6 +2404,162 @@ img{display:block;width:100%;height:auto}
     line-height: 1.2 !important;
   }
 }
+
+
+/* ==========================================================================
+   v84 Mobile Curriculum Detail Panel
+   - 지도/핀 클릭 시 지도와 선택 주차 상세를 함께 볼 수 있게 조정
+   - 4x2 주차 카드는 유지하되 상세는 별도 패널에 표시
+   ========================================================================== */
+
+.mobile-week-detail {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .curriculum-layout {
+    gap: 16px !important;
+  }
+
+  .map-stage {
+    height: 305px !important;
+    min-height: 305px !important;
+  }
+
+  .mobile-week-detail {
+    display: block !important;
+    margin: 2px 0 12px !important;
+    padding: 15px 16px 14px !important;
+    border-radius: 18px !important;
+    background: #fff !important;
+    box-shadow: 0 6px 16px rgba(16, 21, 19, .05) !important;
+  }
+
+  .mobile-week-detail-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .mobile-week-code,
+  .mobile-week-region {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 24px !important;
+    padding: 0 10px !important;
+    border-radius: 999px !important;
+    font-size: 10.5px !important;
+    font-weight: 850 !important;
+    line-height: 1 !important;
+  }
+
+  .mobile-week-code {
+    background: rgba(31, 201, 110, .12) !important;
+    color: var(--green-deep) !important;
+  }
+
+  .mobile-week-region {
+    background: rgba(16, 21, 19, .055) !important;
+    color: rgba(16, 21, 19, .56) !important;
+  }
+
+  .mobile-week-detail[data-group="asan"] .mobile-week-code {
+    background: rgba(67, 135, 255, .12) !important;
+    color: var(--blue-deep) !important;
+  }
+
+  .mobile-week-detail strong {
+    display: block !important;
+    color: var(--ink) !important;
+    font-size: 17px !important;
+    line-height: 1.32 !important;
+    letter-spacing: -.045em !important;
+    font-weight: 900 !important;
+  }
+
+  .mobile-week-detail p {
+    margin-top: 8px !important;
+    color: rgba(16, 21, 19, .58) !important;
+    font-size: 12.5px !important;
+    line-height: 1.62 !important;
+  }
+
+  .week-roadmap {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  .week-roadmap-card {
+    min-height: 76px !important;
+    padding: 9px 5px 8px !important;
+    border-radius: 14px !important;
+  }
+
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: 76px !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .week-roadmap-card strong {
+    margin-top: 7px !important;
+    font-size: 10.5px !important;
+    line-height: 1.18 !important;
+  }
+
+  .week-roadmap-card p {
+    display: none !important;
+  }
+
+  .week-code {
+    min-height: 20px !important;
+    padding: 0 6px !important;
+    font-size: 9.6px !important;
+  }
+
+  .week-roadmap-card.is-active {
+    box-shadow: 0 5px 12px rgba(16, 21, 19, .055) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .map-stage {
+    height: 285px !important;
+    min-height: 285px !important;
+  }
+
+  .mobile-week-detail {
+    padding: 14px 14px 13px !important;
+    border-radius: 16px !important;
+  }
+
+  .mobile-week-detail strong {
+    font-size: 15.8px !important;
+  }
+
+  .mobile-week-detail p {
+    font-size: 11.8px !important;
+    line-height: 1.56 !important;
+  }
+
+  .week-roadmap-card {
+    min-height: 72px !important;
+  }
+
+  .week-roadmap-card:hover,
+  .week-roadmap-card:focus-visible,
+  .week-roadmap-card.is-active {
+    min-height: 72px !important;
+  }
+
+  .week-roadmap-card strong {
+    font-size: 9.8px !important;
+  }
+}
 </style><meta content="website" property="og:type"/><meta content="https://bychaeun.github.io/koklanding/" property="og:url"/><meta content="콕 찝어주는 부동산 학원" property="og:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" property="og:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" property="og:image:secure_url"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="콕 찝어주는 부동산 학원" name="twitter:title"/><meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/><meta content="https://bychaeun.github.io/koklanding/og-kokkok-v79.jpg" name="twitter:image"/><meta content="image/jpeg" property="og:image:type"/></head>
 <body>
 <!-- =========================================================
@@ -2561,6 +2717,15 @@ img{display:block;width:100%;height:auto}
 </div>
 </div>
 <div class="curriculum-panel reveal delay-2">
+
+<div aria-live="polite" class="mobile-week-detail">
+<div class="mobile-week-detail-top">
+<span class="mobile-week-code" data-mobile-week-code="">1주차</span>
+<span class="mobile-week-region" data-mobile-week-region="">천안</span>
+</div>
+<strong data-mobile-week-title="">천안 중심생활권 개발사업</strong>
+<p data-mobile-week-desc="">천안 중심생활권 개발 흐름과 생활권 확장 방향을 함께 읽습니다.</p>
+</div>
 <div aria-label="8주차 커리큘럼 로드맵" class="week-roadmap">
 <button class="week-roadmap-card cheonan-card is-active" data-group="cheonan" data-week="1" tabindex="0" type="button">
 <span class="week-code">1주차</span>
@@ -2733,6 +2898,8 @@ img{display:block;width:100%;height:auto}
 <a class="deadline-bar-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank"><span aria-hidden="true" class="pencil-icon">✎</span><span>4기 당장 신청하기 →</span></a>
 </div>
 </div>
+
+
 <script>
 (() => {
   const campaign = window.KOKKOK_CAMPAIGN || {};
@@ -2740,12 +2907,10 @@ img{display:block;width:100%;height:auto}
   const pad = value => String(value).padStart(2, "0");
   const isMobile = () => window.matchMedia("(max-width: 760px)").matches;
 
-  // 신청 링크 동기화
   document.querySelectorAll('a[href*="docs.google.com/forms"]').forEach(link => {
     if (campaign.formUrl) link.href = campaign.formUrl;
   });
 
-  // 스크롤 등장
   const revealItems = document.querySelectorAll(".reveal, .method-item");
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => {
@@ -2755,13 +2920,11 @@ img{display:block;width:100%;height:auto}
         observer.unobserve(entry.target);
       });
     }, { threshold: .12 });
-
     revealItems.forEach(el => observer.observe(el));
   } else {
     revealItems.forEach(el => el.classList.add("is-visible"));
   }
 
-  // 메뉴 active
   const navLinks = [...document.querySelectorAll(".nav-links a")];
   const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
 
@@ -2774,22 +2937,26 @@ img{display:block;width:100%;height:auto}
         });
       });
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
-
     sections.forEach(sec => navObserver.observe(sec));
   }
 
-  // -------------------------------------------------------------------
-  // 커리큘럼 지도 인터랙션
-  // - 카드 클릭/호버
-  // - 핀 클릭/호버
-  // - 지도 바탕 천안/아산 면 클릭
-  // -------------------------------------------------------------------
+  // Curriculum interaction
+  const curriculumSection = document.querySelector("#curriculum");
   const map = document.querySelector(".map-visual");
+  const mapStage = document.querySelector(".map-stage");
   const cards = [...document.querySelectorAll(".week-roadmap-card")];
   const pins = [...document.querySelectorAll(".map-pin")];
   const routes = [...document.querySelectorAll(".route-line")];
   const highlights = [...document.querySelectorAll(".map-area-highlight")];
   const regionHits = [...document.querySelectorAll(".map-region-hit")];
+
+  const mobileDetail = {
+    box: document.querySelector(".mobile-week-detail"),
+    code: document.querySelector("[data-mobile-week-code]"),
+    region: document.querySelector("[data-mobile-week-region]"),
+    title: document.querySelector("[data-mobile-week-title]"),
+    desc: document.querySelector("[data-mobile-week-desc]")
+  };
 
   let activeWeek = 1;
   let userHoldUntil = 0;
@@ -2808,13 +2975,10 @@ img{display:block;width:100%;height:auto}
   function getWeekFromGroup(group, currentWeek = activeWeek) {
     const weeks = getWeeksByGroup(group);
     if (!weeks.length) return group === "asan" ? 5 : 1;
-
-    const currentInGroup = weeks.includes(Number(currentWeek));
-    if (currentInGroup) {
+    if (weeks.includes(Number(currentWeek))) {
       const index = weeks.indexOf(Number(currentWeek));
       return weeks[(index + 1) % weeks.length];
     }
-
     return weeks[0];
   }
 
@@ -2822,12 +2986,41 @@ img{display:block;width:100%;height:auto}
     return cards.find(card => Number(card.dataset.week) === Number(week));
   }
 
+  function cleanTitle(card) {
+    const clone = card.cloneNode(true);
+    clone.querySelector(".week-code")?.remove();
+    clone.querySelector("p")?.remove();
+    const text = clone.textContent.replace(/\s+/g, " ").trim();
+    return text || "커리큘럼";
+  }
+
+  function updateMobileDetail(card, group) {
+    if (!card || !mobileDetail.box) return;
+
+    const weekText = card.querySelector(".week-code")?.textContent.trim() || `${card.dataset.week}주차`;
+    const title = cleanTitle(card);
+    const desc = card.querySelector("p")?.textContent.replace(/\s+/g, " ").trim() || "";
+    const region = group === "asan" ? "아산" : "천안";
+
+    mobileDetail.code.textContent = weekText;
+    mobileDetail.region.textContent = region;
+    mobileDetail.title.textContent = title;
+    mobileDetail.desc.textContent = desc;
+    mobileDetail.box.dataset.group = group;
+  }
+
+  function scrollToMapAndDetail() {
+    if (!isMobile() || !curriculumSection) return;
+
+    const top = curriculumSection.getBoundingClientRect().top + window.scrollY - 68;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
   function syncCurriculum(week, options = {}) {
     const source = options.source || "auto";
     const shouldScroll = Boolean(options.scroll);
 
     activeWeek = Number(week) || 1;
-
     const activeCard = getActiveCard(activeWeek);
     const group = activeCard?.dataset.group || getGroupFromWeek(activeWeek);
 
@@ -2835,9 +3028,7 @@ img{display:block;width:100%;height:auto}
       userHoldUntil = Date.now() + 4000;
     }
 
-    if (map) {
-      map.dataset.activeGroup = group;
-    }
+    if (map) map.dataset.activeGroup = group;
 
     cards.forEach(card => {
       const active = Number(card.dataset.week) === activeWeek;
@@ -2867,9 +3058,10 @@ img{display:block;width:100%;height:auto}
       hit.setAttribute("aria-pressed", active ? "true" : "false");
     });
 
-    if (shouldScroll && activeCard && isMobile()) {
-      const top = activeCard.getBoundingClientRect().top + window.scrollY - 88;
-      window.scrollTo({ top, behavior: "smooth" });
+    updateMobileDetail(activeCard, group);
+
+    if (shouldScroll) {
+      scrollToMapAndDetail();
     }
   }
 
@@ -2882,7 +3074,7 @@ img{display:block;width:100%;height:auto}
       });
 
       card.addEventListener("click", () => {
-        syncCurriculum(week, { source: "card" });
+        syncCurriculum(week, { source: "card", scroll: false });
       });
 
       card.addEventListener("focus", () => {
@@ -2920,8 +3112,7 @@ img{display:block;width:100%;height:auto}
 
       hit.addEventListener("pointerenter", event => {
         if (event.pointerType !== "mouse") return;
-        const week = getWeekFromGroup(group, activeWeek - 1);
-        syncCurriculum(week, { source: "region" });
+        syncCurriculum(getWeekFromGroup(group, activeWeek - 1), { source: "region" });
       });
 
       hit.addEventListener("click", event => {
@@ -2942,7 +3133,6 @@ img{display:block;width:100%;height:auto}
 
   function startCurriculumAuto() {
     if (!cards.length) return;
-
     syncCurriculum(activeWeek, { source: "init" });
 
     window.setInterval(() => {
@@ -2955,7 +3145,7 @@ img{display:block;width:100%;height:auto}
   bindCurriculum();
   startCurriculumAuto();
 
-  // 사진 슬라이더
+  // Photo slider
   const slider = document.querySelector(".photo-slider");
   const track = slider?.querySelector(".slide-track");
   const slideCount = slider?.querySelectorAll(".slide").length || 0;
@@ -2969,12 +3159,9 @@ img{display:block;width:100%;height:auto}
 
   slider?.querySelector(".slider-prev")?.addEventListener("click", () => moveSlide(currentSlide - 1));
   slider?.querySelector(".slider-next")?.addEventListener("click", () => moveSlide(currentSlide + 1));
+  if (slideCount > 1) window.setInterval(() => moveSlide(currentSlide + 1), 6500);
 
-  if (slideCount > 1) {
-    window.setInterval(() => moveSlide(currentSlide + 1), 6500);
-  }
-
-  // 디데이
+  // Deadline
   const deadlineSection = document.querySelector("[data-deadline-section]");
   const bottomBar = document.querySelector("[data-deadline-bar]");
 
@@ -3035,7 +3222,6 @@ img{display:block;width:100%;height:auto}
 
       window.setTimeout(() => {
         els.progressBar.style.transition = "width .4s ease";
-
         const timer = window.setInterval(() => {
           if (current < total) {
             current += 1;
