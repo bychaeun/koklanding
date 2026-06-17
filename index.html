@@ -2010,6 +2010,55 @@ img{display:block;width:100%;height:auto}
     filter: none !important;
   }
 }
+
+
+/* ==========================================================================
+   v96 Dark Mode Card Line Remove
+   - 다크모드에서 지역기반 분석 / 소수 정예 수업 등 설명 카드의
+     어색한 외곽선 박스 제거
+   - 라이트모드는 그대로 유지
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  .method-item,
+  .trust-point {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .method-item::before,
+  .method-item::after,
+  .trust-point::before,
+  .trust-point::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .method-item h3,
+  .method-item p,
+  .trust-point h3,
+  .trust-point p {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .icon-wrap {
+    background: rgba(255,255,255,.045) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .trust-num {
+    background: rgba(255,255,255,.045) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+}
 </style>
 <meta content="website" property="og:type"/>
 <meta content="https://bychaeun.github.io/koklanding/" property="og:url"/>
