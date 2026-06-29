@@ -6449,7 +6449,7 @@ html.theme-dark .hero-tags .tag b {
   매 기수마다 아래 값만 바꾸면 페이지 주요 문구/링크가 반영됩니다.
 
   수정 항목:
-  - cohort: 기수
+  - cohort: 기수. 여기만 5기/6기로 바꾸면 화면에 보이는 모든 기수 문구가 함께 바뀝니다.. 여기만 5기/6기로 바꾸면 화면에 보이는 모든 기수 문구가 함께 바뀝니다.
   - openPeriod: 개강월
   - deadlineAt: 모집 마감일
   - totalSeats / joinedSeats: 모집인원 / 현재 신청 인원
@@ -6465,6 +6465,7 @@ html.theme-dark .hero-tags .tag b {
 ========================================================= -->
 <script id="kokkok-campaign-config">
   window.KOKKOK_CAMPAIGN = {
+    baselineCohort: "4기",
     cohort: "4기",
     openPeriod: "8~9월",
     deadlineAt: "2026-07-31T23:59:59",
@@ -6502,6 +6503,13 @@ html.theme-dark .hero-tags .tag b {
 (() => {
   const campaign = window.KOKKOK_CAMPAIGN || {};
 
+  /*
+    기수별 재사용 핵심:
+    - baselineCohort는 이 템플릿에 남아 있는 기준 기수입니다.
+    - cohort만 "5기", "6기"로 바꿔도 화면에 보이는 모든 "4기" 문구를 자동 치환합니다.
+  */
+  const baselineCohort = campaign.baselineCohort || "4기";
+
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const text = value => value == null ? "" : String(value);
@@ -6510,6 +6518,42 @@ html.theme-dark .hero-tags .tag b {
   function setText(selector, value) {
     const el = $(selector);
     if (el) el.textContent = text(value);
+  }
+
+  function replaceCohortEverywhere(nextCohort) {
+    if (!nextCohort || nextCohort === baselineCohort) return;
+
+    const blockedTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEMPLATE", "IFRAME", "SVG"]);
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent || blockedTags.has(parent.tagName)) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return node.nodeValue.includes(baselineCohort)
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        }
+      }
+    );
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      node.nodeValue = node.nodeValue.split(baselineCohort).join(nextCohort);
+    });
+
+    const attrs = ["aria-label", "title", "alt", "data-label"];
+    $$("[aria-label], [title], [alt], [data-label]").forEach(el => {
+      attrs.forEach(attr => {
+        if (el.hasAttribute(attr)) {
+          el.setAttribute(attr, el.getAttribute(attr).split(baselineCohort).join(nextCohort));
+        }
+      });
+    });
   }
 
   function setInfoRow(label, main, sub = "") {
@@ -6521,6 +6565,7 @@ html.theme-dark .hero-tags .tag b {
     if (!value) return;
 
     value.textContent = "";
+
     if (label === "수강료") {
       const strong = document.createElement("strong");
       strong.className = "tuition-strong";
@@ -6545,7 +6590,7 @@ html.theme-dark .hero-tags .tag b {
   }
 
   function applyCampaign() {
-    const cohort = text(campaign.cohort || "4기");
+    const cohort = text(campaign.cohort || baselineCohort);
     const openPeriod = text(campaign.openPeriod || "8~9월");
     const totalSeats = Number(campaign.totalSeats || 30);
     const joinedSeats = Number(campaign.joinedSeats || 8);
@@ -6564,10 +6609,7 @@ html.theme-dark .hero-tags .tag b {
     const phone = text(campaign.phone || "041-575-1102");
     const phoneHref = tel(phone);
 
-    $("[data-campaign-cohort]") && $$("[data-campaign-cohort]").forEach(el => {
-      el.textContent = cohort;
-    });
-
+    // 1) 명시적으로 중요한 영역 먼저 세팅
     setText(".hero-badge", `천안·아산 개발사업 실전 분석 클래스 · ${cohort} 모집`);
 
     const navApply = $(".nav-actions .btn-primary");
@@ -6576,12 +6618,28 @@ html.theme-dark .hero-tags .tag b {
     const heroApply = $(".hero-actions .btn-primary");
     if (heroApply) heroApply.textContent = `${cohort} 수강 신청하기 →`;
 
+    const deadlineHeadline = $(".deadline-section-final .headline");
+    if (deadlineHeadline) {
+      deadlineHeadline.innerHTML = `${cohort} 멤버가 확정되면,<br><span class="acc">이 기회는 사라집니다.</span>`;
+    }
+
+    const deadlineEyebrow = $(".deadline-section-final .eyebrow");
+    if (deadlineEyebrow) deadlineEyebrow.textContent = `${cohort} 모집 마감까지`;
+
     const applyTitle = $(".apply h2");
     if (applyTitle) applyTitle.innerHTML = `${cohort} 모집,<br>지금 신청할 수 있습니다.`;
 
     const applyLead = $(".apply p");
     if (applyLead) applyLead.textContent = `천안·아산 개발사업을 정보 나열이 아니라 판단 기준으로 읽는 ${courseWeeks} 과정입니다.`;
 
+    const applyButtons = $$(".apply-actions .btn-primary, .apply .btn-primary");
+    applyButtons.forEach(button => {
+      if (button.textContent.includes("수강") || button.textContent.includes("신청")) {
+        button.textContent = `${cohort} 수강 신청하기 →`;
+      }
+    });
+
+    // 2) 히어로 태그/신청안내 정보
     const tags = $$(".hero-tags .tag");
     if (tags[0]) tags[0].innerHTML = `<b>${openPeriod}</b> 개강`;
     if (tags[1]) tags[1].innerHTML = `${scheduleDays} <b>${scheduleTime}</b>`;
@@ -6598,8 +6656,12 @@ html.theme-dark .hero-tags .tag b {
     setInfoRow("문의", phone);
     setInfoRow("추천 대상", text(campaign.recommendTarget || "천안·아산 투자 타이밍을 제대로 배우고 싶은 분"));
 
-    const phoneButton = $('.apply-actions a[href^="tel:"]');
-    if (phoneButton) phoneButton.href = phoneHref;
+    // 3) 숫자/링크/지도/푸터
+    const joined = $("[data-joined-count]");
+    if (joined) joined.textContent = joinedSeats;
+
+    const total = $("[data-total-seats]");
+    if (total) total.textContent = totalSeats;
 
     $$('a[href*="docs.google.com/forms"], .deadline-bar-btn').forEach(link => {
       if (campaign.formUrl) link.href = campaign.formUrl;
@@ -6609,11 +6671,8 @@ html.theme-dark .hero-tags .tag b {
       if (campaign.youtubeUrl) link.href = campaign.youtubeUrl;
     });
 
-    const joined = $("[data-joined-count]");
-    if (joined) joined.textContent = joinedSeats;
-
-    const total = $("[data-total-seats]");
-    if (total) total.textContent = totalSeats;
+    const phoneButton = $('.apply-actions a[href^="tel:"]');
+    if (phoneButton) phoneButton.href = phoneHref;
 
     const footer = $(".footer-inner > div:first-child");
     if (footer) {
@@ -6630,6 +6689,9 @@ html.theme-dark .hero-tags .tag b {
     if (naverMap && encodedAddress) {
       naverMap.href = `https://map.naver.com/p/search/${encodedAddress}`;
     }
+
+    // 4) 마지막 안전장치: 화면에 남은 기준 기수를 전부 현재 기수로 치환
+    replaceCohortEverywhere(cohort);
   }
 
   if (document.readyState === "loading") {
@@ -6648,7 +6710,7 @@ html.theme-dark .hero-tags .tag b {
 </a>
 <div class="nav-links">
 <a href="#method">분석 방식</a>
-<a href="#curriculum">8주 과정</a>
+<a href="#curriculum">커리큘럼</a>
 <a href="#space">공간</a>
 <a href="#apply">신청 안내</a>
 </div>
