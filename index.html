@@ -6,8 +6,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="light dark" name="color-scheme"/>
 <meta content="light dark" name="supported-color-schemes"/>
-
-
 <title>콕 찝어주는 부동산 학원</title>
 <meta content="천안·아산 개발사업을 지도와 현장 중심으로 배우는 실전 부동산 분석 클래스" name="description"/>
 <link href="https://cqunqpkd.gensparkspace.com/" rel="canonical"/>
@@ -16,15 +14,12 @@
 <meta content="#42E686" name="theme-color"/>
 <meta content="#FFFDF4" media="(prefers-color-scheme: light)" name="theme-color"/>
 <meta content="#111111" media="(prefers-color-scheme: dark)" name="theme-color"/>
-
-
-
 <script id="kokkok-theme-init">
 (() => {
   const root = document.documentElement;
   const media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
 
-  function readQueryTheme() {
+  function getStoredTheme() {
     try {
       const value = new URLSearchParams(window.location.search).get("theme");
       if (value === "dark" || value === "light") {
@@ -37,6 +32,16 @@
     }
   }
 
+  function setStoredTheme(value) {
+    try {
+      if (value === "dark" || value === "light") {
+        window.localStorage.setItem("kokkok-theme", value);
+      } else {
+        window.localStorage.removeItem("kokkok-theme");
+      }
+    } catch (error) {}
+  }
+
   function isBackgroundAlreadyDark() {
     const body = document.body;
     if (!body) return false;
@@ -45,7 +50,6 @@
     const hadLight = root.classList.contains("theme-light");
 
     root.classList.remove("theme-dark", "theme-light");
-
     const color = window.getComputedStyle(body).backgroundColor || "";
 
     if (hadDark) root.classList.add("theme-dark");
@@ -62,8 +66,19 @@
     return luminance < 0.35;
   }
 
+  function syncThemeToggle() {
+    const button = document.getElementById("themeToggle");
+    if (!button) return;
+
+    const isDark = root.classList.contains("theme-dark");
+    button.dataset.mode = isDark ? "dark" : "light";
+    button.setAttribute("aria-pressed", String(isDark));
+    button.setAttribute("aria-label", isDark ? "라이트 모드로 전환" : "다크 모드로 전환");
+    button.setAttribute("title", isDark ? "라이트 모드로 전환" : "다크 모드로 전환");
+  }
+
   function applyTheme() {
-    const stored = readQueryTheme();
+    const stored = getStoredTheme();
     const prefersDark = media ? media.matches : false;
     const browserLooksDark = isBackgroundAlreadyDark();
     const isDark = stored === "dark" || (!stored && (prefersDark || browserLooksDark));
@@ -71,26 +86,52 @@
     root.classList.toggle("theme-dark", isDark);
     root.classList.toggle("theme-light", !isDark);
     root.dataset.theme = isDark ? "dark" : "light";
+
+    syncThemeToggle();
+  }
+
+  function bindThemeToggle() {
+    const button = document.getElementById("themeToggle");
+    if (!button || button.dataset.bound === "true") return;
+
+    button.dataset.bound = "true";
+    button.addEventListener("click", () => {
+      const isDark = root.classList.contains("theme-dark");
+      setStoredTheme(isDark ? "light" : "dark");
+      applyTheme();
+    });
+
+    syncThemeToggle();
   }
 
   applyTheme();
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", applyTheme, { once: true });
+    document.addEventListener("DOMContentLoaded", () => {
+      bindThemeToggle();
+      applyTheme();
+    }, { once: true });
   } else {
+    bindThemeToggle();
     applyTheme();
   }
 
-  window.addEventListener("load", applyTheme, { once: true });
+  window.addEventListener("load", () => {
+    bindThemeToggle();
+    applyTheme();
+  }, { once: true });
 
   if (media?.addEventListener) {
-    media.addEventListener("change", applyTheme);
+    media.addEventListener("change", () => {
+      if (!getStoredTheme()) applyTheme();
+    });
   } else if (media?.addListener) {
-    media.addListener(applyTheme);
+    media.addListener(() => {
+      if (!getStoredTheme()) applyTheme();
+    });
   }
 })();
-</script>
-<style>/* ==========================================================================
+</script><style>/* ==========================================================================
    콕 찝어주는 부동산 학원 · v68 Clean Build
    수정 위치: Ctrl + F → "여기만 수정"
    ========================================================================== */
@@ -4591,6 +4632,1804 @@ html.theme-dark iframe,
 html.theme-dark svg {
   filter: none !important;
 }
+
+
+/* ==========================================================================
+   v114 Toggle Only From V107 Map Lock
+   - 업로드한 v107 기준 지도 영역 유지
+   - 지도 위치핀 / 지도 크기 / 지도 좌표 CSS는 수정하지 않음
+   - 상단 라이트·다크 토글과 사진 캡션 가독성만 추가
+   ========================================================================== */
+
+.nav-actions .theme-toggle {
+  order: 99;
+  position: relative !important;
+  width: 44px !important;
+  height: 44px !important;
+  flex: 0 0 44px !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  line-height: 0 !important;
+  box-shadow: none !important;
+  background: rgba(255,255,255,.42) !important;
+  border: 1px solid rgba(16,21,19,.16) !important;
+  color: #101513 !important;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-actions .theme-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.62) !important;
+  border-color: rgba(16,21,19,.28) !important;
+  box-shadow: none !important;
+}
+
+.nav-actions .theme-toggle:active {
+  transform: translateY(0) scale(.98);
+}
+
+.nav-actions .theme-toggle:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.theme-toggle-icon {
+  position: absolute !important;
+  inset: 0 !important;
+  margin: auto !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 0 !important;
+}
+
+.theme-toggle-icon svg {
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: auto !important;
+  transform-origin: 50% 50%;
+}
+
+html.theme-light .theme-toggle-moon,
+html:not(.theme-dark) .theme-toggle-moon {
+  display: inline-flex !important;
+}
+
+html.theme-light .theme-toggle-sun,
+html:not(.theme-dark) .theme-toggle-sun {
+  display: none !important;
+}
+
+html.theme-dark .theme-toggle-moon {
+  display: none !important;
+}
+
+html.theme-dark .theme-toggle-sun {
+  display: inline-flex !important;
+}
+
+html.theme-dark .nav-actions .theme-toggle {
+  background: rgba(255,255,255,.035) !important;
+  border-color: rgba(255,255,255,.20) !important;
+  color: #F3F3F0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .nav-actions .theme-toggle:hover {
+  background: rgba(255,255,255,.07) !important;
+  border-color: rgba(255,255,255,.30) !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .slide-caption {
+  background: rgba(255,255,255,.86) !important;
+  color: #101513 !important;
+  -webkit-text-fill-color: #101513 !important;
+  border: 1px solid rgba(255,255,255,.52) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+html.theme-dark .photo-slider .slider-arrow {
+  background: rgba(255,255,255,.46) !important;
+  color: rgba(16,21,19,.58) !important;
+  border: 1px solid rgba(255,255,255,.42) !important;
+}
+
+html.theme-dark .photo-slider .slider-arrow svg,
+html.theme-dark .photo-slider .slider-arrow path {
+  color: rgba(16,21,19,.58) !important;
+  stroke: currentColor !important;
+}
+
+@media (max-width: 760px) {
+  .nav-actions {
+    gap: 6px !important;
+  }
+
+  .nav-actions .theme-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    flex-basis: 36px !important;
+  }
+
+  .theme-toggle-icon,
+  .theme-toggle-icon svg {
+    width: 17px !important;
+    height: 17px !important;
+  }
+}
+
+
+/* ==========================================================================
+   v116 Instructor Review Slide Refresh
+   - 강사소개/수강생후기 한글 표기
+   - 강사소개 섹션을 넓고 시원한 레이아웃으로 변경
+   - 수강생 후기를 좌우 슬라이드 애니메이션으로 변경
+   - 지도 영역은 v107/v114 기준 유지
+   ========================================================================== */
+
+.instructor-section,
+.reviews-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.instructor-section {
+  padding: 128px 0 112px;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(67,135,255,.18), transparent 30%),
+    radial-gradient(circle at 12% 12%, rgba(66,230,134,.20), transparent 34%),
+    linear-gradient(180deg, var(--paper), #F8F5E9);
+}
+
+.instructor-section::before {
+  content: "";
+  position: absolute;
+  inset: 42px auto auto 50%;
+  width: min(780px, 86vw);
+  height: min(780px, 86vw);
+  border: 1px solid rgba(16,21,19,.08);
+  border-radius: 999px;
+  transform: translateX(-8%);
+  pointer-events: none;
+}
+
+.instructor-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+  align-items: center;
+  gap: 54px;
+  min-height: 480px;
+}
+
+.instructor-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.instructor-copy .eyebrow,
+.reviews-section .eyebrow {
+  color: var(--green-deep);
+  -webkit-text-fill-color: var(--green-deep);
+}
+
+.instructor-copy h2 {
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: clamp(42px, 7.2vw, 96px);
+  line-height: .94;
+  letter-spacing: -.095em;
+  font-weight: 900;
+}
+
+.instructor-copy h2 span {
+  display: block;
+}
+
+.instructor-copy strong {
+  display: block;
+  margin-top: 28px;
+  color: var(--green-deep);
+  font-size: clamp(32px, 4.8vw, 62px);
+  line-height: 1;
+  letter-spacing: -.08em;
+  font-weight: 900;
+}
+
+.instructor-copy p {
+  max-width: 620px;
+  margin-top: 26px;
+  color: var(--muted);
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.72;
+  letter-spacing: -.03em;
+  word-break: keep-all;
+}
+
+.instructor-visual {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+}
+
+.instructor-orbit {
+  position: absolute;
+  width: min(430px, 76vw);
+  height: min(430px, 76vw);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(66,230,134,.92), rgba(67,135,255,.86)),
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.80), transparent 28%);
+  filter: saturate(1.05);
+}
+
+.instructor-orbit::before,
+.instructor-orbit::after {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  border: 1px solid rgba(16,21,19,.12);
+  border-radius: 999px;
+}
+
+.instructor-orbit::after {
+  inset: 34px -42px;
+  border-color: rgba(255,255,255,.65);
+  transform: rotate(-18deg);
+}
+
+.instructor-name-mark {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: min(300px, 58vw);
+  height: min(300px, 58vw);
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.70);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 28px 80px rgba(16,21,19,.12);
+}
+
+.instructor-name-mark span {
+  display: block;
+  color: #101513;
+  font-size: clamp(74px, 11vw, 128px);
+  line-height: .78;
+  font-weight: 950;
+  letter-spacing: -.11em;
+}
+
+.instructor-name-mark em {
+  position: absolute;
+  right: 38px;
+  bottom: 44px;
+  color: rgba(16,21,19,.56);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: .08em;
+}
+
+.instructor-lineup {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 36px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.instructor-lineup article {
+  padding: 28px 24px;
+  border-right: 1px solid var(--line);
+}
+
+.instructor-lineup article:last-child {
+  border-right: 0;
+}
+
+.instructor-lineup span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--green-deep);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.instructor-lineup strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.32;
+  letter-spacing: -.04em;
+}
+
+.instructor-lineup p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.66;
+  word-break: keep-all;
+}
+
+.instructor-career-strip {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 22px 0 0;
+}
+
+.instructor-career-strip span {
+  color: var(--green-deep);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.instructor-career-strip p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.74;
+  word-break: keep-all;
+}
+
+.reviews-section {
+  padding: 118px 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(66,230,134,.13), transparent 30%),
+    linear-gradient(180deg, var(--paper), #F7F4EA);
+}
+
+.review-carousel {
+  position: relative;
+  margin-top: 44px;
+  overflow: hidden;
+  border-radius: 34px;
+}
+
+.review-track {
+  display: flex;
+  width: 100%;
+  transform: translate3d(0,0,0);
+  transition: transform .78s cubic-bezier(.22,.9,.2,1);
+  will-change: transform;
+}
+
+.review-page {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 2px;
+  opacity: .32;
+  transform: scale(.985);
+  pointer-events: none;
+  transition: opacity .55s var(--ease), transform .55s var(--ease);
+}
+
+.review-page.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.review-page-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.review-page-head span {
+  display: inline-flex;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #062D1A;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.review-page-head strong {
+  max-width: 720px;
+  text-align: right;
+  color: var(--ink);
+  font-size: clamp(22px, 3.4vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -.06em;
+}
+
+.review-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.review-card {
+  min-height: 268px;
+  padding: 25px;
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 18px 46px rgba(16,21,19,.06);
+}
+
+.review-card span {
+  display: block;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.review-card blockquote {
+  margin-bottom: 18px;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 850;
+  line-height: 1.38;
+  letter-spacing: -.05em;
+  word-break: keep-all;
+}
+
+.review-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.72;
+  word-break: keep-all;
+}
+
+.review-dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 26px;
+}
+
+.review-dots span {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(16,21,19,.18);
+  cursor: pointer;
+  transition: width .35s var(--ease), background .35s var(--ease);
+}
+
+.review-dots span.is-active {
+  width: 28px;
+  background: var(--green);
+}
+
+.review-cinema {
+  position: relative;
+  min-height: 112px;
+  margin-top: 42px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(16,21,19,.92), rgba(16,21,19,.72)),
+    radial-gradient(circle at 50% 0%, rgba(66,230,134,.18), transparent 42%);
+}
+
+.review-cinema::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 50%, rgba(0,0,0,.16));
+  pointer-events: none;
+}
+
+.cinema-line {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 26px;
+  text-align: center;
+  color: rgba(255,255,255,.92);
+  font-size: clamp(18px, 2.3vw, 26px);
+  font-weight: 760;
+  line-height: 1.45;
+  letter-spacing: -.04em;
+  word-break: keep-all;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cinemaLine 20s infinite;
+}
+
+.cinema-line.line-b { animation-delay: 5s; }
+.cinema-line.line-c { animation-delay: 10s; }
+.cinema-line.line-d { animation-delay: 15s; }
+
+@keyframes cinemaLine {
+  0% { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+  7% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  22% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  30% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+  100% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+}
+
+html.theme-dark .instructor-section,
+html.theme-dark .reviews-section {
+  background: #111111 !important;
+  color: #F3F3F0 !important;
+}
+
+html.theme-dark .instructor-section::before {
+  border-color: rgba(255,255,255,.07);
+}
+
+html.theme-dark .instructor-copy h2,
+html.theme-dark .review-page-head strong,
+html.theme-dark .review-card blockquote,
+html.theme-dark .instructor-lineup strong {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+html.theme-dark .instructor-copy p,
+html.theme-dark .instructor-lineup p,
+html.theme-dark .instructor-career-strip p,
+html.theme-dark .review-card p,
+html.theme-dark .review-card span {
+  color: rgba(243,243,240,.66) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
+}
+
+html.theme-dark .instructor-copy strong,
+html.theme-dark .instructor-copy .eyebrow,
+html.theme-dark .reviews-section .eyebrow,
+html.theme-dark .instructor-lineup span,
+html.theme-dark .instructor-career-strip span {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-dark .instructor-name-mark {
+  background: rgba(255,255,255,.82) !important;
+  border-color: rgba(255,255,255,.45) !important;
+}
+
+html.theme-dark .instructor-lineup {
+  border-top-color: rgba(255,255,255,.12) !important;
+  border-bottom-color: rgba(255,255,255,.12) !important;
+}
+
+html.theme-dark .instructor-lineup article {
+  border-right-color: rgba(255,255,255,.12) !important;
+}
+
+html.theme-dark .review-card {
+  background: #181818 !important;
+  border-color: rgba(255,255,255,.09) !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-dots span {
+  background: rgba(255,255,255,.18) !important;
+}
+
+html.theme-dark .review-dots span.is-active {
+  background: #42E686 !important;
+}
+
+@media (max-width: 980px) {
+  .instructor-hero {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .instructor-visual {
+    min-height: 320px;
+  }
+
+  .instructor-lineup {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instructor-lineup article:nth-child(2) {
+    border-right: 0;
+  }
+
+  .review-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .instructor-section,
+  .reviews-section {
+    padding: 86px 0;
+  }
+
+  .instructor-copy h2 {
+    font-size: clamp(42px, 12vw, 64px);
+  }
+
+  .instructor-lineup {
+    grid-template-columns: 1fr;
+  }
+
+  .instructor-lineup article {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+  }
+
+  .instructor-lineup article:last-child {
+    border-bottom: 0;
+  }
+
+  .instructor-career-strip {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .review-carousel {
+    border-radius: 24px;
+  }
+
+  .review-page-head {
+    display: grid;
+    align-items: start;
+  }
+
+  .review-page-head strong {
+    text-align: left;
+  }
+
+  .review-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .review-cinema {
+    min-height: 138px;
+    border-radius: 22px;
+  }
+
+  .cinema-line {
+    padding: 0 20px;
+  }
+}
+
+
+
+/* 강사소개: 기존 섹션들과 톤 맞추기 */
+.instructor-section {
+  padding: 132px 0 126px !important;
+}
+
+.instructor-hero {
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr) !important;
+  gap: clamp(64px, 8vw, 112px) !important;
+  min-height: 520px !important;
+  align-items: center !important;
+}
+
+.instructor-copy {
+  padding: 18px 0 22px !important;
+  max-width: 720px !important;
+}
+
+.instructor-copy h2 {
+  margin-top: 22px !important;
+  font-size: clamp(34px, 4.7vw, 66px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.075em !important;
+  font-weight: 880 !important;
+}
+
+.instructor-copy strong {
+  margin-top: 26px !important;
+  font-size: clamp(30px, 3.7vw, 50px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.065em !important;
+}
+
+.instructor-copy p {
+  max-width: 560px !important;
+  margin-top: 26px !important;
+  font-size: clamp(16px, 1.55vw, 19px) !important;
+  line-height: 1.82 !important;
+}
+
+.instructor-visual {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+
+.instructor-orbit {
+  animation: instructorPlanetFloat 6.8s ease-in-out infinite !important;
+  box-shadow:
+    0 42px 90px rgba(66,230,134,.20),
+    0 24px 80px rgba(67,135,255,.18) !important;
+}
+
+.instructor-orbit::before {
+  animation: instructorOrbitSpin 18s linear infinite !important;
+}
+
+.instructor-orbit::after {
+  animation: instructorOrbitSpinReverse 12s linear infinite !important;
+}
+
+/* 주변 궤도 점 */
+.instructor-visual::before,
+.instructor-visual::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 3 !important;
+  border-radius: 999px !important;
+  pointer-events: none !important;
+}
+
+.instructor-visual::before {
+  width: 18px !important;
+  height: 18px !important;
+  top: 17% !important;
+  right: 18% !important;
+  background: #42E686 !important;
+  box-shadow: 0 0 28px rgba(66,230,134,.42) !important;
+  animation: instructorSatelliteA 9.5s ease-in-out infinite !important;
+}
+
+.instructor-visual::after {
+  width: 11px !important;
+  height: 11px !important;
+  left: 17% !important;
+  bottom: 22% !important;
+  background: #4387FF !important;
+  box-shadow: 0 0 24px rgba(67,135,255,.42) !important;
+  animation: instructorSatelliteB 11s ease-in-out infinite !important;
+}
+
+.instructor-name-mark {
+  animation: instructorNameFloat 5.8s ease-in-out infinite !important;
+}
+
+@keyframes instructorPlanetFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -12px, 0) rotate(2deg); }
+}
+
+@keyframes instructorNameFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 10px, 0); }
+}
+
+@keyframes instructorOrbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes instructorOrbitSpinReverse {
+  from { transform: rotate(-18deg); }
+  to { transform: rotate(-378deg); }
+}
+
+@keyframes instructorSatelliteA {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .86; }
+  50% { transform: translate3d(-34px, 26px, 0) scale(.82); opacity: .58; }
+}
+
+@keyframes instructorSatelliteB {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(.9); opacity: .55; }
+  50% { transform: translate3d(42px, -30px, 0) scale(1.15); opacity: .92; }
+}
+
+/* 경력 라인 여백 완화 */
+.instructor-lineup {
+  margin-top: 54px !important;
+}
+
+.instructor-lineup article {
+  padding: 32px 26px !important;
+}
+
+.instructor-career-strip {
+  margin-top: 34px !important;
+  padding-top: 28px !important;
+}
+
+/* 수강생 후기 하단: 긴 네모 박스 제거, 영화 자막형으로 변경 */
+.review-cinema {
+  position: relative !important;
+  min-height: 168px !important;
+  margin-top: 66px !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.review-cinema::before {
+  content: "“" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: -42px !important;
+  transform: translateX(-50%) !important;
+  color: rgba(66,230,134,.26) !important;
+  font-size: clamp(92px, 12vw, 150px) !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
+  background: none !important;
+}
+
+.review-cinema::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  width: min(220px, 44vw) !important;
+  height: 1px !important;
+  transform: translateX(-50%) !important;
+  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent) !important;
+  pointer-events: none !important;
+}
+
+.cinema-line {
+  padding: 0 clamp(22px, 8vw, 120px) !important;
+  color: #101513 !important;
+  -webkit-text-fill-color: #101513 !important;
+  font-size: clamp(20px, 2.65vw, 34px) !important;
+  font-weight: 760 !important;
+  line-height: 1.52 !important;
+  letter-spacing: -.055em !important;
+  text-shadow: none !important;
+}
+
+html.theme-dark .review-cinema {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-cinema::before {
+  color: rgba(66,230,134,.32) !important;
+}
+
+html.theme-dark .review-cinema::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) !important;
+}
+
+html.theme-dark .cinema-line {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+@media (max-width: 980px) {
+  .instructor-section {
+    padding: 104px 0 98px !important;
+  }
+
+  .instructor-hero {
+    gap: 44px !important;
+    min-height: auto !important;
+  }
+
+  .instructor-visual {
+    min-height: 360px !important;
+  }
+
+  .instructor-copy h2 {
+    font-size: clamp(34px, 7vw, 56px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .instructor-section {
+    padding: 86px 0 82px !important;
+  }
+
+  .instructor-copy {
+    padding: 0 !important;
+  }
+
+  .instructor-copy h2 {
+    margin-top: 18px !important;
+    font-size: clamp(32px, 9vw, 44px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -.07em !important;
+  }
+
+  .instructor-copy strong {
+    font-size: clamp(28px, 8vw, 38px) !important;
+  }
+
+  .instructor-copy p {
+    font-size: 16px !important;
+    line-height: 1.78 !important;
+  }
+
+  .instructor-visual {
+    min-height: 300px !important;
+  }
+
+  .instructor-lineup {
+    margin-top: 34px !important;
+  }
+
+  .review-cinema {
+    min-height: 188px !important;
+    margin-top: 48px !important;
+  }
+
+  .review-cinema::before {
+    top: -30px !important;
+  }
+
+  .cinema-line {
+    padding: 0 8px !important;
+    font-size: clamp(19px, 5.6vw, 25px) !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+
+/* 배경 그라데이션 제거: 더 담백한 아이보리 톤 */
+.instructor-section {
+  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
+}
+
+.reviews-section {
+  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
+}
+
+.instructor-section::before {
+  display: none !important;
+}
+
+/* 강사명 밝은 초록 */
+.instructor-copy strong {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+/* 기존 채워진 원형 그래픽 완전 비활성화 */
+.instructor-orbit,
+.instructor-name-mark,
+.instructor-visual::before,
+.instructor-visual::after {
+  display: none !important;
+}
+
+/* 라인형 행성 그래픽 */
+.instructor-visual {
+  min-height: 430px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: visible !important;
+}
+
+.instructor-line-art {
+  position: relative;
+  width: min(420px, 78vw);
+  height: min(420px, 78vw);
+  color: #101513;
+  animation: lineArtFloat 6.5s ease-in-out infinite;
+}
+
+.line-planet {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 168px;
+  height: 168px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.line-planet::before {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: 24px;
+  width: 42px;
+  height: 78px;
+  border-radius: 0 80px 80px 0;
+  background: currentColor;
+  transform: rotate(18deg);
+}
+
+.line-orbit {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 300px;
+  height: 112px;
+  border: 1.4px solid currentColor;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-radius: 999px;
+  transform-origin: center;
+  opacity: .76;
+}
+
+.orbit-a {
+  transform: translate(-50%, -50%) rotate(-18deg);
+  animation: orbitLineA 12s linear infinite;
+}
+
+.orbit-b {
+  width: 358px;
+  height: 132px;
+  opacity: .34;
+  transform: translate(-50%, -50%) rotate(18deg);
+  animation: orbitLineB 18s linear infinite;
+}
+
+.line-star {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  transform-origin: center;
+  animation: starPulse 3.6s ease-in-out infinite;
+}
+
+.line-star::before,
+.line-star::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.line-star::before {
+  width: 2px;
+  height: 54px;
+}
+
+.line-star::after {
+  width: 54px;
+  height: 2px;
+}
+
+.star-a {
+  right: 44px;
+  top: 92px;
+}
+
+.star-b {
+  left: 42px;
+  bottom: 96px;
+  width: 38px;
+  height: 38px;
+  opacity: .78;
+  animation-delay: .8s;
+}
+
+.star-b::before {
+  height: 38px;
+}
+
+.star-b::after {
+  width: 38px;
+}
+
+.star-c {
+  right: 118px;
+  bottom: 52px;
+  width: 28px;
+  height: 28px;
+  opacity: .62;
+  animation-delay: 1.4s;
+}
+
+.star-c::before {
+  height: 28px;
+}
+
+.star-c::after {
+  width: 28px;
+}
+
+.line-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: .82;
+}
+
+.dot-a {
+  right: 82px;
+  top: 74px;
+  animation: dotTravelA 7.5s ease-in-out infinite;
+}
+
+.dot-b {
+  left: 86px;
+  bottom: 76px;
+  animation: dotTravelB 8.5s ease-in-out infinite;
+}
+
+.line-comet {
+  position: absolute;
+  right: 28px;
+  bottom: 118px;
+  width: 118px;
+  height: 64px;
+  border-top: 1.5px solid currentColor;
+  border-radius: 100% 0 0 0;
+  transform: rotate(-22deg);
+  opacity: .52;
+  animation: cometSweep 5.8s ease-in-out infinite;
+}
+
+.line-comet::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+@keyframes lineArtFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+
+@keyframes orbitLineA {
+  from { transform: translate(-50%, -50%) rotate(-18deg); }
+  to { transform: translate(-50%, -50%) rotate(342deg); }
+}
+
+@keyframes orbitLineB {
+  from { transform: translate(-50%, -50%) rotate(18deg); }
+  to { transform: translate(-50%, -50%) rotate(-342deg); }
+}
+
+@keyframes starPulse {
+  0%, 100% { transform: scale(.88); opacity: .55; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes dotTravelA {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-26px, 18px, 0); }
+}
+
+@keyframes dotTravelB {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(32px, -20px, 0); }
+}
+
+@keyframes cometSweep {
+  0%, 100% { transform: rotate(-22deg) translate3d(0, 0, 0); opacity: .36; }
+  50% { transform: rotate(-18deg) translate3d(-18px, -8px, 0); opacity: .78; }
+}
+
+/* 수강생 후기 카드 그림자 제거 */
+.review-card {
+  box-shadow: none !important;
+}
+
+/* 하단 영화 멘트: 큰 초록색 따옴표 제거 */
+.review-cinema::before {
+  display: none !important;
+  content: none !important;
+}
+
+.review-cinema {
+  margin-top: 56px !important;
+}
+
+.cinema-line {
+  font-size: clamp(20px, 2.45vw, 32px) !important;
+}
+
+/* 다크모드 */
+html.theme-dark .instructor-section,
+html.theme-dark .reviews-section {
+  background: #111111 !important;
+}
+
+html.theme-dark .instructor-copy strong {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-dark .instructor-line-art {
+  color: #F3F3F0 !important;
+}
+
+html.theme-dark .line-orbit {
+  opacity: .64;
+}
+
+html.theme-dark .orbit-b {
+  opacity: .28;
+}
+
+html.theme-dark .review-card {
+  box-shadow: none !important;
+}
+
+@media (max-width: 980px) {
+  .instructor-line-art {
+    width: min(360px, 76vw);
+    height: min(360px, 76vw);
+  }
+
+  .line-planet {
+    width: 140px;
+    height: 140px;
+  }
+
+  .orbit-a {
+    width: 260px;
+    height: 98px;
+  }
+
+  .orbit-b {
+    width: 310px;
+    height: 114px;
+  }
+}
+
+@media (max-width: 760px) {
+  .instructor-visual {
+    min-height: 280px !important;
+  }
+
+  .instructor-line-art {
+    width: min(300px, 80vw);
+    height: min(300px, 80vw);
+  }
+
+  .line-planet {
+    width: 112px;
+    height: 112px;
+  }
+
+  .orbit-a {
+    width: 218px;
+    height: 82px;
+  }
+
+  .orbit-b {
+    width: 258px;
+    height: 96px;
+  }
+
+  .line-star {
+    transform: scale(.82);
+  }
+
+  .review-cinema {
+    margin-top: 42px !important;
+  }
+}
+
+
+
+/* 섹션 배경: 좌측상단 초록 원 그라데이션 제거 */
+.instructor-section {
+  padding: 124px 0 118px !important;
+  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
+}
+
+.reviews-section {
+  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
+}
+
+.instructor-section::before {
+  display: none !important;
+}
+
+/* 강사소개 타이포: 기존 section-title과 비율 통일 */
+.instructor-hero {
+  grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr) !important;
+  gap: clamp(58px, 7vw, 104px) !important;
+  min-height: 500px !important;
+  align-items: center !important;
+}
+
+.instructor-copy {
+  max-width: 760px !important;
+  padding: 8px 0 12px !important;
+}
+
+.instructor-copy h2 {
+  margin-top: 16px !important;
+  font-size: clamp(40px, 5.6vw, 78px) !important;
+  line-height: 1.28 !important;
+  letter-spacing: -.065em !important;
+  font-weight: 950 !important;
+}
+
+.instructor-copy h2 span {
+  display: block !important;
+}
+
+.instructor-copy strong {
+  display: block !important;
+  margin-top: 18px !important;
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+  font-size: clamp(38px, 5.2vw, 72px) !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.065em !important;
+  font-weight: 950 !important;
+}
+
+.instructor-copy p {
+  max-width: 610px !important;
+  margin-top: 22px !important;
+  font-size: clamp(16px, 1.5vw, 19px) !important;
+  line-height: 1.78 !important;
+}
+
+/* 이전 채워진/스팬형 그래픽 비활성화 */
+.instructor-orbit,
+.instructor-name-mark,
+.instructor-line-art,
+.line-planet,
+.line-orbit,
+.line-star,
+.line-dot,
+.line-comet,
+.instructor-visual::before,
+.instructor-visual::after {
+  display: none !important;
+}
+
+/* Y2K 유기적 라인 아트 */
+.instructor-visual {
+  min-height: 440px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: visible !important;
+}
+
+/* 후기 섹션: 큰 초록 따옴표와 카드 그림자 제거 유지 */
+.review-card {
+  box-shadow: none !important;
+}
+
+.review-cinema {
+  margin-top: 56px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.review-cinema::before {
+  display: none !important;
+  content: none !important;
+}
+
+.review-cinema::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  width: min(220px, 44vw) !important;
+  height: 1px !important;
+  transform: translateX(-50%) !important;
+  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent) !important;
+}
+
+.cinema-line {
+  color: #101513 !important;
+  -webkit-text-fill-color: #101513 !important;
+  font-size: clamp(20px, 2.45vw, 32px) !important;
+  line-height: 1.52 !important;
+}
+
+/* 다크모드 */
+html.theme-dark .instructor-section,
+html.theme-dark .reviews-section {
+  background: #111111 !important;
+}
+
+html.theme-dark .instructor-copy strong {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-dark html.theme-dark .review-card {
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-cinema {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-cinema::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) !important;
+}
+
+html.theme-dark .cinema-line {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+@media (max-width: 980px) {
+  .instructor-section {
+    padding: 104px 0 98px !important;
+  }
+
+  .instructor-hero {
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+    min-height: auto !important;
+  }
+
+  .instructor-visual {
+    min-height: 340px !important;
+  }
+
+  }
+
+@media (max-width: 760px) {
+  .instructor-section {
+    padding: 86px 0 82px !important;
+  }
+
+  .instructor-copy h2 {
+    font-size: clamp(36px, 9vw, 48px) !important;
+    line-height: 1.22 !important;
+  }
+
+  .instructor-copy strong {
+    font-size: clamp(32px, 8.5vw, 44px) !important;
+    line-height: 1.2 !important;
+  }
+
+  .instructor-copy p {
+    font-size: 16px !important;
+    line-height: 1.76 !important;
+  }
+
+  .instructor-visual {
+    min-height: 280px !important;
+  }
+
+  .review-cinema {
+    margin-top: 42px !important;
+  }
+
+  .cinema-line {
+    font-size: clamp(19px, 5.6vw, 25px) !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+/* ==========================================================================
+   v120 Instructor Image Placeholder
+   - 강사소개 우측 라인 그래픽 제거
+   - 강사 이미지 준비중 플레이스홀더 추가
+   - 강사소개 제목 크기/줄간격은 기존 섹션 톤에 맞춰 유지
+   - 후기 하단 큰 초록 따옴표/후기카드 그림자/좌측상단 그라데이션 제거 유지
+   - 지도 영역은 v107/v114 기준 유지
+   ========================================================================== */
+
+/* 섹션 배경: 좌측상단 초록 원 그라데이션 제거 */
+.instructor-section {
+  padding: 124px 0 118px !important;
+  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
+}
+
+.reviews-section {
+  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
+}
+
+.instructor-section::before {
+  display: none !important;
+}
+
+/* 강사소개 타이포 */
+.instructor-hero {
+  grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr) !important;
+  gap: clamp(58px, 7vw, 104px) !important;
+  min-height: 500px !important;
+  align-items: center !important;
+}
+
+.instructor-copy {
+  max-width: 760px !important;
+  padding: 8px 0 12px !important;
+}
+
+.instructor-copy h2 {
+  margin-top: 16px !important;
+  font-size: clamp(40px, 5.6vw, 78px) !important;
+  line-height: 1.28 !important;
+  letter-spacing: -.065em !important;
+  font-weight: 950 !important;
+}
+
+.instructor-copy h2 span {
+  display: block !important;
+}
+
+.instructor-copy strong {
+  display: block !important;
+  margin-top: 18px !important;
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+  font-size: clamp(38px, 5.2vw, 72px) !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.065em !important;
+  font-weight: 950 !important;
+}
+
+.instructor-copy p {
+  max-width: 610px !important;
+  margin-top: 22px !important;
+  font-size: clamp(16px, 1.5vw, 19px) !important;
+  line-height: 1.78 !important;
+}
+
+/* 이전 그래픽 계열 비활성화 */
+.instructor-orbit,
+.instructor-name-mark,
+.instructor-line-art,
+.line-planet,
+.line-orbit,
+.line-star,
+.line-dot,
+.line-comet,
+.instructor-visual::before,
+.instructor-visual::after {
+  display: none !important;
+}
+
+/* 강사 이미지 준비중 */
+.instructor-visual {
+  min-height: 440px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: visible !important;
+}
+
+.instructor-image-placeholder {
+  width: min(420px, 78vw);
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.46)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(16,21,19,.035) 0 1px,
+      transparent 1px 14px
+    );
+  border: 1px solid rgba(16,21,19,.12);
+  overflow: hidden;
+}
+
+.placeholder-frame {
+  width: calc(100% - 34px);
+  height: calc(100% - 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px dashed rgba(16,21,19,.22);
+  background: rgba(255,255,255,.38);
+}
+
+.placeholder-label {
+  width: fit-content;
+  margin-bottom: auto;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(66,230,134,.16);
+  color: var(--green-deep);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.placeholder-frame strong {
+  display: block;
+  color: var(--ink);
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -.07em;
+  font-weight: 900;
+}
+
+.placeholder-frame p {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+/* 후기 섹션: 큰 초록 따옴표와 카드 그림자 제거 유지 */
+.review-card {
+  box-shadow: none !important;
+}
+
+.review-cinema {
+  margin-top: 56px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.review-cinema::before {
+  display: none !important;
+  content: none !important;
+}
+
+.review-cinema::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  width: min(220px, 44vw) !important;
+  height: 1px !important;
+  transform: translateX(-50%) !important;
+  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent) !important;
+}
+
+.cinema-line {
+  color: #101513 !important;
+  -webkit-text-fill-color: #101513 !important;
+  font-size: clamp(20px, 2.45vw, 32px) !important;
+  line-height: 1.52 !important;
+}
+
+/* 다크모드 */
+html.theme-dark .instructor-section,
+html.theme-dark .reviews-section {
+  background: #111111 !important;
+}
+
+html.theme-dark .instructor-copy strong {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-dark .instructor-image-placeholder {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,.045) 0 1px,
+      transparent 1px 14px
+    ) !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+
+html.theme-dark .placeholder-frame {
+  background: rgba(255,255,255,.035) !important;
+  border-color: rgba(255,255,255,.22) !important;
+}
+
+html.theme-dark .placeholder-label {
+  background: rgba(66,230,134,.12) !important;
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-dark .placeholder-frame strong {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+html.theme-dark .placeholder-frame p {
+  color: rgba(243,243,240,.66) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
+}
+
+html.theme-dark .review-card {
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-cinema {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-cinema::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) !important;
+}
+
+html.theme-dark .cinema-line {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+@media (max-width: 980px) {
+  .instructor-section {
+    padding: 104px 0 98px !important;
+  }
+
+  .instructor-hero {
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+    min-height: auto !important;
+  }
+
+  .instructor-visual {
+    min-height: auto !important;
+  }
+
+  .instructor-image-placeholder {
+    width: min(360px, 76vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .instructor-section {
+    padding: 86px 0 82px !important;
+  }
+
+  .instructor-copy h2 {
+    font-size: clamp(36px, 9vw, 48px) !important;
+    line-height: 1.22 !important;
+  }
+
+  .instructor-copy strong {
+    font-size: clamp(32px, 8.5vw, 44px) !important;
+    line-height: 1.2 !important;
+  }
+
+  .instructor-copy p {
+    font-size: 16px !important;
+    line-height: 1.76 !important;
+  }
+
+  .instructor-image-placeholder {
+    width: min(310px, 84vw);
+    border-radius: 28px;
+  }
+
+  .placeholder-frame {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .review-cinema {
+    margin-top: 42px !important;
+  }
+
+  .cinema-line {
+    font-size: clamp(19px, 5.6vw, 25px) !important;
+    line-height: 1.55 !important;
+  }
+}
 </style>
 <meta content="website" property="og:type"/>
 <meta content="https://bychaeun.github.io/koklanding/" property="og:url"/>
@@ -4647,6 +6486,19 @@ html.theme-dark svg {
 </svg>
 콕봐유</a>
 <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform" rel="noopener" target="_blank">4기 신청</a>
+<button aria-label="다크 모드로 전환" class="theme-toggle" id="themeToggle" title="다크 모드로 전환" type="button">
+<span aria-hidden="true" class="theme-toggle-icon theme-toggle-moon">
+<svg focusable="false" viewbox="0 0 24 24">
+<path d="M19.1 14.6c-1.1.7-2.4 1.1-3.9 1.1a7.1 7.1 0 0 1-7.1-7.1c0-1.5.4-2.8 1.1-3.9.2-.4-.2-.8-.6-.6A8.6 8.6 0 1 0 19.7 15.2c.2-.4-.2-.8-.6-.6Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</span>
+<span aria-hidden="true" class="theme-toggle-icon theme-toggle-sun">
+<svg focusable="false" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="none" r="4.2" stroke="currentColor" stroke-width="1.8"></circle>
+<path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2L5.5 5.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</button>
 </div>
 </div>
 </nav>
@@ -4831,6 +6683,56 @@ html.theme-dark svg {
 </div>
 </div>
 </section>
+<section class="instructor-section" id="instructor">
+<div class="container">
+<div class="instructor-hero reveal">
+<div class="instructor-copy">
+<span class="eyebrow">강사 소개</span>
+<h2>
+<span>천안·아산 개발사업을</span>
+<span>가장 깊이 아는 사람</span>
+</h2>
+<strong>공배준 강사</strong>
+<p>현장에서 직접 쌓은 경험과 이론을 하나의 수업으로 연결합니다.</p>
+</div>
+<div aria-hidden="true" class="instructor-visual">
+<div aria-label="강사 이미지 준비중" class="instructor-image-placeholder">
+<div class="placeholder-frame">
+<span class="placeholder-label">IMAGE</span>
+<strong>강사 이미지<br/>준비중</strong>
+<p>공배준 강사 프로필 사진이 준비되면 이 영역에 교체됩니다.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="instructor-lineup reveal delay-1">
+<article>
+<span>Academic</span>
+<strong>부동산학 석·박사</strong>
+<p>개발사업을 이론과 현장 양쪽에서 해석하는 전문 기반</p>
+</article>
+<article>
+<span>Field</span>
+<strong>공인중개사 25회</strong>
+<p>거래 현장에서 축적한 실무 감각과 입지 판단 기준</p>
+</article>
+<article>
+<span>Media</span>
+<strong>콕봐유 유튜브 운영</strong>
+<p>천안·아산 개발 이슈를 쉽게 풀어내는 지역 기반 콘텐츠</p>
+</article>
+<article>
+<span>Lecture</span>
+<strong>Btv 부동산톺아보기 전문 패널</strong>
+<p>SK브로드밴드 ch Btv 고정 출연으로 검증된 해설력</p>
+</article>
+</div>
+<div class="instructor-career-strip reveal delay-2">
+<span>실무 이력</span>
+<p>콕 찝어주는 부동산 학원 원장 · 콕부동산 공인중개사 사무소 원장 · 한국공인중개사협회 중개실무 &amp; 매수신청대리 강의 · 청년 및 예비창업자 대상 부동산 실무 강의</p>
+</div>
+</div>
+</section>
 <section class="section trust" id="space">
 <div class="container">
 <div class="trust-layout">
@@ -4871,6 +6773,99 @@ html.theme-dark svg {
 <path d="M9 6L15 12L9 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
+</div>
+</div>
+</section>
+<section class="reviews-section" id="reviews">
+<div class="container">
+<div class="section-head reveal">
+<span class="eyebrow">수강생 후기</span>
+<h2 class="section-title">먼저 배운 수강생들은<br/><span class="title-green">무엇이 달라졌을까</span></h2>
+<p class="section-desc">1기부터 3기까지, 수강생들이 남긴 변화를 좌우 슬라이드로 확인하세요.</p>
+</div>
+<div aria-label="수강생 후기 슬라이드" class="review-carousel reveal delay-1">
+<div class="review-track">
+<article class="review-page is-active" data-review-page="0">
+<div class="review-page-head">
+<span>1기 수강생 후기</span>
+<strong>시야가 바뀌고, 현장이 보이기 시작했습니다.</strong>
+</div>
+<div class="review-cards">
+<div class="review-card">
+<span>이OO</span>
+<blockquote>“아파트만 고집하던 제가 이제는 땅을 봅니다.”</blockquote>
+<p>토지는 돈 많은 사람들만 하는 줄 알았지만, 수업을 통해 소액으로도 시작할 수 있다는 관점을 얻었습니다.</p>
+</div>
+<div class="review-card">
+<span>강OO</span>
+<blockquote>“고속도로 IC 하나가 내 땅값에 무슨 의미인지 알게 됐습니다.”</blockquote>
+<p>교통 호재가 투자 판단으로 어떻게 연결되는지 구체적인 기준을 이해하게 됐습니다.</p>
+</div>
+<div class="review-card">
+<span>류OO</span>
+<blockquote>“현장 답사를 같이 가니까 이해가 쏙쏙 됩니다.”</blockquote>
+<p>이론만 듣는 수업이 아니라 현장에서 설명을 들으며 입지와 흐름을 체감했습니다.</p>
+</div>
+</div>
+</article>
+<article class="review-page" data-review-page="1">
+<div class="review-page-head">
+<span>2기 수강생 후기</span>
+<strong>남의 말이 아니라, 스스로 분석하는 힘이 생겼습니다.</strong>
+</div>
+<div class="review-cards">
+<div class="review-card">
+<span>최OO</span>
+<blockquote>“천안 시내만 보던 시야가 아산 외곽까지 넓어졌어요.”</blockquote>
+<p>저평가된 기회의 땅을 스스로 찾아보는 눈이 생겼습니다.</p>
+</div>
+<div class="review-card">
+<span>윤OO</span>
+<blockquote>“당장 써먹을 수 있는 실전 노하우만 배웁니다.”</blockquote>
+<p>책 속의 뻔한 이야기가 아니라 현장에서 바로 적용 가능한 정보라 좋았습니다.</p>
+</div>
+<div class="review-card">
+<span>한OO</span>
+<blockquote>“남들 말만 듣던 뇌동매매를 끊었습니다.”</blockquote>
+<p>지역을 직접 분석하고 확신을 가지고 투자 판단을 하게 된 것이 가장 큰 수확입니다.</p>
+</div>
+</div>
+</article>
+<article class="review-page" data-review-page="2">
+<div class="review-page-head">
+<span>3기 수강생 후기</span>
+<strong>뉴스를 따라가는 대신, 돈이 흐르는 길목을 읽었습니다.</strong>
+</div>
+<div class="review-cards">
+<div class="review-card">
+<span>정OO</span>
+<blockquote>“무작정 기다리는 투자가 아니라, 돈이 흐르는 길목을 지키게 됐습니다.”</blockquote>
+<p>개발 계획을 보고 어디를 봐야 하는지 알게 되니 뉴스 기사도 다르게 읽히기 시작했습니다.</p>
+</div>
+<div class="review-card">
+<span>송OO</span>
+<blockquote>“공장 투자는 남 얘기인 줄 알았는데, 저도 할 수 있겠더라고요.”</blockquote>
+<p>창고와 공장 입지에서 무엇을 봐야 하는지 핵심을 짚어줘 초보자도 자신감이 생겼습니다.</p>
+</div>
+<div class="review-card">
+<span>조OO</span>
+<blockquote>“수익률만 보는 게 아니라 세금까지 고려한 투자를 배웠습니다.”</blockquote>
+<p>수익을 얻는 것만큼 끝까지 돈을 지키는 기준이 중요하다는 것을 배웠습니다.</p>
+</div>
+</div>
+</article>
+</div>
+<div aria-hidden="true" class="review-dots">
+<span class="is-active"></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div aria-label="수강 후기 한줄 멘트" class="review-cinema reveal delay-2">
+<p class="cinema-line line-a">“여기저기 뜬소문을 쫓지 않고, 개발의 길목을 지키는 법을 배웠습니다.”</p>
+<p class="cinema-line line-b">“누가 좋다더라 하면 따라 사던 조급함을 멈추게 됐습니다.”</p>
+<p class="cinema-line line-c">“돈 버는 기술보다, 내 돈을 안전하게 지키는 법을 먼저 배웠습니다.”</p>
+<p class="cinema-line line-d">“수익에 혹하기 전, 잃지 않는 투자가 무엇인지 알게 됐습니다.”</p>
 </div>
 </div>
 </section>
@@ -5310,5 +7305,33 @@ html.theme-dark svg {
   }
 })();
 </script>
-</body>
+<script id="kokkok-review-motion">
+(() => {
+  const section = document.querySelector("#reviews");
+  if (!section) return;
+
+  const carousel = section.querySelector(".review-carousel");
+  const track = section.querySelector(".review-track");
+  const pages = Array.from(section.querySelectorAll(".review-page"));
+  const dots = Array.from(section.querySelectorAll(".review-dots span"));
+  if (!carousel || !track || !pages.length) return;
+
+  let index = 0;
+
+  function show(next) {
+    index = (next + pages.length) % pages.length;
+    carousel.dataset.index = String(index);
+    track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+    pages.forEach((page, i) => page.classList.toggle("is-active", i === index));
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => show(i));
+  });
+
+  show(0);
+  window.setInterval(() => show(index + 1), 5000);
+})();
+</script></body>
 </html>
