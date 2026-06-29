@@ -5525,7 +5525,211 @@ html.theme-dark .hero-tags .tag {
 html.theme-dark .hero-tags .tag b {
   color: #42E686 !important;
   -webkit-text-fill-color: #42E686 !important;
-}</style>
+}
+/* ==========================================================================
+   v125 Review Badge Clip & Mobile Theme Fix
+   - 수강생 후기 기수 라벨 라운드 박스가 잘리지 않도록 여백/클리핑 보정
+   - 모바일 라이트/다크모드에서 강사소개/후기 섹션 색상 대비 보정
+   - 후기 카드 라이트모드 배경/텍스트 대비 보정
+   - 지도 영역은 수정하지 않음
+   ========================================================================== */
+
+/* 후기 슬라이드 상단 라벨이 border-radius/overflow에 잘리지 않도록 보정 */
+.review-carousel {
+  padding-top: 12px !important;
+  margin-top: 32px !important;
+  overflow: hidden !important;
+}
+
+.review-track {
+  align-items: flex-start !important;
+}
+
+.review-page {
+  padding: 6px 2px 2px !important;
+}
+
+.review-page-head {
+  padding-top: 2px !important;
+}
+
+.review-page-head span {
+  flex-shrink: 0 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+}
+
+/* 라이트모드 명시 보정: 모바일 브라우저 자동 다크 반전으로 인한 흐림 방지 */
+html.theme-light .instructor-section,
+html.theme-light .reviews-section,
+html:not(.theme-dark) .instructor-section,
+html:not(.theme-dark) .reviews-section {
+  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
+  color: #101513 !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+html.theme-light .reviews-section,
+html:not(.theme-dark) .reviews-section {
+  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
+}
+
+html.theme-light .instructor-copy h2,
+html.theme-light .review-page-head strong,
+html.theme-light .review-card blockquote,
+html.theme-light .instructor-lineup strong,
+html.theme-light .placeholder-frame strong,
+html:not(.theme-dark) .instructor-copy h2,
+html:not(.theme-dark) .review-page-head strong,
+html:not(.theme-dark) .review-card blockquote,
+html:not(.theme-dark) .instructor-lineup strong,
+html:not(.theme-dark) .placeholder-frame strong {
+  color: #101513 !important;
+  -webkit-text-fill-color: #101513 !important;
+}
+
+html.theme-light .instructor-copy p,
+html.theme-light .instructor-lineup p,
+html.theme-light .instructor-career-strip p,
+html.theme-light .review-card p,
+html.theme-light .review-card span,
+html.theme-light .placeholder-frame p,
+html:not(.theme-dark) .instructor-copy p,
+html:not(.theme-dark) .instructor-lineup p,
+html:not(.theme-dark) .instructor-career-strip p,
+html:not(.theme-dark) .review-card p,
+html:not(.theme-dark) .review-card span,
+html:not(.theme-dark) .placeholder-frame p {
+  color: #65716B !important;
+  -webkit-text-fill-color: #65716B !important;
+}
+
+html.theme-light .review-card,
+html:not(.theme-dark) .review-card {
+  background: rgba(255,255,255,.82) !important;
+  border-color: rgba(16,21,19,.12) !important;
+  box-shadow: none !important;
+}
+
+html.theme-light .instructor-lineup,
+html:not(.theme-dark) .instructor-lineup {
+  border-top-color: rgba(16,21,19,.12) !important;
+  border-bottom-color: rgba(16,21,19,.12) !important;
+}
+
+html.theme-light .instructor-lineup article,
+html:not(.theme-dark) .instructor-lineup article {
+  border-color: rgba(16,21,19,.12) !important;
+}
+
+html.theme-light .review-page-head span,
+html:not(.theme-dark) .review-page-head span {
+  background: #42E686 !important;
+  color: #062D1A !important;
+  -webkit-text-fill-color: #062D1A !important;
+}
+
+/* 다크모드 대비 보정 */
+html.theme-dark .instructor-section,
+html.theme-dark .reviews-section {
+  background: #111111 !important;
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+html.theme-dark .review-card {
+  background: #181818 !important;
+  border-color: rgba(255,255,255,.11) !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark .review-page-head span {
+  background: #42E686 !important;
+  color: #062D1A !important;
+  -webkit-text-fill-color: #062D1A !important;
+}
+
+html.theme-dark .instructor-copy h2,
+html.theme-dark .review-page-head strong,
+html.theme-dark .review-card blockquote,
+html.theme-dark .instructor-lineup strong,
+html.theme-dark .placeholder-frame strong {
+  color: #F3F3F0 !important;
+  -webkit-text-fill-color: #F3F3F0 !important;
+}
+
+html.theme-dark .instructor-copy p,
+html.theme-dark .instructor-lineup p,
+html.theme-dark .instructor-career-strip p,
+html.theme-dark .review-card p,
+html.theme-dark .review-card span,
+html.theme-dark .placeholder-frame p {
+  color: rgba(243,243,240,.74) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.74) !important;
+}
+
+html.theme-dark .instructor-lineup,
+html.theme-dark .instructor-lineup article {
+  border-color: rgba(255,255,255,.12) !important;
+}
+
+/* 모바일 전용: 라벨/카드/섹션 간격 재보정 */
+@media (max-width: 760px) {
+  .review-carousel {
+    padding-top: 14px !important;
+    margin-top: 20px !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .review-page {
+    padding: 8px 0 0 !important;
+  }
+
+  .review-page-head {
+    padding: 2px 1px 0 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .review-page-head span {
+    padding: 7px 11px !important;
+    border-radius: 999px !important;
+    font-size: 10.8px !important;
+    transform: translateZ(0) !important;
+  }
+
+  .review-page-head strong {
+    padding-right: 2px !important;
+  }
+
+  .review-card {
+    background-clip: padding-box !important;
+  }
+
+  html.theme-light .instructor-section,
+  html.theme-light .reviews-section,
+  html:not(.theme-dark) .instructor-section,
+  html:not(.theme-dark) .reviews-section {
+    background: #FFFDF4 !important;
+  }
+
+  html.theme-light .reviews-section,
+  html:not(.theme-dark) .reviews-section {
+    background: #F7F4EA !important;
+  }
+
+  html.theme-dark .instructor-section,
+  html.theme-dark .reviews-section {
+    background: #111111 !important;
+  }
+
+  html.theme-dark .review-card {
+    background: #181818 !important;
+  }
+}
+
+</style>
 <meta content="website" property="og:type"/>
 <meta content="https://bychaeun.github.io/koklanding/" property="og:url"/>
 <meta content="콕 찝어주는 부동산 학원" property="og:title"/>
