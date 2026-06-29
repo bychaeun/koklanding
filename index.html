@@ -3949,10 +3949,10 @@ html.theme-dark svg {
 
 
 /* ==========================================================================
-   v107 Dark Apply Line Fix
-   - 데스크톱 다크모드 신청안내: 추천 대상 아래 구분선 표시
-   - 모바일 다크모드 신청안내: 라이트모드처럼 라운드 박스 유지
-   - 지도 핀 숫자 / 디데이 초록 강조 / 모바일 브라우저 다크 감지 유지
+   Final Current Overrides · v121
+   - 다크모드/토글/신규 섹션/강사 이미지 준비중을 하나의 최종 블록으로 정리
+   - 히어로 키워드 태그의 다크모드 회색 텍스트 가독성 보정
+   - 지도 영역은 v107/v114 기준 유지
    ========================================================================== */
 
 :root {
@@ -4633,14 +4633,6 @@ html.theme-dark svg {
   filter: none !important;
 }
 
-
-/* ==========================================================================
-   v114 Toggle Only From V107 Map Lock
-   - 업로드한 v107 기준 지도 영역 유지
-   - 지도 위치핀 / 지도 크기 / 지도 좌표 CSS는 수정하지 않음
-   - 상단 라이트·다크 토글과 사진 캡션 가독성만 추가
-   ========================================================================== */
-
 .nav-actions .theme-toggle {
   order: 99;
   position: relative !important;
@@ -4763,15 +4755,6 @@ html.theme-dark .photo-slider .slider-arrow path {
     height: 17px !important;
   }
 }
-
-
-/* ==========================================================================
-   v116 Instructor Review Slide Refresh
-   - 강사소개/수강생후기 한글 표기
-   - 강사소개 섹션을 넓고 시원한 레이아웃으로 변경
-   - 수강생 후기를 좌우 슬라이드 애니메이션으로 변경
-   - 지도 영역은 v107/v114 기준 유지
-   ========================================================================== */
 
 .instructor-section,
 .reviews-section {
@@ -6127,16 +6110,6 @@ html.theme-dark .cinema-line {
   }
 }
 
-
-/* ==========================================================================
-   v120 Instructor Image Placeholder
-   - 강사소개 우측 라인 그래픽 제거
-   - 강사 이미지 준비중 플레이스홀더 추가
-   - 강사소개 제목 크기/줄간격은 기존 섹션 톤에 맞춰 유지
-   - 후기 하단 큰 초록 따옴표/후기카드 그림자/좌측상단 그라데이션 제거 유지
-   - 지도 영역은 v107/v114 기준 유지
-   ========================================================================== */
-
 /* 섹션 배경: 좌측상단 초록 원 그라데이션 제거 */
 .instructor-section {
   padding: 124px 0 118px !important;
@@ -6430,7 +6403,33 @@ html.theme-dark .cinema-line {
     line-height: 1.55 !important;
   }
 }
-</style>
+
+/* Hero tags dark-mode readability */
+@media (prefers-color-scheme: dark) {
+  .hero-tags .tag {
+    background: #181818 !important;
+    border-color: rgba(255,255,255,.075) !important;
+    color: rgba(243,243,240,.72) !important;
+    -webkit-text-fill-color: rgba(243,243,240,.72) !important;
+  }
+
+  .hero-tags .tag b {
+    color: #42E686 !important;
+    -webkit-text-fill-color: #42E686 !important;
+  }
+}
+
+html.theme-dark .hero-tags .tag {
+  background: #181818 !important;
+  border-color: rgba(255,255,255,.075) !important;
+  color: rgba(243,243,240,.72) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.72) !important;
+}
+
+html.theme-dark .hero-tags .tag b {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}</style>
 <meta content="website" property="og:type"/>
 <meta content="https://bychaeun.github.io/koklanding/" property="og:url"/>
 <meta content="콕 찝어주는 부동산 학원" property="og:title"/>
@@ -6447,7 +6446,21 @@ html.theme-dark .cinema-line {
 <body>
 <!-- =========================================================
   여기만 수정하면 됩니다.
-  기수 / 개강월 / 마감일 / 모집인원 / 신청링크 설정
+  매 기수마다 아래 값만 바꾸면 페이지 주요 문구/링크가 반영됩니다.
+
+  수정 항목:
+  - cohort: 기수
+  - openPeriod: 개강월
+  - deadlineAt: 모집 마감일
+  - totalSeats / joinedSeats: 모집인원 / 현재 신청 인원
+  - tuition / tuitionNote: 수강료 / 수강료 보조문구
+  - scheduleDays / scheduleTime / scheduleEndTime: 요일 / 시작시간 / 종료시간
+  - venueName / venueFloor / address / fullAddress: 교육 장소
+  - parkingName / parkingNote: 주차 정보
+  - phone: 문의 전화
+  - formUrl: 신청 링크
+  - youtubeUrl: 유튜브 링크
+
   Ctrl + F 검색어: 여기만 수정
 ========================================================= -->
 <script id="kokkok-campaign-config">
@@ -6455,16 +6468,177 @@ html.theme-dark .cinema-line {
     cohort: "4기",
     openPeriod: "8~9월",
     deadlineAt: "2026-07-31T23:59:59",
+
+    courseWeeks: "8주",
+    courseCount: "총 8회",
+
+    scheduleDays: "매주 수·목요일",
+    scheduleTime: "19:00",
+    scheduleEndTime: "20:30",
+
     totalSeats: 30,
     joinedSeats: 8,
-    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform"
+
+    tuition: "20만원",
+    tuitionNote: "2개월 과정",
+
+    venueCity: "천안",
+    venueName: "금강센트럴빌딩",
+    venueFloor: "3층",
+    address: "천안 동남구 봉서10길 19",
+    fullAddress: "충남 천안시 동남구 봉서10길 19 금강센트럴빌딩 3층",
+
+    parkingName: "봉서초등학교 주차장",
+    parkingNote: "도보 1분",
+
+    phone: "041-575-1102",
+    recommendTarget: "천안·아산 투자 타이밍을 제대로 배우고 싶은 분",
+
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe7cEDhIW2FRupl3X4_FhRvHrgtT_bVI68bEqN4Tw1ZxMvH5g/viewform",
+    youtubeUrl: "https://www.youtube.com/@kokok"
   };
 </script>
-<!-- =========================================================
-  여기만 수정하면 됩니다.
-  기수 / 개강월 / 마감일 / 모집인원 / 신청링크 설정
-  Ctrl + F 검색어: 여기만 수정
-========================================================= -->
+<script id="kokkok-campaign-content">
+(() => {
+  const campaign = window.KOKKOK_CAMPAIGN || {};
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  const text = value => value == null ? "" : String(value);
+  const tel = value => "tel:" + text(value).replace(/[^0-9+]/g, "");
+
+  function setText(selector, value) {
+    const el = $(selector);
+    if (el) el.textContent = text(value);
+  }
+
+  function setInfoRow(label, main, sub = "") {
+    const rows = $$(".apply-info .info-row");
+    const row = rows.find(item => $(".info-label", item)?.textContent.trim() === label);
+    if (!row) return;
+
+    const value = $(".info-value", row);
+    if (!value) return;
+
+    value.textContent = "";
+    if (label === "수강료") {
+      const strong = document.createElement("strong");
+      strong.className = "tuition-strong";
+      strong.textContent = text(main);
+      value.appendChild(strong);
+
+      if (sub) {
+        const span = document.createElement("span");
+        span.className = "tuition-sub";
+        span.textContent = text(sub);
+        value.appendChild(span);
+      }
+      return;
+    }
+
+    value.append(document.createTextNode(text(main)));
+    if (sub) {
+      const span = document.createElement("span");
+      span.textContent = text(sub);
+      value.appendChild(span);
+    }
+  }
+
+  function applyCampaign() {
+    const cohort = text(campaign.cohort || "4기");
+    const openPeriod = text(campaign.openPeriod || "8~9월");
+    const totalSeats = Number(campaign.totalSeats || 30);
+    const joinedSeats = Number(campaign.joinedSeats || 8);
+    const tuition = text(campaign.tuition || "20만원");
+    const tuitionNote = text(campaign.tuitionNote || "2개월 과정");
+    const scheduleDays = text(campaign.scheduleDays || "매주 수·목요일");
+    const scheduleTime = text(campaign.scheduleTime || "19:00");
+    const scheduleEndTime = text(campaign.scheduleEndTime || "20:30");
+    const courseWeeks = text(campaign.courseWeeks || "8주");
+    const courseCount = text(campaign.courseCount || "총 8회");
+    const venueCity = text(campaign.venueCity || "천안");
+    const venueName = text(campaign.venueName || "금강센트럴빌딩");
+    const venueFloor = text(campaign.venueFloor || "3층");
+    const address = text(campaign.address || "천안 동남구 봉서10길 19");
+    const fullAddress = text(campaign.fullAddress || `${address} ${venueName} ${venueFloor}`);
+    const phone = text(campaign.phone || "041-575-1102");
+    const phoneHref = tel(phone);
+
+    $("[data-campaign-cohort]") && $$("[data-campaign-cohort]").forEach(el => {
+      el.textContent = cohort;
+    });
+
+    setText(".hero-badge", `천안·아산 개발사업 실전 분석 클래스 · ${cohort} 모집`);
+
+    const navApply = $(".nav-actions .btn-primary");
+    if (navApply) navApply.textContent = `${cohort} 신청`;
+
+    const heroApply = $(".hero-actions .btn-primary");
+    if (heroApply) heroApply.textContent = `${cohort} 수강 신청하기 →`;
+
+    const applyTitle = $(".apply h2");
+    if (applyTitle) applyTitle.innerHTML = `${cohort} 모집,<br>지금 신청할 수 있습니다.`;
+
+    const applyLead = $(".apply p");
+    if (applyLead) applyLead.textContent = `천안·아산 개발사업을 정보 나열이 아니라 판단 기준으로 읽는 ${courseWeeks} 과정입니다.`;
+
+    const tags = $$(".hero-tags .tag");
+    if (tags[0]) tags[0].innerHTML = `<b>${openPeriod}</b> 개강`;
+    if (tags[1]) tags[1].innerHTML = `${scheduleDays} <b>${scheduleTime}</b>`;
+    if (tags[2]) tags[2].innerHTML = `${venueCity} <b>${venueName}</b> ${venueFloor}`;
+    if (tags[3]) tags[3].innerHTML = `선착순 <b>${totalSeats}명</b>`;
+    if (tags[4]) tags[4].innerHTML = `수강료 <b>${tuition}</b>`;
+
+    setInfoRow("교육 일정", `${openPeriod} · ${courseCount}`, scheduleDays);
+    setInfoRow("강의 시간", `${scheduleTime} ~ ${scheduleEndTime}`);
+    setInfoRow("수강 인원", `선착순 ${totalSeats}명`);
+    setInfoRow("수강료", tuition, tuitionNote);
+    setInfoRow("교육 장소", `${venueName} ${venueFloor}`, address);
+    setInfoRow("주차", text(campaign.parkingName || "봉서초등학교 주차장"), text(campaign.parkingNote || "도보 1분"));
+    setInfoRow("문의", phone);
+    setInfoRow("추천 대상", text(campaign.recommendTarget || "천안·아산 투자 타이밍을 제대로 배우고 싶은 분"));
+
+    const phoneButton = $('.apply-actions a[href^="tel:"]');
+    if (phoneButton) phoneButton.href = phoneHref;
+
+    $$('a[href*="docs.google.com/forms"], .deadline-bar-btn').forEach(link => {
+      if (campaign.formUrl) link.href = campaign.formUrl;
+    });
+
+    $$('a[href*="youtube.com"], a[href*="@kokok"]').forEach(link => {
+      if (campaign.youtubeUrl) link.href = campaign.youtubeUrl;
+    });
+
+    const joined = $("[data-joined-count]");
+    if (joined) joined.textContent = joinedSeats;
+
+    const total = $("[data-total-seats]");
+    if (total) total.textContent = totalSeats;
+
+    const footer = $(".footer-inner > div:first-child");
+    if (footer) {
+      footer.innerHTML = `<b>콕 찝어주는 부동산 학원</b><br>${fullAddress} · ${phone}`;
+    }
+
+    const encodedAddress = encodeURIComponent(fullAddress);
+    const iframe = $(".apply-map-card iframe");
+    if (iframe && encodedAddress) {
+      iframe.src = `https://maps.google.com/maps?hl=ko&q=${encodedAddress}&z=17&output=embed`;
+    }
+
+    const naverMap = $(".map-fallback-link");
+    if (naverMap && encodedAddress) {
+      naverMap.href = `https://map.naver.com/p/search/${encodedAddress}`;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyCampaign, { once: true });
+  } else {
+    applyCampaign();
+  }
+})();
+</script>
 <!-- 여기만 수정 끝 -->
 <nav class="nav">
 <div class="container nav-inner">
