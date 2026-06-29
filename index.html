@@ -4756,6 +4756,16 @@ html.theme-dark .photo-slider .slider-arrow path {
   }
 }
 
+/* ==========================================================================
+   v124 Instructor & Reviews Mobile Cleanup
+   - 강사소개/수강생후기 섹션 CSS 중복 정리
+   - 모바일 타이틀/여백을 기존 섹션 톤에 맞춤
+   - 모바일 강사 이력 2칸 구성
+   - 수강생 후기 글자 크기 축소
+   - 라이트/다크 모바일 색상 보정
+   - 지도 영역은 v107/v114 기준 유지
+   ========================================================================== */
+
 .instructor-section,
 .reviews-section {
   position: relative;
@@ -4765,37 +4775,34 @@ html.theme-dark .photo-slider .slider-arrow path {
 }
 
 .instructor-section {
-  padding: 128px 0 112px;
-  background:
-    radial-gradient(circle at 86% 18%, rgba(67,135,255,.18), transparent 30%),
-    radial-gradient(circle at 12% 12%, rgba(66,230,134,.20), transparent 34%),
-    linear-gradient(180deg, var(--paper), #F8F5E9);
+  padding: 124px 0 118px;
+  background: linear-gradient(180deg, var(--paper), #F8F5E9);
+}
+
+.reviews-section {
+  padding: 118px 0;
+  background: linear-gradient(180deg, var(--paper), #F7F4EA);
 }
 
 .instructor-section::before {
-  content: "";
-  position: absolute;
-  inset: 42px auto auto 50%;
-  width: min(780px, 86vw);
-  height: min(780px, 86vw);
-  border: 1px solid rgba(16,21,19,.08);
-  border-radius: 999px;
-  transform: translateX(-8%);
-  pointer-events: none;
+  display: none;
 }
 
+/* Instructor */
 .instructor-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+  grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr);
+  gap: clamp(58px, 7vw, 104px);
+  min-height: 500px;
   align-items: center;
-  gap: 54px;
-  min-height: 480px;
 }
 
 .instructor-copy {
   position: relative;
   z-index: 2;
+  max-width: 760px;
+  padding: 8px 0 12px;
 }
 
 .instructor-copy .eyebrow,
@@ -4805,12 +4812,12 @@ html.theme-dark .photo-slider .slider-arrow path {
 }
 
 .instructor-copy h2 {
-  margin-top: 18px;
+  margin-top: 16px;
   color: var(--ink);
-  font-size: clamp(42px, 7.2vw, 96px);
-  line-height: .94;
-  letter-spacing: -.095em;
-  font-weight: 900;
+  font-size: clamp(40px, 5.6vw, 78px);
+  line-height: 1.28;
+  letter-spacing: -.065em;
+  font-weight: 950;
 }
 
 .instructor-copy h2 span {
@@ -4819,90 +4826,83 @@ html.theme-dark .photo-slider .slider-arrow path {
 
 .instructor-copy strong {
   display: block;
-  margin-top: 28px;
-  color: var(--green-deep);
-  font-size: clamp(32px, 4.8vw, 62px);
-  line-height: 1;
-  letter-spacing: -.08em;
-  font-weight: 900;
+  margin-top: 18px;
+  color: #42E686;
+  -webkit-text-fill-color: #42E686;
+  font-size: clamp(38px, 5.2vw, 72px);
+  line-height: 1.22;
+  letter-spacing: -.065em;
+  font-weight: 950;
 }
 
 .instructor-copy p {
-  max-width: 620px;
-  margin-top: 26px;
+  max-width: 610px;
+  margin-top: 22px;
   color: var(--muted);
-  font-size: clamp(17px, 2vw, 22px);
-  line-height: 1.72;
-  letter-spacing: -.03em;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.78;
   word-break: keep-all;
 }
 
 .instructor-visual {
-  position: relative;
-  min-height: 420px;
+  min-height: 440px;
   display: grid;
   place-items: center;
+  overflow: visible;
 }
 
-.instructor-orbit {
-  position: absolute;
-  width: min(430px, 76vw);
-  height: min(430px, 76vw);
-  border-radius: 999px;
+.instructor-image-placeholder {
+  width: min(420px, 78vw);
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  border-radius: 34px;
   background:
-    linear-gradient(135deg, rgba(66,230,134,.92), rgba(67,135,255,.86)),
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,.80), transparent 28%);
-  filter: saturate(1.05);
-}
-
-.instructor-orbit::before,
-.instructor-orbit::after {
-  content: "";
-  position: absolute;
-  inset: -24px;
+    linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.46)),
+    repeating-linear-gradient(-45deg, rgba(16,21,19,.035) 0 1px, transparent 1px 14px);
   border: 1px solid rgba(16,21,19,.12);
+  overflow: hidden;
+}
+
+.placeholder-frame {
+  width: calc(100% - 34px);
+  height: calc(100% - 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px dashed rgba(16,21,19,.22);
+  background: rgba(255,255,255,.38);
+}
+
+.placeholder-label {
+  width: fit-content;
+  margin-bottom: auto;
+  padding: 7px 11px;
   border-radius: 999px;
-}
-
-.instructor-orbit::after {
-  inset: 34px -42px;
-  border-color: rgba(255,255,255,.65);
-  transform: rotate(-18deg);
-}
-
-.instructor-name-mark {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: min(300px, 58vw);
-  height: min(300px, 58vw);
-  border-radius: 999px;
-  background: rgba(255,255,255,.82);
-  border: 1px solid rgba(255,255,255,.70);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 28px 80px rgba(16,21,19,.12);
-}
-
-.instructor-name-mark span {
-  display: block;
-  color: #101513;
-  font-size: clamp(74px, 11vw, 128px);
-  line-height: .78;
-  font-weight: 950;
-  letter-spacing: -.11em;
-}
-
-.instructor-name-mark em {
-  position: absolute;
-  right: 38px;
-  bottom: 44px;
-  color: rgba(16,21,19,.56);
-  font-size: 12px;
-  font-style: normal;
+  background: rgba(66,230,134,.16);
+  color: var(--green-deep);
+  font-size: 11px;
   font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.placeholder-frame strong {
+  display: block;
+  color: var(--ink);
+  font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.05;
-  letter-spacing: .08em;
+  letter-spacing: -.07em;
+  font-weight: 900;
+}
+
+.placeholder-frame p {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+  word-break: keep-all;
 }
 
 .instructor-lineup {
@@ -4911,13 +4911,13 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
-  margin-top: 36px;
+  margin-top: 54px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 
 .instructor-lineup article {
-  padding: 28px 24px;
+  padding: 32px 26px;
   border-right: 1px solid var(--line);
 }
 
@@ -4955,8 +4955,8 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 24px;
-  margin-top: 28px;
-  padding: 22px 0 0;
+  margin-top: 34px;
+  padding-top: 28px;
 }
 
 .instructor-career-strip span {
@@ -4972,11 +4972,11 @@ html.theme-dark .photo-slider .slider-arrow path {
   word-break: keep-all;
 }
 
-.reviews-section {
-  padding: 118px 0;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(66,230,134,.13), transparent 30%),
-    linear-gradient(180deg, var(--paper), #F7F4EA);
+/* Reviews */
+.reviews-section .section-head {
+  max-width: 920px;
+  margin: 0 auto 44px;
+  text-align: center;
 }
 
 .review-carousel {
@@ -5033,9 +5033,9 @@ html.theme-dark .photo-slider .slider-arrow path {
   max-width: 720px;
   text-align: right;
   color: var(--ink);
-  font-size: clamp(22px, 3.4vw, 36px);
-  line-height: 1.15;
-  letter-spacing: -.06em;
+  font-size: clamp(21px, 3.1vw, 32px);
+  line-height: 1.18;
+  letter-spacing: -.055em;
 }
 
 .review-cards {
@@ -5045,36 +5045,36 @@ html.theme-dark .photo-slider .slider-arrow path {
 }
 
 .review-card {
-  min-height: 268px;
-  padding: 25px;
+  min-height: 252px;
+  padding: 24px;
   border-radius: 26px;
   border: 1px solid var(--line);
   background: rgba(255,255,255,.78);
-  box-shadow: 0 18px 46px rgba(16,21,19,.06);
+  box-shadow: none;
 }
 
 .review-card span {
   display: block;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 900;
 }
 
 .review-card blockquote {
-  margin-bottom: 18px;
+  margin-bottom: 15px;
   color: var(--ink);
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 850;
-  line-height: 1.38;
-  letter-spacing: -.05em;
+  line-height: 1.42;
+  letter-spacing: -.045em;
   word-break: keep-all;
 }
 
 .review-card p {
   color: var(--muted);
-  font-size: 15px;
-  line-height: 1.72;
+  font-size: 14px;
+  line-height: 1.68;
   word-break: keep-all;
 }
 
@@ -5102,21 +5102,27 @@ html.theme-dark .photo-slider .slider-arrow path {
 
 .review-cinema {
   position: relative;
-  min-height: 112px;
-  margin-top: 42px;
-  border-radius: 28px;
-  overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(16,21,19,.92), rgba(16,21,19,.72)),
-    radial-gradient(circle at 50% 0%, rgba(66,230,134,.18), transparent 42%);
+  min-height: 128px;
+  margin-top: 56px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .review-cinema::before {
+  display: none;
+  content: none;
+}
+
+.review-cinema::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 50%, rgba(0,0,0,.16));
-  pointer-events: none;
+  left: 50%;
+  bottom: 18px;
+  width: min(220px, 44vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent);
 }
 
 .cinema-line {
@@ -5125,13 +5131,14 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 26px;
+  padding: 0 clamp(22px, 8vw, 120px);
   text-align: center;
-  color: rgba(255,255,255,.92);
-  font-size: clamp(18px, 2.3vw, 26px);
+  color: #101513;
+  -webkit-text-fill-color: #101513;
+  font-size: clamp(20px, 2.35vw, 30px);
   font-weight: 760;
-  line-height: 1.45;
-  letter-spacing: -.04em;
+  line-height: 1.52;
+  letter-spacing: -.05em;
   word-break: keep-all;
   opacity: 0;
   transform: translateY(12px);
@@ -5150,59 +5157,50 @@ html.theme-dark .photo-slider .slider-arrow path {
   100% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
 }
 
+/* Dark mode */
 html.theme-dark .instructor-section,
 html.theme-dark .reviews-section {
   background: #111111 !important;
   color: #F3F3F0 !important;
 }
 
-html.theme-dark .instructor-section::before {
-  border-color: rgba(255,255,255,.07);
-}
-
 html.theme-dark .instructor-copy h2,
 html.theme-dark .review-page-head strong,
 html.theme-dark .review-card blockquote,
-html.theme-dark .instructor-lineup strong {
+html.theme-dark .instructor-lineup strong,
+html.theme-dark .placeholder-frame strong {
   color: #F3F3F0 !important;
   -webkit-text-fill-color: #F3F3F0 !important;
-}
-
-html.theme-dark .instructor-copy p,
-html.theme-dark .instructor-lineup p,
-html.theme-dark .instructor-career-strip p,
-html.theme-dark .review-card p,
-html.theme-dark .review-card span {
-  color: rgba(243,243,240,.66) !important;
-  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
 }
 
 html.theme-dark .instructor-copy strong,
 html.theme-dark .instructor-copy .eyebrow,
 html.theme-dark .reviews-section .eyebrow,
 html.theme-dark .instructor-lineup span,
-html.theme-dark .instructor-career-strip span {
+html.theme-dark .instructor-career-strip span,
+html.theme-dark .placeholder-label {
   color: #42E686 !important;
   -webkit-text-fill-color: #42E686 !important;
 }
 
-html.theme-dark .instructor-name-mark {
-  background: rgba(255,255,255,.82) !important;
-  border-color: rgba(255,255,255,.45) !important;
+html.theme-dark .instructor-copy p,
+html.theme-dark .instructor-lineup p,
+html.theme-dark .instructor-career-strip p,
+html.theme-dark .review-card p,
+html.theme-dark .review-card span,
+html.theme-dark .placeholder-frame p {
+  color: rgba(243,243,240,.66) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
 }
 
-html.theme-dark .instructor-lineup {
-  border-top-color: rgba(255,255,255,.12) !important;
-  border-bottom-color: rgba(255,255,255,.12) !important;
-}
-
-html.theme-dark .instructor-lineup article {
-  border-right-color: rgba(255,255,255,.12) !important;
+html.theme-dark .instructor-lineup,
+html.theme-dark .instructor-lineup article,
+html.theme-dark .review-card {
+  border-color: rgba(255,255,255,.10) !important;
 }
 
 html.theme-dark .review-card {
   background: #181818 !important;
-  border-color: rgba(255,255,255,.09) !important;
   box-shadow: none !important;
 }
 
@@ -5214,836 +5212,6 @@ html.theme-dark .review-dots span.is-active {
   background: #42E686 !important;
 }
 
-@media (max-width: 980px) {
-  .instructor-hero {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .instructor-visual {
-    min-height: 320px;
-  }
-
-  .instructor-lineup {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .instructor-lineup article:nth-child(2) {
-    border-right: 0;
-  }
-
-  .review-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 760px) {
-  .instructor-section,
-  .reviews-section {
-    padding: 86px 0;
-  }
-
-  .instructor-copy h2 {
-    font-size: clamp(42px, 12vw, 64px);
-  }
-
-  .instructor-lineup {
-    grid-template-columns: 1fr;
-  }
-
-  .instructor-lineup article {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-    padding: 24px 0;
-  }
-
-  .instructor-lineup article:last-child {
-    border-bottom: 0;
-  }
-
-  .instructor-career-strip {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .review-carousel {
-    border-radius: 24px;
-  }
-
-  .review-page-head {
-    display: grid;
-    align-items: start;
-  }
-
-  .review-page-head strong {
-    text-align: left;
-  }
-
-  .review-card {
-    min-height: auto;
-    padding: 22px;
-  }
-
-  .review-cinema {
-    min-height: 138px;
-    border-radius: 22px;
-  }
-
-  .cinema-line {
-    padding: 0 20px;
-  }
-}
-
-
-
-/* 강사소개: 기존 섹션들과 톤 맞추기 */
-.instructor-section {
-  padding: 132px 0 126px !important;
-}
-
-.instructor-hero {
-  grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr) !important;
-  gap: clamp(64px, 8vw, 112px) !important;
-  min-height: 520px !important;
-  align-items: center !important;
-}
-
-.instructor-copy {
-  padding: 18px 0 22px !important;
-  max-width: 720px !important;
-}
-
-.instructor-copy h2 {
-  margin-top: 22px !important;
-  font-size: clamp(34px, 4.7vw, 66px) !important;
-  line-height: 1.08 !important;
-  letter-spacing: -.075em !important;
-  font-weight: 880 !important;
-}
-
-.instructor-copy strong {
-  margin-top: 26px !important;
-  font-size: clamp(30px, 3.7vw, 50px) !important;
-  line-height: 1.08 !important;
-  letter-spacing: -.065em !important;
-}
-
-.instructor-copy p {
-  max-width: 560px !important;
-  margin-top: 26px !important;
-  font-size: clamp(16px, 1.55vw, 19px) !important;
-  line-height: 1.82 !important;
-}
-
-.instructor-visual {
-  min-height: 500px !important;
-  overflow: visible !important;
-}
-
-.instructor-orbit {
-  animation: instructorPlanetFloat 6.8s ease-in-out infinite !important;
-  box-shadow:
-    0 42px 90px rgba(66,230,134,.20),
-    0 24px 80px rgba(67,135,255,.18) !important;
-}
-
-.instructor-orbit::before {
-  animation: instructorOrbitSpin 18s linear infinite !important;
-}
-
-.instructor-orbit::after {
-  animation: instructorOrbitSpinReverse 12s linear infinite !important;
-}
-
-/* 주변 궤도 점 */
-.instructor-visual::before,
-.instructor-visual::after {
-  content: "" !important;
-  position: absolute !important;
-  z-index: 3 !important;
-  border-radius: 999px !important;
-  pointer-events: none !important;
-}
-
-.instructor-visual::before {
-  width: 18px !important;
-  height: 18px !important;
-  top: 17% !important;
-  right: 18% !important;
-  background: #42E686 !important;
-  box-shadow: 0 0 28px rgba(66,230,134,.42) !important;
-  animation: instructorSatelliteA 9.5s ease-in-out infinite !important;
-}
-
-.instructor-visual::after {
-  width: 11px !important;
-  height: 11px !important;
-  left: 17% !important;
-  bottom: 22% !important;
-  background: #4387FF !important;
-  box-shadow: 0 0 24px rgba(67,135,255,.42) !important;
-  animation: instructorSatelliteB 11s ease-in-out infinite !important;
-}
-
-.instructor-name-mark {
-  animation: instructorNameFloat 5.8s ease-in-out infinite !important;
-}
-
-@keyframes instructorPlanetFloat {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50% { transform: translate3d(0, -12px, 0) rotate(2deg); }
-}
-
-@keyframes instructorNameFloat {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, 10px, 0); }
-}
-
-@keyframes instructorOrbitSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes instructorOrbitSpinReverse {
-  from { transform: rotate(-18deg); }
-  to { transform: rotate(-378deg); }
-}
-
-@keyframes instructorSatelliteA {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .86; }
-  50% { transform: translate3d(-34px, 26px, 0) scale(.82); opacity: .58; }
-}
-
-@keyframes instructorSatelliteB {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(.9); opacity: .55; }
-  50% { transform: translate3d(42px, -30px, 0) scale(1.15); opacity: .92; }
-}
-
-/* 경력 라인 여백 완화 */
-.instructor-lineup {
-  margin-top: 54px !important;
-}
-
-.instructor-lineup article {
-  padding: 32px 26px !important;
-}
-
-.instructor-career-strip {
-  margin-top: 34px !important;
-  padding-top: 28px !important;
-}
-
-/* 수강생 후기 하단: 긴 네모 박스 제거, 영화 자막형으로 변경 */
-.review-cinema {
-  position: relative !important;
-  min-height: 168px !important;
-  margin-top: 66px !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-.review-cinema::before {
-  content: "“" !important;
-  position: absolute !important;
-  left: 50% !important;
-  top: -42px !important;
-  transform: translateX(-50%) !important;
-  color: rgba(66,230,134,.26) !important;
-  font-size: clamp(92px, 12vw, 150px) !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  pointer-events: none !important;
-  background: none !important;
-}
-
-.review-cinema::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 50% !important;
-  bottom: 18px !important;
-  width: min(220px, 44vw) !important;
-  height: 1px !important;
-  transform: translateX(-50%) !important;
-  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent) !important;
-  pointer-events: none !important;
-}
-
-.cinema-line {
-  padding: 0 clamp(22px, 8vw, 120px) !important;
-  color: #101513 !important;
-  -webkit-text-fill-color: #101513 !important;
-  font-size: clamp(20px, 2.65vw, 34px) !important;
-  font-weight: 760 !important;
-  line-height: 1.52 !important;
-  letter-spacing: -.055em !important;
-  text-shadow: none !important;
-}
-
-html.theme-dark .review-cinema {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-html.theme-dark .review-cinema::before {
-  color: rgba(66,230,134,.32) !important;
-}
-
-html.theme-dark .review-cinema::after {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) !important;
-}
-
-html.theme-dark .cinema-line {
-  color: #F3F3F0 !important;
-  -webkit-text-fill-color: #F3F3F0 !important;
-}
-
-@media (max-width: 980px) {
-  .instructor-section {
-    padding: 104px 0 98px !important;
-  }
-
-  .instructor-hero {
-    gap: 44px !important;
-    min-height: auto !important;
-  }
-
-  .instructor-visual {
-    min-height: 360px !important;
-  }
-
-  .instructor-copy h2 {
-    font-size: clamp(34px, 7vw, 56px) !important;
-  }
-}
-
-@media (max-width: 760px) {
-  .instructor-section {
-    padding: 86px 0 82px !important;
-  }
-
-  .instructor-copy {
-    padding: 0 !important;
-  }
-
-  .instructor-copy h2 {
-    margin-top: 18px !important;
-    font-size: clamp(32px, 9vw, 44px) !important;
-    line-height: 1.12 !important;
-    letter-spacing: -.07em !important;
-  }
-
-  .instructor-copy strong {
-    font-size: clamp(28px, 8vw, 38px) !important;
-  }
-
-  .instructor-copy p {
-    font-size: 16px !important;
-    line-height: 1.78 !important;
-  }
-
-  .instructor-visual {
-    min-height: 300px !important;
-  }
-
-  .instructor-lineup {
-    margin-top: 34px !important;
-  }
-
-  .review-cinema {
-    min-height: 188px !important;
-    margin-top: 48px !important;
-  }
-
-  .review-cinema::before {
-    top: -30px !important;
-  }
-
-  .cinema-line {
-    padding: 0 8px !important;
-    font-size: clamp(19px, 5.6vw, 25px) !important;
-    line-height: 1.55 !important;
-  }
-}
-
-
-
-/* 배경 그라데이션 제거: 더 담백한 아이보리 톤 */
-.instructor-section {
-  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
-}
-
-.reviews-section {
-  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
-}
-
-.instructor-section::before {
-  display: none !important;
-}
-
-/* 강사명 밝은 초록 */
-.instructor-copy strong {
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
-}
-
-/* 기존 채워진 원형 그래픽 완전 비활성화 */
-.instructor-orbit,
-.instructor-name-mark,
-.instructor-visual::before,
-.instructor-visual::after {
-  display: none !important;
-}
-
-/* 라인형 행성 그래픽 */
-.instructor-visual {
-  min-height: 430px !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: visible !important;
-}
-
-.instructor-line-art {
-  position: relative;
-  width: min(420px, 78vw);
-  height: min(420px, 78vw);
-  color: #101513;
-  animation: lineArtFloat 6.5s ease-in-out infinite;
-}
-
-.line-planet {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  width: 168px;
-  height: 168px;
-  border: 2px solid currentColor;
-  border-radius: 999px;
-  transform: translate(-50%, -50%);
-}
-
-.line-planet::before {
-  content: "";
-  position: absolute;
-  right: -7px;
-  bottom: 24px;
-  width: 42px;
-  height: 78px;
-  border-radius: 0 80px 80px 0;
-  background: currentColor;
-  transform: rotate(18deg);
-}
-
-.line-orbit {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  width: 300px;
-  height: 112px;
-  border: 1.4px solid currentColor;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-radius: 999px;
-  transform-origin: center;
-  opacity: .76;
-}
-
-.orbit-a {
-  transform: translate(-50%, -50%) rotate(-18deg);
-  animation: orbitLineA 12s linear infinite;
-}
-
-.orbit-b {
-  width: 358px;
-  height: 132px;
-  opacity: .34;
-  transform: translate(-50%, -50%) rotate(18deg);
-  animation: orbitLineB 18s linear infinite;
-}
-
-.line-star {
-  position: absolute;
-  width: 54px;
-  height: 54px;
-  transform-origin: center;
-  animation: starPulse 3.6s ease-in-out infinite;
-}
-
-.line-star::before,
-.line-star::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background: currentColor;
-  transform: translate(-50%, -50%);
-}
-
-.line-star::before {
-  width: 2px;
-  height: 54px;
-}
-
-.line-star::after {
-  width: 54px;
-  height: 2px;
-}
-
-.star-a {
-  right: 44px;
-  top: 92px;
-}
-
-.star-b {
-  left: 42px;
-  bottom: 96px;
-  width: 38px;
-  height: 38px;
-  opacity: .78;
-  animation-delay: .8s;
-}
-
-.star-b::before {
-  height: 38px;
-}
-
-.star-b::after {
-  width: 38px;
-}
-
-.star-c {
-  right: 118px;
-  bottom: 52px;
-  width: 28px;
-  height: 28px;
-  opacity: .62;
-  animation-delay: 1.4s;
-}
-
-.star-c::before {
-  height: 28px;
-}
-
-.star-c::after {
-  width: 28px;
-}
-
-.line-dot {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: currentColor;
-  opacity: .82;
-}
-
-.dot-a {
-  right: 82px;
-  top: 74px;
-  animation: dotTravelA 7.5s ease-in-out infinite;
-}
-
-.dot-b {
-  left: 86px;
-  bottom: 76px;
-  animation: dotTravelB 8.5s ease-in-out infinite;
-}
-
-.line-comet {
-  position: absolute;
-  right: 28px;
-  bottom: 118px;
-  width: 118px;
-  height: 64px;
-  border-top: 1.5px solid currentColor;
-  border-radius: 100% 0 0 0;
-  transform: rotate(-22deg);
-  opacity: .52;
-  animation: cometSweep 5.8s ease-in-out infinite;
-}
-
-.line-comet::after {
-  content: "";
-  position: absolute;
-  right: -4px;
-  top: -5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: currentColor;
-}
-
-@keyframes lineArtFloat {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -10px, 0); }
-}
-
-@keyframes orbitLineA {
-  from { transform: translate(-50%, -50%) rotate(-18deg); }
-  to { transform: translate(-50%, -50%) rotate(342deg); }
-}
-
-@keyframes orbitLineB {
-  from { transform: translate(-50%, -50%) rotate(18deg); }
-  to { transform: translate(-50%, -50%) rotate(-342deg); }
-}
-
-@keyframes starPulse {
-  0%, 100% { transform: scale(.88); opacity: .55; }
-  50% { transform: scale(1.08); opacity: 1; }
-}
-
-@keyframes dotTravelA {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-26px, 18px, 0); }
-}
-
-@keyframes dotTravelB {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(32px, -20px, 0); }
-}
-
-@keyframes cometSweep {
-  0%, 100% { transform: rotate(-22deg) translate3d(0, 0, 0); opacity: .36; }
-  50% { transform: rotate(-18deg) translate3d(-18px, -8px, 0); opacity: .78; }
-}
-
-/* 수강생 후기 카드 그림자 제거 */
-.review-card {
-  box-shadow: none !important;
-}
-
-/* 하단 영화 멘트: 큰 초록색 따옴표 제거 */
-.review-cinema::before {
-  display: none !important;
-  content: none !important;
-}
-
-.review-cinema {
-  margin-top: 56px !important;
-}
-
-.cinema-line {
-  font-size: clamp(20px, 2.45vw, 32px) !important;
-}
-
-/* 다크모드 */
-html.theme-dark .instructor-section,
-html.theme-dark .reviews-section {
-  background: #111111 !important;
-}
-
-html.theme-dark .instructor-copy strong {
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
-}
-
-html.theme-dark .instructor-line-art {
-  color: #F3F3F0 !important;
-}
-
-html.theme-dark .line-orbit {
-  opacity: .64;
-}
-
-html.theme-dark .orbit-b {
-  opacity: .28;
-}
-
-html.theme-dark .review-card {
-  box-shadow: none !important;
-}
-
-@media (max-width: 980px) {
-  .instructor-line-art {
-    width: min(360px, 76vw);
-    height: min(360px, 76vw);
-  }
-
-  .line-planet {
-    width: 140px;
-    height: 140px;
-  }
-
-  .orbit-a {
-    width: 260px;
-    height: 98px;
-  }
-
-  .orbit-b {
-    width: 310px;
-    height: 114px;
-  }
-}
-
-@media (max-width: 760px) {
-  .instructor-visual {
-    min-height: 280px !important;
-  }
-
-  .instructor-line-art {
-    width: min(300px, 80vw);
-    height: min(300px, 80vw);
-  }
-
-  .line-planet {
-    width: 112px;
-    height: 112px;
-  }
-
-  .orbit-a {
-    width: 218px;
-    height: 82px;
-  }
-
-  .orbit-b {
-    width: 258px;
-    height: 96px;
-  }
-
-  .line-star {
-    transform: scale(.82);
-  }
-
-  .review-cinema {
-    margin-top: 42px !important;
-  }
-}
-
-
-
-/* 섹션 배경: 좌측상단 초록 원 그라데이션 제거 */
-.instructor-section {
-  padding: 124px 0 118px !important;
-  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
-}
-
-.reviews-section {
-  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
-}
-
-.instructor-section::before {
-  display: none !important;
-}
-
-/* 강사소개 타이포: 기존 section-title과 비율 통일 */
-.instructor-hero {
-  grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr) !important;
-  gap: clamp(58px, 7vw, 104px) !important;
-  min-height: 500px !important;
-  align-items: center !important;
-}
-
-.instructor-copy {
-  max-width: 760px !important;
-  padding: 8px 0 12px !important;
-}
-
-.instructor-copy h2 {
-  margin-top: 16px !important;
-  font-size: clamp(40px, 5.6vw, 78px) !important;
-  line-height: 1.28 !important;
-  letter-spacing: -.065em !important;
-  font-weight: 950 !important;
-}
-
-.instructor-copy h2 span {
-  display: block !important;
-}
-
-.instructor-copy strong {
-  display: block !important;
-  margin-top: 18px !important;
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
-  font-size: clamp(38px, 5.2vw, 72px) !important;
-  line-height: 1.22 !important;
-  letter-spacing: -.065em !important;
-  font-weight: 950 !important;
-}
-
-.instructor-copy p {
-  max-width: 610px !important;
-  margin-top: 22px !important;
-  font-size: clamp(16px, 1.5vw, 19px) !important;
-  line-height: 1.78 !important;
-}
-
-/* 이전 채워진/스팬형 그래픽 비활성화 */
-.instructor-orbit,
-.instructor-name-mark,
-.instructor-line-art,
-.line-planet,
-.line-orbit,
-.line-star,
-.line-dot,
-.line-comet,
-.instructor-visual::before,
-.instructor-visual::after {
-  display: none !important;
-}
-
-/* Y2K 유기적 라인 아트 */
-.instructor-visual {
-  min-height: 440px !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: visible !important;
-}
-
-/* 후기 섹션: 큰 초록 따옴표와 카드 그림자 제거 유지 */
-.review-card {
-  box-shadow: none !important;
-}
-
-.review-cinema {
-  margin-top: 56px !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-.review-cinema::before {
-  display: none !important;
-  content: none !important;
-}
-
-.review-cinema::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 50% !important;
-  bottom: 18px !important;
-  width: min(220px, 44vw) !important;
-  height: 1px !important;
-  transform: translateX(-50%) !important;
-  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent) !important;
-}
-
-.cinema-line {
-  color: #101513 !important;
-  -webkit-text-fill-color: #101513 !important;
-  font-size: clamp(20px, 2.45vw, 32px) !important;
-  line-height: 1.52 !important;
-}
-
-/* 다크모드 */
-html.theme-dark .instructor-section,
-html.theme-dark .reviews-section {
-  background: #111111 !important;
-}
-
-html.theme-dark .instructor-copy strong {
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
-}
-
-html.theme-dark html.theme-dark .review-card {
-  box-shadow: none !important;
-}
-
 html.theme-dark .review-cinema {
   background: transparent !important;
   border: 0 !important;
@@ -6057,250 +5225,12 @@ html.theme-dark .review-cinema::after {
 html.theme-dark .cinema-line {
   color: #F3F3F0 !important;
   -webkit-text-fill-color: #F3F3F0 !important;
-}
-
-@media (max-width: 980px) {
-  .instructor-section {
-    padding: 104px 0 98px !important;
-  }
-
-  .instructor-hero {
-    grid-template-columns: 1fr !important;
-    gap: 42px !important;
-    min-height: auto !important;
-  }
-
-  .instructor-visual {
-    min-height: 340px !important;
-  }
-
-  }
-
-@media (max-width: 760px) {
-  .instructor-section {
-    padding: 86px 0 82px !important;
-  }
-
-  .instructor-copy h2 {
-    font-size: clamp(36px, 9vw, 48px) !important;
-    line-height: 1.22 !important;
-  }
-
-  .instructor-copy strong {
-    font-size: clamp(32px, 8.5vw, 44px) !important;
-    line-height: 1.2 !important;
-  }
-
-  .instructor-copy p {
-    font-size: 16px !important;
-    line-height: 1.76 !important;
-  }
-
-  .instructor-visual {
-    min-height: 280px !important;
-  }
-
-  .review-cinema {
-    margin-top: 42px !important;
-  }
-
-  .cinema-line {
-    font-size: clamp(19px, 5.6vw, 25px) !important;
-    line-height: 1.55 !important;
-  }
-}
-
-/* 섹션 배경: 좌측상단 초록 원 그라데이션 제거 */
-.instructor-section {
-  padding: 124px 0 118px !important;
-  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
-}
-
-.reviews-section {
-  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
-}
-
-.instructor-section::before {
-  display: none !important;
-}
-
-/* 강사소개 타이포 */
-.instructor-hero {
-  grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr) !important;
-  gap: clamp(58px, 7vw, 104px) !important;
-  min-height: 500px !important;
-  align-items: center !important;
-}
-
-.instructor-copy {
-  max-width: 760px !important;
-  padding: 8px 0 12px !important;
-}
-
-.instructor-copy h2 {
-  margin-top: 16px !important;
-  font-size: clamp(40px, 5.6vw, 78px) !important;
-  line-height: 1.28 !important;
-  letter-spacing: -.065em !important;
-  font-weight: 950 !important;
-}
-
-.instructor-copy h2 span {
-  display: block !important;
-}
-
-.instructor-copy strong {
-  display: block !important;
-  margin-top: 18px !important;
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
-  font-size: clamp(38px, 5.2vw, 72px) !important;
-  line-height: 1.22 !important;
-  letter-spacing: -.065em !important;
-  font-weight: 950 !important;
-}
-
-.instructor-copy p {
-  max-width: 610px !important;
-  margin-top: 22px !important;
-  font-size: clamp(16px, 1.5vw, 19px) !important;
-  line-height: 1.78 !important;
-}
-
-/* 이전 그래픽 계열 비활성화 */
-.instructor-orbit,
-.instructor-name-mark,
-.instructor-line-art,
-.line-planet,
-.line-orbit,
-.line-star,
-.line-dot,
-.line-comet,
-.instructor-visual::before,
-.instructor-visual::after {
-  display: none !important;
-}
-
-/* 강사 이미지 준비중 */
-.instructor-visual {
-  min-height: 440px !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: visible !important;
-}
-
-.instructor-image-placeholder {
-  width: min(420px, 78vw);
-  aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  border-radius: 34px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.46)),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(16,21,19,.035) 0 1px,
-      transparent 1px 14px
-    );
-  border: 1px solid rgba(16,21,19,.12);
-  overflow: hidden;
-}
-
-.placeholder-frame {
-  width: calc(100% - 34px);
-  height: calc(100% - 34px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px;
-  border-radius: 26px;
-  border: 1px dashed rgba(16,21,19,.22);
-  background: rgba(255,255,255,.38);
-}
-
-.placeholder-label {
-  width: fit-content;
-  margin-bottom: auto;
-  padding: 7px 11px;
-  border-radius: 999px;
-  background: rgba(66,230,134,.16);
-  color: var(--green-deep);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .12em;
-}
-
-.placeholder-frame strong {
-  display: block;
-  color: var(--ink);
-  font-size: clamp(28px, 3.4vw, 44px);
-  line-height: 1.05;
-  letter-spacing: -.07em;
-  font-weight: 900;
-}
-
-.placeholder-frame p {
-  margin-top: 16px;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.65;
-  word-break: keep-all;
-}
-
-/* 후기 섹션: 큰 초록 따옴표와 카드 그림자 제거 유지 */
-.review-card {
-  box-shadow: none !important;
-}
-
-.review-cinema {
-  margin-top: 56px !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-.review-cinema::before {
-  display: none !important;
-  content: none !important;
-}
-
-.review-cinema::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 50% !important;
-  bottom: 18px !important;
-  width: min(220px, 44vw) !important;
-  height: 1px !important;
-  transform: translateX(-50%) !important;
-  background: linear-gradient(90deg, transparent, rgba(16,21,19,.28), transparent) !important;
-}
-
-.cinema-line {
-  color: #101513 !important;
-  -webkit-text-fill-color: #101513 !important;
-  font-size: clamp(20px, 2.45vw, 32px) !important;
-  line-height: 1.52 !important;
-}
-
-/* 다크모드 */
-html.theme-dark .instructor-section,
-html.theme-dark .reviews-section {
-  background: #111111 !important;
-}
-
-html.theme-dark .instructor-copy strong {
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
 }
 
 html.theme-dark .instructor-image-placeholder {
   background:
     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255,255,255,.045) 0 1px,
-      transparent 1px 14px
-    ) !important;
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.045) 0 1px, transparent 1px 14px) !important;
   border-color: rgba(255,255,255,.14) !important;
 }
 
@@ -6311,96 +5241,262 @@ html.theme-dark .placeholder-frame {
 
 html.theme-dark .placeholder-label {
   background: rgba(66,230,134,.12) !important;
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
 }
 
-html.theme-dark .placeholder-frame strong {
-  color: #F3F3F0 !important;
-  -webkit-text-fill-color: #F3F3F0 !important;
-}
-
-html.theme-dark .placeholder-frame p {
-  color: rgba(243,243,240,.66) !important;
-  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
-}
-
-html.theme-dark .review-card {
-  box-shadow: none !important;
-}
-
-html.theme-dark .review-cinema {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-html.theme-dark .review-cinema::after {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) !important;
-}
-
-html.theme-dark .cinema-line {
-  color: #F3F3F0 !important;
-  -webkit-text-fill-color: #F3F3F0 !important;
-}
-
+/* Tablet */
 @media (max-width: 980px) {
-  .instructor-section {
-    padding: 104px 0 98px !important;
+  .instructor-section,
+  .reviews-section {
+    padding: 84px 0;
   }
 
   .instructor-hero {
-    grid-template-columns: 1fr !important;
-    gap: 42px !important;
-    min-height: auto !important;
+    grid-template-columns: 1fr;
+    gap: 34px;
+    min-height: auto;
   }
 
   .instructor-visual {
-    min-height: auto !important;
+    min-height: auto;
   }
 
   .instructor-image-placeholder {
-    width: min(360px, 76vw);
+    width: min(420px, 100%);
+  }
+
+  .instructor-lineup {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instructor-lineup article:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .instructor-lineup article:nth-child(-n+2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .review-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .review-page-head {
+    display: grid;
+    align-items: start;
+  }
+
+  .review-page-head strong {
+    text-align: left;
   }
 }
 
+/* Mobile */
 @media (max-width: 760px) {
-  .instructor-section {
-    padding: 86px 0 82px !important;
+  .instructor-section,
+  .reviews-section {
+    padding: 56px 0 !important;
   }
 
-  .instructor-copy h2 {
-    font-size: clamp(36px, 9vw, 48px) !important;
+  .instructor-hero {
+    gap: 24px !important;
+  }
+
+  .instructor-copy {
+    padding: 0 !important;
+  }
+
+  .instructor-copy h2,
+  .reviews-section .section-title {
+    margin-top: 12px !important;
+    font-size: clamp(25px, 7.6vw, 35px) !important;
     line-height: 1.22 !important;
+    letter-spacing: -.048em !important;
+    font-weight: 950 !important;
   }
 
   .instructor-copy strong {
-    font-size: clamp(32px, 8.5vw, 44px) !important;
-    line-height: 1.2 !important;
+    margin-top: 8px !important;
+    font-size: clamp(25px, 7.6vw, 35px) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -.048em !important;
+    font-weight: 950 !important;
   }
 
-  .instructor-copy p {
-    font-size: 16px !important;
-    line-height: 1.76 !important;
+  .instructor-copy p,
+  .reviews-section .section-desc {
+    max-width: 100% !important;
+    margin-top: 14px !important;
+    font-size: 12.8px !important;
+    line-height: 1.62 !important;
+    letter-spacing: 0 !important;
   }
 
   .instructor-image-placeholder {
-    width: min(310px, 84vw);
-    border-radius: 28px;
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    border-radius: 22px !important;
   }
 
   .placeholder-frame {
-    padding: 22px;
-    border-radius: 22px;
+    width: calc(100% - 24px) !important;
+    height: calc(100% - 24px) !important;
+    padding: 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .placeholder-label {
+    padding: 6px 9px !important;
+    font-size: 10px !important;
+  }
+
+  .placeholder-frame strong {
+    font-size: clamp(22px, 7vw, 30px) !important;
+    line-height: 1.08 !important;
+  }
+
+  .placeholder-frame p {
+    margin-top: 10px !important;
+    font-size: 12.5px !important;
+    line-height: 1.55 !important;
+  }
+
+  .instructor-lineup {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-top: 30px !important;
+    border-top: 1px solid var(--line) !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  .instructor-lineup article {
+    min-height: 138px !important;
+    padding: 17px 12px !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .instructor-lineup article:nth-child(odd) {
+    border-right: 1px solid var(--line) !important;
+  }
+
+  .instructor-lineup article:nth-child(-n+2) {
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  .instructor-lineup span {
+    margin-bottom: 10px !important;
+    font-size: 9.5px !important;
+    letter-spacing: .07em !important;
+  }
+
+  .instructor-lineup strong {
+    margin-bottom: 7px !important;
+    font-size: 13.8px !important;
+    line-height: 1.34 !important;
+    letter-spacing: -.035em !important;
+  }
+
+  .instructor-lineup p {
+    font-size: 11.6px !important;
+    line-height: 1.52 !important;
+  }
+
+  .instructor-career-strip {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin-top: 20px !important;
+    padding-top: 0 !important;
+  }
+
+  .instructor-career-strip span {
+    font-size: 10px !important;
+  }
+
+  .instructor-career-strip p {
+    font-size: 12.2px !important;
+    line-height: 1.6 !important;
+  }
+
+  .reviews-section .section-head {
+    margin: 0 0 26px !important;
+    text-align: left !important;
+  }
+
+  .review-carousel {
+    margin-top: 26px !important;
+    border-radius: 22px !important;
+  }
+
+  .review-page {
+    padding: 0 !important;
+  }
+
+  .review-page-head {
+    gap: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .review-page-head span {
+    width: fit-content !important;
+    padding: 6px 10px !important;
+    font-size: 10.5px !important;
+  }
+
+  .review-page-head strong {
+    font-size: clamp(17px, 5.2vw, 22px) !important;
+    line-height: 1.28 !important;
+    letter-spacing: -.045em !important;
+  }
+
+  .review-cards {
+    gap: 10px !important;
+  }
+
+  .review-card {
+    min-height: auto !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+  }
+
+  .review-card span {
+    margin-bottom: 10px !important;
+    font-size: 10.5px !important;
+  }
+
+  .review-card blockquote {
+    margin-bottom: 9px !important;
+    font-size: 15.4px !important;
+    line-height: 1.42 !important;
+    letter-spacing: -.04em !important;
+  }
+
+  .review-card p {
+    font-size: 12.2px !important;
+    line-height: 1.55 !important;
+  }
+
+  .review-dots {
+    margin-top: 18px !important;
   }
 
   .review-cinema {
-    margin-top: 42px !important;
+    min-height: 126px !important;
+    margin-top: 32px !important;
+  }
+
+  .review-cinema::after {
+    bottom: 8px !important;
   }
 
   .cinema-line {
-    font-size: clamp(19px, 5.6vw, 25px) !important;
-    line-height: 1.55 !important;
+    padding: 0 6px !important;
+    font-size: clamp(16.5px, 5vw, 21px) !important;
+    line-height: 1.52 !important;
+    letter-spacing: -.04em !important;
+  }
+
+  html.theme-dark .instructor-lineup article:nth-child(odd),
+  html.theme-dark .instructor-lineup article:nth-child(-n+2) {
+    border-color: rgba(255,255,255,.10) !important;
   }
 }
 
