@@ -4756,21 +4756,22 @@ html.theme-dark .photo-slider .slider-arrow path {
   }
 }
 
+
 /* ==========================================================================
-   v124 Instructor & Reviews Mobile Cleanup
-   - 강사소개/수강생후기 섹션 CSS 중복 정리
-   - 모바일 타이틀/여백을 기존 섹션 톤에 맞춤
+   Final Instructor & Reviews · v126
+   - 강사소개/수강생후기 섹션 최종 정리
+   - 모바일 타이포/여백을 기존 섹션 톤과 통일
    - 모바일 강사 이력 2칸 구성
-   - 수강생 후기 글자 크기 축소
-   - 라이트/다크 모바일 색상 보정
-   - 지도 영역은 v107/v114 기준 유지
+   - 후기 글자 크기 축소
+   - 후기 기수 라벨 잘림 수정
+   - 카톡 인앱 브라우저 라이트모드 전환 시 텍스트 흰색 잔상 보정
+   - 지도 영역은 수정하지 않음
    ========================================================================== */
 
 .instructor-section,
 .reviews-section {
   position: relative;
   overflow: hidden;
-  background: var(--paper);
   color: var(--ink);
 }
 
@@ -4788,7 +4789,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: none;
 }
 
-/* Instructor */
+/* 강사소개 */
 .instructor-hero {
   position: relative;
   display: grid;
@@ -4814,6 +4815,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 .instructor-copy h2 {
   margin-top: 16px;
   color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
   font-size: clamp(40px, 5.6vw, 78px);
   line-height: 1.28;
   letter-spacing: -.065em;
@@ -4839,6 +4841,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   max-width: 610px;
   margin-top: 22px;
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.78;
   word-break: keep-all;
@@ -4883,6 +4886,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   border-radius: 999px;
   background: rgba(66,230,134,.16);
   color: var(--green-deep);
+  -webkit-text-fill-color: var(--green-deep);
   font-size: 11px;
   font-weight: 900;
   letter-spacing: .12em;
@@ -4891,6 +4895,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 .placeholder-frame strong {
   display: block;
   color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.05;
   letter-spacing: -.07em;
@@ -4900,6 +4905,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 .placeholder-frame p {
   margin-top: 16px;
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
   font-size: 15px;
   line-height: 1.65;
   word-break: keep-all;
@@ -4929,6 +4935,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: block;
   margin-bottom: 18px;
   color: var(--green-deep);
+  -webkit-text-fill-color: var(--green-deep);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: .08em;
@@ -4939,6 +4946,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: block;
   margin-bottom: 12px;
   color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
   font-size: 20px;
   line-height: 1.32;
   letter-spacing: -.04em;
@@ -4946,6 +4954,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 
 .instructor-lineup p {
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
   font-size: 14px;
   line-height: 1.66;
   word-break: keep-all;
@@ -4961,27 +4970,45 @@ html.theme-dark .photo-slider .slider-arrow path {
 
 .instructor-career-strip span {
   color: var(--green-deep);
+  -webkit-text-fill-color: var(--green-deep);
   font-size: 13px;
   font-weight: 900;
 }
 
 .instructor-career-strip p {
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
   font-size: 15px;
   line-height: 1.74;
   word-break: keep-all;
 }
 
-/* Reviews */
+/* 수강생 후기 */
 .reviews-section .section-head {
   max-width: 920px;
   margin: 0 auto 44px;
   text-align: center;
 }
 
+.reviews-section .section-title {
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+
+.reviews-section .section-title .title-green {
+  color: #42E686;
+  -webkit-text-fill-color: #42E686;
+}
+
+.reviews-section .section-desc {
+  color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
+}
+
 .review-carousel {
   position: relative;
-  margin-top: 44px;
+  margin-top: 32px;
+  padding-top: 12px;
   overflow: hidden;
   border-radius: 34px;
 }
@@ -4989,6 +5016,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 .review-track {
   display: flex;
   width: 100%;
+  align-items: flex-start;
   transform: translate3d(0,0,0);
   transition: transform .78s cubic-bezier(.22,.9,.2,1);
   will-change: transform;
@@ -4998,7 +5026,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   position: relative;
   flex: 0 0 100%;
   min-width: 100%;
-  padding: 2px;
+  padding: 6px 2px 2px;
   opacity: .32;
   transform: scale(.985);
   pointer-events: none;
@@ -5017,22 +5045,29 @@ html.theme-dark .photo-slider .slider-arrow path {
   gap: 18px;
   align-items: flex-end;
   margin-bottom: 22px;
+  padding-top: 2px;
 }
 
 .review-page-head span {
   display: inline-flex;
+  flex-shrink: 0;
   padding: 8px 13px;
   border-radius: 999px;
-  background: var(--green);
+  background: #42E686;
   color: #062D1A;
+  -webkit-text-fill-color: #062D1A;
   font-size: 13px;
   font-weight: 900;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: none;
 }
 
 .review-page-head strong {
   max-width: 720px;
   text-align: right;
   color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
   font-size: clamp(21px, 3.1vw, 32px);
   line-height: 1.18;
   letter-spacing: -.055em;
@@ -5049,7 +5084,8 @@ html.theme-dark .photo-slider .slider-arrow path {
   padding: 24px;
   border-radius: 26px;
   border: 1px solid var(--line);
-  background: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.82);
+  background-clip: padding-box;
   box-shadow: none;
 }
 
@@ -5057,6 +5093,7 @@ html.theme-dark .photo-slider .slider-arrow path {
   display: block;
   margin-bottom: 22px;
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
   font-size: 12px;
   font-weight: 900;
 }
@@ -5064,6 +5101,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 .review-card blockquote {
   margin-bottom: 15px;
   color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
   font-size: 19px;
   font-weight: 850;
   line-height: 1.42;
@@ -5073,6 +5111,7 @@ html.theme-dark .photo-slider .slider-arrow path {
 
 .review-card p {
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
   font-size: 14px;
   line-height: 1.68;
   word-break: keep-all;
@@ -5157,14 +5196,86 @@ html.theme-dark .photo-slider .slider-arrow path {
   100% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
 }
 
+/* Light mode hard reset: Kakao/Samsung in-app browser 대응 */
+html.theme-light,
+html.theme-light body {
+  color-scheme: light !important;
+}
+
+html.theme-light .instructor-section,
+html.theme-light .reviews-section {
+  background: #FFFDF4 !important;
+  color: #101513 !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+html.theme-light .reviews-section {
+  background: #F7F4EA !important;
+}
+
+html.theme-light .instructor-copy h2,
+html.theme-light .reviews-section .section-title,
+html.theme-light .review-page-head strong,
+html.theme-light .review-card blockquote,
+html.theme-light .instructor-lineup strong,
+html.theme-light .placeholder-frame strong {
+  color: #101513 !important;
+  -webkit-text-fill-color: #101513 !important;
+}
+
+html.theme-light .reviews-section .section-title .title-green,
+html.theme-light .instructor-copy strong {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+html.theme-light .instructor-copy .eyebrow,
+html.theme-light .reviews-section .eyebrow,
+html.theme-light .instructor-lineup span,
+html.theme-light .instructor-career-strip span,
+html.theme-light .placeholder-label {
+  color: #086A3E !important;
+  -webkit-text-fill-color: #086A3E !important;
+}
+
+html.theme-light .instructor-copy p,
+html.theme-light .reviews-section .section-desc,
+html.theme-light .instructor-lineup p,
+html.theme-light .instructor-career-strip p,
+html.theme-light .review-card p,
+html.theme-light .review-card span,
+html.theme-light .placeholder-frame p {
+  color: #65716B !important;
+  -webkit-text-fill-color: #65716B !important;
+}
+
+html.theme-light .review-card {
+  background: rgba(255,255,255,.84) !important;
+  border-color: rgba(16,21,19,.12) !important;
+  box-shadow: none !important;
+}
+
+html.theme-light .instructor-lineup,
+html.theme-light .instructor-lineup article {
+  border-color: rgba(16,21,19,.12) !important;
+}
+
+html.theme-light .review-page-head span {
+  background: #42E686 !important;
+  color: #062D1A !important;
+  -webkit-text-fill-color: #062D1A !important;
+}
+
 /* Dark mode */
 html.theme-dark .instructor-section,
 html.theme-dark .reviews-section {
   background: #111111 !important;
   color: #F3F3F0 !important;
+  -webkit-text-fill-color: initial !important;
 }
 
 html.theme-dark .instructor-copy h2,
+html.theme-dark .reviews-section .section-title,
 html.theme-dark .review-page-head strong,
 html.theme-dark .review-card blockquote,
 html.theme-dark .instructor-lineup strong,
@@ -5173,6 +5284,7 @@ html.theme-dark .placeholder-frame strong {
   -webkit-text-fill-color: #F3F3F0 !important;
 }
 
+html.theme-dark .reviews-section .section-title .title-green,
 html.theme-dark .instructor-copy strong,
 html.theme-dark .instructor-copy .eyebrow,
 html.theme-dark .reviews-section .eyebrow,
@@ -5184,24 +5296,31 @@ html.theme-dark .placeholder-label {
 }
 
 html.theme-dark .instructor-copy p,
+html.theme-dark .reviews-section .section-desc,
 html.theme-dark .instructor-lineup p,
 html.theme-dark .instructor-career-strip p,
 html.theme-dark .review-card p,
 html.theme-dark .review-card span,
 html.theme-dark .placeholder-frame p {
-  color: rgba(243,243,240,.66) !important;
-  -webkit-text-fill-color: rgba(243,243,240,.66) !important;
-}
-
-html.theme-dark .instructor-lineup,
-html.theme-dark .instructor-lineup article,
-html.theme-dark .review-card {
-  border-color: rgba(255,255,255,.10) !important;
+  color: rgba(243,243,240,.74) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.74) !important;
 }
 
 html.theme-dark .review-card {
   background: #181818 !important;
+  border-color: rgba(255,255,255,.11) !important;
   box-shadow: none !important;
+}
+
+html.theme-dark .instructor-lineup,
+html.theme-dark .instructor-lineup article {
+  border-color: rgba(255,255,255,.12) !important;
+}
+
+html.theme-dark .review-page-head span {
+  background: #42E686 !important;
+  color: #062D1A !important;
+  -webkit-text-fill-color: #062D1A !important;
 }
 
 html.theme-dark .review-dots span {
@@ -5237,10 +5356,6 @@ html.theme-dark .instructor-image-placeholder {
 html.theme-dark .placeholder-frame {
   background: rgba(255,255,255,.035) !important;
   border-color: rgba(255,255,255,.22) !important;
-}
-
-html.theme-dark .placeholder-label {
-  background: rgba(66,230,134,.12) !important;
 }
 
 /* Tablet */
@@ -5422,26 +5537,32 @@ html.theme-dark .placeholder-label {
   }
 
   .review-carousel {
-    margin-top: 26px !important;
-    border-radius: 22px !important;
+    margin-top: 20px !important;
+    padding-top: 14px !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
   }
 
   .review-page {
-    padding: 0 !important;
+    padding: 8px 0 0 !important;
   }
 
   .review-page-head {
     gap: 10px !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 12px !important;
+    padding: 2px 1px 0 !important;
   }
 
   .review-page-head span {
     width: fit-content !important;
-    padding: 6px 10px !important;
-    font-size: 10.5px !important;
+    padding: 7px 11px !important;
+    border-radius: 999px !important;
+    font-size: 10.8px !important;
+    transform: translateZ(0) !important;
   }
 
   .review-page-head strong {
+    padding-right: 2px !important;
     font-size: clamp(17px, 5.2vw, 22px) !important;
     line-height: 1.28 !important;
     letter-spacing: -.045em !important;
@@ -5494,228 +5615,12 @@ html.theme-dark .placeholder-label {
     letter-spacing: -.04em !important;
   }
 
-  html.theme-dark .instructor-lineup article:nth-child(odd),
-  html.theme-dark .instructor-lineup article:nth-child(-n+2) {
-    border-color: rgba(255,255,255,.10) !important;
-  }
-}
-
-/* Hero tags dark-mode readability */
-@media (prefers-color-scheme: dark) {
-  .hero-tags .tag {
-    background: #181818 !important;
-    border-color: rgba(255,255,255,.075) !important;
-    color: rgba(243,243,240,.72) !important;
-    -webkit-text-fill-color: rgba(243,243,240,.72) !important;
-  }
-
-  .hero-tags .tag b {
-    color: #42E686 !important;
-    -webkit-text-fill-color: #42E686 !important;
-  }
-}
-
-html.theme-dark .hero-tags .tag {
-  background: #181818 !important;
-  border-color: rgba(255,255,255,.075) !important;
-  color: rgba(243,243,240,.72) !important;
-  -webkit-text-fill-color: rgba(243,243,240,.72) !important;
-}
-
-html.theme-dark .hero-tags .tag b {
-  color: #42E686 !important;
-  -webkit-text-fill-color: #42E686 !important;
-}
-/* ==========================================================================
-   v125 Review Badge Clip & Mobile Theme Fix
-   - 수강생 후기 기수 라벨 라운드 박스가 잘리지 않도록 여백/클리핑 보정
-   - 모바일 라이트/다크모드에서 강사소개/후기 섹션 색상 대비 보정
-   - 후기 카드 라이트모드 배경/텍스트 대비 보정
-   - 지도 영역은 수정하지 않음
-   ========================================================================== */
-
-/* 후기 슬라이드 상단 라벨이 border-radius/overflow에 잘리지 않도록 보정 */
-.review-carousel {
-  padding-top: 12px !important;
-  margin-top: 32px !important;
-  overflow: hidden !important;
-}
-
-.review-track {
-  align-items: flex-start !important;
-}
-
-.review-page {
-  padding: 6px 2px 2px !important;
-}
-
-.review-page-head {
-  padding-top: 2px !important;
-}
-
-.review-page-head span {
-  flex-shrink: 0 !important;
-  line-height: 1.2 !important;
-  white-space: nowrap !important;
-  box-shadow: none !important;
-}
-
-/* 라이트모드 명시 보정: 모바일 브라우저 자동 다크 반전으로 인한 흐림 방지 */
-html.theme-light .instructor-section,
-html.theme-light .reviews-section,
-html:not(.theme-dark) .instructor-section,
-html:not(.theme-dark) .reviews-section {
-  background: linear-gradient(180deg, var(--paper), #F8F5E9) !important;
-  color: #101513 !important;
-  -webkit-text-fill-color: initial !important;
-}
-
-html.theme-light .reviews-section,
-html:not(.theme-dark) .reviews-section {
-  background: linear-gradient(180deg, var(--paper), #F7F4EA) !important;
-}
-
-html.theme-light .instructor-copy h2,
-html.theme-light .review-page-head strong,
-html.theme-light .review-card blockquote,
-html.theme-light .instructor-lineup strong,
-html.theme-light .placeholder-frame strong,
-html:not(.theme-dark) .instructor-copy h2,
-html:not(.theme-dark) .review-page-head strong,
-html:not(.theme-dark) .review-card blockquote,
-html:not(.theme-dark) .instructor-lineup strong,
-html:not(.theme-dark) .placeholder-frame strong {
-  color: #101513 !important;
-  -webkit-text-fill-color: #101513 !important;
-}
-
-html.theme-light .instructor-copy p,
-html.theme-light .instructor-lineup p,
-html.theme-light .instructor-career-strip p,
-html.theme-light .review-card p,
-html.theme-light .review-card span,
-html.theme-light .placeholder-frame p,
-html:not(.theme-dark) .instructor-copy p,
-html:not(.theme-dark) .instructor-lineup p,
-html:not(.theme-dark) .instructor-career-strip p,
-html:not(.theme-dark) .review-card p,
-html:not(.theme-dark) .review-card span,
-html:not(.theme-dark) .placeholder-frame p {
-  color: #65716B !important;
-  -webkit-text-fill-color: #65716B !important;
-}
-
-html.theme-light .review-card,
-html:not(.theme-dark) .review-card {
-  background: rgba(255,255,255,.82) !important;
-  border-color: rgba(16,21,19,.12) !important;
-  box-shadow: none !important;
-}
-
-html.theme-light .instructor-lineup,
-html:not(.theme-dark) .instructor-lineup {
-  border-top-color: rgba(16,21,19,.12) !important;
-  border-bottom-color: rgba(16,21,19,.12) !important;
-}
-
-html.theme-light .instructor-lineup article,
-html:not(.theme-dark) .instructor-lineup article {
-  border-color: rgba(16,21,19,.12) !important;
-}
-
-html.theme-light .review-page-head span,
-html:not(.theme-dark) .review-page-head span {
-  background: #42E686 !important;
-  color: #062D1A !important;
-  -webkit-text-fill-color: #062D1A !important;
-}
-
-/* 다크모드 대비 보정 */
-html.theme-dark .instructor-section,
-html.theme-dark .reviews-section {
-  background: #111111 !important;
-  color: #F3F3F0 !important;
-  -webkit-text-fill-color: initial !important;
-}
-
-html.theme-dark .review-card {
-  background: #181818 !important;
-  border-color: rgba(255,255,255,.11) !important;
-  box-shadow: none !important;
-}
-
-html.theme-dark .review-page-head span {
-  background: #42E686 !important;
-  color: #062D1A !important;
-  -webkit-text-fill-color: #062D1A !important;
-}
-
-html.theme-dark .instructor-copy h2,
-html.theme-dark .review-page-head strong,
-html.theme-dark .review-card blockquote,
-html.theme-dark .instructor-lineup strong,
-html.theme-dark .placeholder-frame strong {
-  color: #F3F3F0 !important;
-  -webkit-text-fill-color: #F3F3F0 !important;
-}
-
-html.theme-dark .instructor-copy p,
-html.theme-dark .instructor-lineup p,
-html.theme-dark .instructor-career-strip p,
-html.theme-dark .review-card p,
-html.theme-dark .review-card span,
-html.theme-dark .placeholder-frame p {
-  color: rgba(243,243,240,.74) !important;
-  -webkit-text-fill-color: rgba(243,243,240,.74) !important;
-}
-
-html.theme-dark .instructor-lineup,
-html.theme-dark .instructor-lineup article {
-  border-color: rgba(255,255,255,.12) !important;
-}
-
-/* 모바일 전용: 라벨/카드/섹션 간격 재보정 */
-@media (max-width: 760px) {
-  .review-carousel {
-    padding-top: 14px !important;
-    margin-top: 20px !important;
-    border-radius: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .review-page {
-    padding: 8px 0 0 !important;
-  }
-
-  .review-page-head {
-    padding: 2px 1px 0 !important;
-    margin-bottom: 12px !important;
-  }
-
-  .review-page-head span {
-    padding: 7px 11px !important;
-    border-radius: 999px !important;
-    font-size: 10.8px !important;
-    transform: translateZ(0) !important;
-  }
-
-  .review-page-head strong {
-    padding-right: 2px !important;
-  }
-
-  .review-card {
-    background-clip: padding-box !important;
-  }
-
   html.theme-light .instructor-section,
-  html.theme-light .reviews-section,
-  html:not(.theme-dark) .instructor-section,
-  html:not(.theme-dark) .reviews-section {
+  html.theme-light .reviews-section {
     background: #FFFDF4 !important;
   }
 
-  html.theme-light .reviews-section,
-  html:not(.theme-dark) .reviews-section {
+  html.theme-light .reviews-section {
     background: #F7F4EA !important;
   }
 
@@ -5727,7 +5632,134 @@ html.theme-dark .instructor-lineup article {
   html.theme-dark .review-card {
     background: #181818 !important;
   }
+
+  html.theme-dark .instructor-lineup article:nth-child(odd),
+  html.theme-dark .instructor-lineup article:nth-child(-n+2) {
+    border-color: rgba(255,255,255,.10) !important;
+  }
 }
+
+/* ==========================================================================
+   End Final Instructor & Reviews · v126
+   ========================================================================== */
+
+
+
+
+/* ==========================================================================
+   Final Theme Polish · v129
+   - 라이트모드 히어로 키워드 라운드 박스 흰색 고정
+   - 수강생 후기 섹션 라이트모드 배경 흰색 고정
+   - 다크모드 히어로 키워드 태그 일반 텍스트 가독성 보정
+   - 카톡/삼성 인앱 브라우저 테마 전환 잔상 대응
+   - 지도/기수 재사용 구조는 수정하지 않음
+   ========================================================================== */
+
+/* 라이트모드: 히어로 키워드 라운드 박스 흰색 */
+html.theme-light .hero-tags .tag,
+html.theme-light.theme-dark .hero-tags .tag,
+html:not(.theme-dark) .hero-tags .tag {
+  background: #FFFFFF !important;
+  border-color: rgba(16,21,19,.10) !important;
+  color: #65716B !important;
+  -webkit-text-fill-color: #65716B !important;
+  box-shadow: none !important;
+}
+
+html.theme-light .hero-tags .tag b,
+html.theme-light.theme-dark .hero-tags .tag b,
+html:not(.theme-dark) .hero-tags .tag b {
+  color: #086A3E !important;
+  -webkit-text-fill-color: #086A3E !important;
+}
+
+/* 수강생 후기: 라이트모드 배경 흰색 */
+.reviews-section,
+html.theme-light .reviews-section,
+html.theme-light body .reviews-section,
+html:not(.theme-dark) .reviews-section {
+  background: #FFFFFF !important;
+}
+
+/* 다크모드일 때만 후기 섹션 검정 */
+html.theme-dark:not(.theme-light) .reviews-section {
+  background: #111111 !important;
+}
+
+/* 다크모드: 히어로 키워드 태그 일반 텍스트 보이게 고정 */
+html.theme-dark:not(.theme-light) .hero-tags .tag {
+  background: #181818 !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: rgba(243,243,240,.78) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.78) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+html.theme-dark:not(.theme-light) .hero-tags .tag *,
+html.theme-dark:not(.theme-light) body .hero-tags .tag {
+  color: rgba(243,243,240,.78) !important;
+  -webkit-text-fill-color: rgba(243,243,240,.78) !important;
+  opacity: 1 !important;
+}
+
+html.theme-dark:not(.theme-light) .hero-tags .tag b,
+html.theme-dark:not(.theme-light) body .hero-tags .tag b {
+  color: #42E686 !important;
+  -webkit-text-fill-color: #42E686 !important;
+}
+
+/* 시스템 다크모드: 수동 라이트가 아닐 때만 다크 규칙 적용 */
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light) .reviews-section {
+    background: #111111 !important;
+  }
+
+  html:not(.theme-light) .hero-tags .tag {
+    background: #181818 !important;
+    border-color: rgba(255,255,255,.12) !important;
+    color: rgba(243,243,240,.78) !important;
+    -webkit-text-fill-color: rgba(243,243,240,.78) !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  html:not(.theme-light) .hero-tags .tag * {
+    color: rgba(243,243,240,.78) !important;
+    -webkit-text-fill-color: rgba(243,243,240,.78) !important;
+  }
+
+  html:not(.theme-light) .hero-tags .tag b {
+    color: #42E686 !important;
+    -webkit-text-fill-color: #42E686 !important;
+  }
+}
+
+/* 수동 라이트는 시스템/인앱 다크보다 우선 */
+html.theme-light,
+html.theme-light body {
+  color-scheme: light !important;
+}
+
+html.theme-light .reviews-section {
+  background: #FFFFFF !important;
+}
+
+html.theme-light .hero-tags .tag,
+html.theme-light .hero-tags .tag * {
+  color: #65716B !important;
+  -webkit-text-fill-color: #65716B !important;
+}
+
+html.theme-light .hero-tags .tag b {
+  color: #086A3E !important;
+  -webkit-text-fill-color: #086A3E !important;
+}
+
+/* ==========================================================================
+   End Final Theme Polish · v129
+   ========================================================================== */
 
 </style>
 <meta content="website" property="og:type"/>
@@ -6869,5 +6901,90 @@ html.theme-dark .instructor-lineup article {
   show(0);
   window.setInterval(() => show(index + 1), 5000);
 })();
-</script></body>
+</script>
+<script id="kokkok-theme-hard-reset">
+(() => {
+  const root = document.documentElement;
+  const apply = () => {
+    const isDark = root.classList.contains("theme-dark");
+    const isLight = root.classList.contains("theme-light");
+    if (isLight) {
+      root.style.colorScheme = "light";
+      document.body && (document.body.style.colorScheme = "light");
+    }
+    if (isDark) {
+      root.style.colorScheme = "dark";
+      document.body && (document.body.style.colorScheme = "dark");
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", apply, { once: true });
+  } else {
+    apply();
+  }
+
+  const observer = new MutationObserver(apply);
+  observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+})();
+</script>
+
+
+
+
+
+<script id="kokkok-theme-class-normalizer">
+(() => {
+  const root = document.documentElement;
+
+  function normalizeThemeClass() {
+    const query = new URLSearchParams(location.search).get("theme");
+    const stored = localStorage.getItem("kokkok-theme");
+    const selected = query || stored;
+
+    if (selected === "light") {
+      root.classList.add("theme-light");
+      root.classList.remove("theme-dark");
+      root.style.colorScheme = "light";
+      if (document.body) document.body.style.colorScheme = "light";
+      return;
+    }
+
+    if (selected === "dark") {
+      root.classList.add("theme-dark");
+      root.classList.remove("theme-light");
+      root.style.colorScheme = "dark";
+      if (document.body) document.body.style.colorScheme = "dark";
+      return;
+    }
+
+    if (root.classList.contains("theme-light")) {
+      root.classList.remove("theme-dark");
+      root.style.colorScheme = "light";
+      if (document.body) document.body.style.colorScheme = "light";
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", normalizeThemeClass, { once: true });
+  } else {
+    normalizeThemeClass();
+  }
+
+  const observer = new MutationObserver(() => {
+    if (root.classList.contains("theme-light") && root.classList.contains("theme-dark")) {
+      const stored = localStorage.getItem("kokkok-theme");
+      if (stored === "dark") {
+        root.classList.remove("theme-light");
+      } else {
+        root.classList.remove("theme-dark");
+      }
+    }
+  });
+
+  observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+})();
+</script>
+
+</body>
 </html>
