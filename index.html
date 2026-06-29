@@ -14,124 +14,7 @@
 <meta content="#42E686" name="theme-color"/>
 <meta content="#FFFDF4" media="(prefers-color-scheme: light)" name="theme-color"/>
 <meta content="#111111" media="(prefers-color-scheme: dark)" name="theme-color"/>
-<script id="kokkok-theme-init">
-(() => {
-  const root = document.documentElement;
-  const media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
-
-  function getStoredTheme() {
-    try {
-      const value = new URLSearchParams(window.location.search).get("theme");
-      if (value === "dark" || value === "light") {
-        window.localStorage.setItem("kokkok-theme", value);
-        return value;
-      }
-      return window.localStorage.getItem("kokkok-theme");
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function setStoredTheme(value) {
-    try {
-      if (value === "dark" || value === "light") {
-        window.localStorage.setItem("kokkok-theme", value);
-      } else {
-        window.localStorage.removeItem("kokkok-theme");
-      }
-    } catch (error) {}
-  }
-
-  function isBackgroundAlreadyDark() {
-    const body = document.body;
-    if (!body) return false;
-
-    const hadDark = root.classList.contains("theme-dark");
-    const hadLight = root.classList.contains("theme-light");
-
-    root.classList.remove("theme-dark", "theme-light");
-    const color = window.getComputedStyle(body).backgroundColor || "";
-
-    if (hadDark) root.classList.add("theme-dark");
-    if (hadLight) root.classList.add("theme-light");
-
-    const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
-    if (!match) return false;
-
-    const r = Number(match[1]) / 255;
-    const g = Number(match[2]) / 255;
-    const b = Number(match[3]) / 255;
-    const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-
-    return luminance < 0.35;
-  }
-
-  function syncThemeToggle() {
-    const button = document.getElementById("themeToggle");
-    if (!button) return;
-
-    const isDark = root.classList.contains("theme-dark");
-    button.dataset.mode = isDark ? "dark" : "light";
-    button.setAttribute("aria-pressed", String(isDark));
-    button.setAttribute("aria-label", isDark ? "라이트 모드로 전환" : "다크 모드로 전환");
-    button.setAttribute("title", isDark ? "라이트 모드로 전환" : "다크 모드로 전환");
-  }
-
-  function applyTheme() {
-    const stored = getStoredTheme();
-    const prefersDark = media ? media.matches : false;
-    const browserLooksDark = isBackgroundAlreadyDark();
-    const isDark = stored === "dark" || (!stored && (prefersDark || browserLooksDark));
-
-    root.classList.toggle("theme-dark", isDark);
-    root.classList.toggle("theme-light", !isDark);
-    root.dataset.theme = isDark ? "dark" : "light";
-
-    syncThemeToggle();
-  }
-
-  function bindThemeToggle() {
-    const button = document.getElementById("themeToggle");
-    if (!button || button.dataset.bound === "true") return;
-
-    button.dataset.bound = "true";
-    button.addEventListener("click", () => {
-      const isDark = root.classList.contains("theme-dark");
-      setStoredTheme(isDark ? "light" : "dark");
-      applyTheme();
-    });
-
-    syncThemeToggle();
-  }
-
-  applyTheme();
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      bindThemeToggle();
-      applyTheme();
-    }, { once: true });
-  } else {
-    bindThemeToggle();
-    applyTheme();
-  }
-
-  window.addEventListener("load", () => {
-    bindThemeToggle();
-    applyTheme();
-  }, { once: true });
-
-  if (media?.addEventListener) {
-    media.addEventListener("change", () => {
-      if (!getStoredTheme()) applyTheme();
-    });
-  } else if (media?.addListener) {
-    media.addListener(() => {
-      if (!getStoredTheme()) applyTheme();
-    });
-  }
-})();
-</script><style>/* ==========================================================================
+<style>/* ==========================================================================
    콕 찝어주는 부동산 학원 · v68 Clean Build
    수정 위치: Ctrl + F → "여기만 수정"
    ========================================================================== */
@@ -5646,29 +5529,39 @@ html.theme-dark .placeholder-frame {
 
 
 
+
 /* ==========================================================================
-   Final Theme Polish · v129
-   - 라이트모드 히어로 키워드 라운드 박스 흰색 고정
-   - 수강생 후기 섹션 라이트모드 배경 흰색 고정
-   - 다크모드 히어로 키워드 태그 일반 텍스트 가독성 보정
-   - 카톡/삼성 인앱 브라우저 테마 전환 잔상 대응
+   Final Theme & In-App Browser Fix · v130
+   - 카카오톡 인앱 브라우저에서 다크/라이트 토글이 적용되지 않는 문제 보정
+   - 라이트모드 히어로 키워드 라운드 박스 흰색 유지
+   - 수강생 후기 섹션 라이트모드 배경 흰색 유지
+   - 다크모드 히어로 키워드 일반 텍스트 가독성 유지
    - 지도/기수 재사용 구조는 수정하지 않음
    ========================================================================== */
 
 /* 라이트모드: 히어로 키워드 라운드 박스 흰색 */
 html.theme-light .hero-tags .tag,
-html.theme-light.theme-dark .hero-tags .tag,
-html:not(.theme-dark) .hero-tags .tag {
+html[data-theme="light"] .hero-tags .tag,
+body[data-theme="light"] .hero-tags .tag {
   background: #FFFFFF !important;
   border-color: rgba(16,21,19,.10) !important;
   color: #65716B !important;
   -webkit-text-fill-color: #65716B !important;
   box-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+html.theme-light .hero-tags .tag *,
+html[data-theme="light"] .hero-tags .tag *,
+body[data-theme="light"] .hero-tags .tag * {
+  color: #65716B !important;
+  -webkit-text-fill-color: #65716B !important;
 }
 
 html.theme-light .hero-tags .tag b,
-html.theme-light.theme-dark .hero-tags .tag b,
-html:not(.theme-dark) .hero-tags .tag b {
+html[data-theme="light"] .hero-tags .tag b,
+body[data-theme="light"] .hero-tags .tag b {
   color: #086A3E !important;
   -webkit-text-fill-color: #086A3E !important;
 }
@@ -5676,89 +5569,87 @@ html:not(.theme-dark) .hero-tags .tag b {
 /* 수강생 후기: 라이트모드 배경 흰색 */
 .reviews-section,
 html.theme-light .reviews-section,
-html.theme-light body .reviews-section,
-html:not(.theme-dark) .reviews-section {
+html[data-theme="light"] .reviews-section,
+body[data-theme="light"] .reviews-section {
   background: #FFFFFF !important;
 }
 
 /* 다크모드일 때만 후기 섹션 검정 */
-html.theme-dark:not(.theme-light) .reviews-section {
+html.theme-dark .reviews-section,
+html[data-theme="dark"] .reviews-section,
+body[data-theme="dark"] .reviews-section {
   background: #111111 !important;
 }
 
-/* 다크모드: 히어로 키워드 태그 일반 텍스트 보이게 고정 */
-html.theme-dark:not(.theme-light) .hero-tags .tag {
+/* 다크모드: 히어로 키워드 태그 일반 텍스트 강제 표시 */
+html.theme-dark .hero-tags .tag,
+html[data-theme="dark"] .hero-tags .tag,
+body[data-theme="dark"] .hero-tags .tag {
   background: #181818 !important;
   border-color: rgba(255,255,255,.12) !important;
   color: rgba(243,243,240,.78) !important;
   -webkit-text-fill-color: rgba(243,243,240,.78) !important;
+  box-shadow: none !important;
   opacity: 1 !important;
   filter: none !important;
-  box-shadow: none !important;
 }
 
-html.theme-dark:not(.theme-light) .hero-tags .tag *,
-html.theme-dark:not(.theme-light) body .hero-tags .tag {
+html.theme-dark .hero-tags .tag *,
+html[data-theme="dark"] .hero-tags .tag *,
+body[data-theme="dark"] .hero-tags .tag * {
   color: rgba(243,243,240,.78) !important;
   -webkit-text-fill-color: rgba(243,243,240,.78) !important;
   opacity: 1 !important;
 }
 
-html.theme-dark:not(.theme-light) .hero-tags .tag b,
-html.theme-dark:not(.theme-light) body .hero-tags .tag b {
+html.theme-dark .hero-tags .tag b,
+html[data-theme="dark"] .hero-tags .tag b,
+body[data-theme="dark"] .hero-tags .tag b {
   color: #42E686 !important;
   -webkit-text-fill-color: #42E686 !important;
 }
 
-/* 시스템 다크모드: 수동 라이트가 아닐 때만 다크 규칙 적용 */
+/* 시스템 다크모드: 수동 라이트가 없을 때만 다크 적용 */
 @media (prefers-color-scheme: dark) {
-  html:not(.theme-light) .reviews-section {
-    background: #111111 !important;
-  }
-
-  html:not(.theme-light) .hero-tags .tag {
+  html:not(.theme-light):not([data-theme="light"]) .hero-tags .tag {
     background: #181818 !important;
     border-color: rgba(255,255,255,.12) !important;
     color: rgba(243,243,240,.78) !important;
     -webkit-text-fill-color: rgba(243,243,240,.78) !important;
-    opacity: 1 !important;
-    filter: none !important;
   }
 
-  html:not(.theme-light) .hero-tags .tag * {
+  html:not(.theme-light):not([data-theme="light"]) .hero-tags .tag * {
     color: rgba(243,243,240,.78) !important;
     -webkit-text-fill-color: rgba(243,243,240,.78) !important;
   }
 
-  html:not(.theme-light) .hero-tags .tag b {
+  html:not(.theme-light):not([data-theme="light"]) .hero-tags .tag b {
     color: #42E686 !important;
     -webkit-text-fill-color: #42E686 !important;
   }
+
+  html:not(.theme-light):not([data-theme="light"]) .reviews-section {
+    background: #111111 !important;
+  }
 }
 
-/* 수동 라이트는 시스템/인앱 다크보다 우선 */
+/* 수동 라이트는 인앱/시스템 다크보다 항상 우선 */
 html.theme-light,
-html.theme-light body {
+html.theme-light body,
+html[data-theme="light"],
+body[data-theme="light"] {
   color-scheme: light !important;
 }
 
-html.theme-light .reviews-section {
-  background: #FFFFFF !important;
-}
-
-html.theme-light .hero-tags .tag,
-html.theme-light .hero-tags .tag * {
-  color: #65716B !important;
-  -webkit-text-fill-color: #65716B !important;
-}
-
-html.theme-light .hero-tags .tag b {
-  color: #086A3E !important;
-  -webkit-text-fill-color: #086A3E !important;
+html.theme-dark,
+html.theme-dark body,
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  color-scheme: dark !important;
 }
 
 /* ==========================================================================
-   End Final Theme Polish · v129
+   End Final Theme & In-App Browser Fix · v130
    ========================================================================== */
 
 </style>
@@ -5774,7 +5665,174 @@ html.theme-light .hero-tags .tag b {
 <meta content="콕 찝어주는 부동산 학원" name="twitter:title"/>
 <meta content="천안·아산 개발사업 실전 분석 클래스" name="twitter:description"/>
 <meta content="https://bychaeun.github.io/koklanding/og-kokkok.jpg" name="twitter:image"/>
-<meta content="image/jpeg" property="og:image:type"/></head>
+<meta content="image/jpeg" property="og:image:type"/>
+<script id="kokkok-theme-controller">
+(() => {
+  const root = document.documentElement;
+  const storageKey = "kokkok-theme";
+  const mql = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  let lastToggleAt = 0;
+
+  function safeLocalGet() {
+    try { return window.localStorage.getItem(storageKey); } catch (error) { return null; }
+  }
+
+  function safeSessionGet() {
+    try { return window.sessionStorage.getItem(storageKey); } catch (error) { return null; }
+  }
+
+  function safeCookieGet() {
+    const match = document.cookie.match(new RegExp("(?:^|; )" + storageKey + "=([^;]*)"));
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function safeStore(theme) {
+    try { window.localStorage.setItem(storageKey, theme); } catch (error) {}
+    try { window.sessionStorage.setItem(storageKey, theme); } catch (error) {}
+    try {
+      document.cookie = storageKey + "=" + encodeURIComponent(theme) + "; path=/; max-age=31536000; SameSite=Lax";
+    } catch (error) {}
+  }
+
+  function normalize(theme) {
+    return theme === "dark" || theme === "light" ? theme : null;
+  }
+
+  function getQueryTheme() {
+    try {
+      return normalize(new URLSearchParams(window.location.search).get("theme"));
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function getSavedTheme() {
+    return getQueryTheme() || normalize(safeLocalGet()) || normalize(safeSessionGet()) || normalize(safeCookieGet());
+  }
+
+  function getSystemTheme() {
+    return mql && mql.matches ? "dark" : "light";
+  }
+
+  function ensureColorSchemeMeta(theme) {
+    let meta = document.querySelector('meta[name="color-scheme"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "color-scheme");
+      document.head && document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", theme);
+  }
+
+  function syncButton(theme) {
+    const button = document.getElementById("themeToggle");
+    if (!button) return;
+
+    const isDark = theme === "dark";
+    button.dataset.mode = theme;
+    button.setAttribute("aria-pressed", String(isDark));
+    button.setAttribute("aria-label", isDark ? "라이트 모드로 전환" : "다크 모드로 전환");
+    button.setAttribute("title", isDark ? "라이트 모드로 전환" : "다크 모드로 전환");
+  }
+
+  function applyTheme(theme, options = {}) {
+    const next = normalize(theme) || getSystemTheme();
+
+    root.classList.remove("theme-light", "theme-dark");
+    root.classList.add("theme-" + next);
+    root.dataset.theme = next;
+    root.style.colorScheme = next;
+
+    if (document.body) {
+      document.body.classList.remove("theme-light", "theme-dark");
+      document.body.classList.add("theme-" + next);
+      document.body.dataset.theme = next;
+      document.body.style.colorScheme = next;
+    }
+
+    ensureColorSchemeMeta(next);
+    syncButton(next);
+
+    if (options.persist) safeStore(next);
+
+    // Kakao/Samsung in-app browser에서 class 적용이 늦는 경우를 위한 재적용.
+    requestAnimationFrame(() => {
+      root.classList.remove(next === "dark" ? "theme-light" : "theme-dark");
+      root.classList.add("theme-" + next);
+      root.dataset.theme = next;
+
+      if (document.body) {
+        document.body.classList.remove(next === "dark" ? "theme-light" : "theme-dark");
+        document.body.classList.add("theme-" + next);
+        document.body.dataset.theme = next;
+      }
+
+      syncButton(next);
+    });
+  }
+
+  function getCurrentTheme() {
+    return normalize(root.dataset.theme) ||
+      (root.classList.contains("theme-dark") ? "dark" : null) ||
+      (root.classList.contains("theme-light") ? "light" : null) ||
+      getSavedTheme() ||
+      getSystemTheme();
+  }
+
+  function toggleTheme(event) {
+    const now = Date.now();
+    if (now - lastToggleAt < 320) {
+      if (event && event.cancelable) event.preventDefault();
+      return;
+    }
+    lastToggleAt = now;
+
+    if (event && event.cancelable) event.preventDefault();
+
+    const current = getCurrentTheme();
+    const next = current === "dark" ? "light" : "dark";
+    applyTheme(next, { persist: true });
+  }
+
+  function bindToggle() {
+    const button = document.getElementById("themeToggle");
+    if (!button || button.dataset.themeBound === "true") return;
+
+    button.dataset.themeBound = "true";
+    button.addEventListener("click", toggleTheme);
+    button.addEventListener("touchend", toggleTheme, { passive: false });
+    syncButton(getCurrentTheme());
+  }
+
+  function initTheme() {
+    applyTheme(getSavedTheme() || getSystemTheme(), { persist: false });
+    bindToggle();
+  }
+
+  initTheme();
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTheme, { once: true });
+  } else {
+    initTheme();
+  }
+
+  window.addEventListener("pageshow", initTheme);
+  window.addEventListener("load", initTheme, { once: true });
+
+  if (mql?.addEventListener) {
+    mql.addEventListener("change", () => {
+      if (!getSavedTheme()) applyTheme(getSystemTheme(), { persist: false });
+    });
+  } else if (mql?.addListener) {
+    mql.addListener(() => {
+      if (!getSavedTheme()) applyTheme(getSystemTheme(), { persist: false });
+    });
+  }
+})();
+</script>
+
+</head>
 <body>
 <!-- =========================================================
   여기만 수정하면 됩니다.
@@ -6902,89 +6960,5 @@ html.theme-light .hero-tags .tag b {
   window.setInterval(() => show(index + 1), 5000);
 })();
 </script>
-<script id="kokkok-theme-hard-reset">
-(() => {
-  const root = document.documentElement;
-  const apply = () => {
-    const isDark = root.classList.contains("theme-dark");
-    const isLight = root.classList.contains("theme-light");
-    if (isLight) {
-      root.style.colorScheme = "light";
-      document.body && (document.body.style.colorScheme = "light");
-    }
-    if (isDark) {
-      root.style.colorScheme = "dark";
-      document.body && (document.body.style.colorScheme = "dark");
-    }
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", apply, { once: true });
-  } else {
-    apply();
-  }
-
-  const observer = new MutationObserver(apply);
-  observer.observe(root, { attributes: true, attributeFilter: ["class"] });
-})();
-</script>
-
-
-
-
-
-<script id="kokkok-theme-class-normalizer">
-(() => {
-  const root = document.documentElement;
-
-  function normalizeThemeClass() {
-    const query = new URLSearchParams(location.search).get("theme");
-    const stored = localStorage.getItem("kokkok-theme");
-    const selected = query || stored;
-
-    if (selected === "light") {
-      root.classList.add("theme-light");
-      root.classList.remove("theme-dark");
-      root.style.colorScheme = "light";
-      if (document.body) document.body.style.colorScheme = "light";
-      return;
-    }
-
-    if (selected === "dark") {
-      root.classList.add("theme-dark");
-      root.classList.remove("theme-light");
-      root.style.colorScheme = "dark";
-      if (document.body) document.body.style.colorScheme = "dark";
-      return;
-    }
-
-    if (root.classList.contains("theme-light")) {
-      root.classList.remove("theme-dark");
-      root.style.colorScheme = "light";
-      if (document.body) document.body.style.colorScheme = "light";
-    }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", normalizeThemeClass, { once: true });
-  } else {
-    normalizeThemeClass();
-  }
-
-  const observer = new MutationObserver(() => {
-    if (root.classList.contains("theme-light") && root.classList.contains("theme-dark")) {
-      const stored = localStorage.getItem("kokkok-theme");
-      if (stored === "dark") {
-        root.classList.remove("theme-light");
-      } else {
-        root.classList.remove("theme-dark");
-      }
-    }
-  });
-
-  observer.observe(root, { attributes: true, attributeFilter: ["class"] });
-})();
-</script>
-
 </body>
 </html>
