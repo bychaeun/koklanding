@@ -870,9 +870,10 @@ img {
 }
 .fundamentals-plan {
   padding:30px 34px;
-  border-radius:22px;
+  border-radius:0;
   background:transparent;
   border:0;
+  box-shadow:none;
   display:grid;
   grid-template-columns:minmax(240px,.72fr) minmax(0,1.28fr);
   gap:32px;
@@ -938,7 +939,7 @@ img {
   display:none !important
 }
 .fundamentals-card-video {
-  display:none
+  display:none !important
 }
 .week-roadmap {
   display:grid;
@@ -7229,7 +7230,9 @@ html.theme-dark .fundamentals-section .fundamental-card.core .fundamental-label,
 }
 html.theme-dark .fundamentals-section .fundamentals-plan,html[data-theme="dark"] .fundamentals-section .fundamentals-plan,body[data-theme="dark"] .fundamentals-section .fundamentals-plan {
   background:transparent !important;
-  border:0 !important
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important
 }
 html.theme-dark .fundamentals-section .fundamentals-closing,html[data-theme="dark"] .fundamentals-section .fundamentals-closing,body[data-theme="dark"] .fundamentals-section .fundamentals-closing {
   background:#F3F3F0 !important;
@@ -7575,7 +7578,16 @@ body[data-theme="dark"] .instructor-career-toggle > summary {
 html.theme-dark .instructor-profile-panel .career-card,
 html[data-theme="dark"] .instructor-profile-panel .career-card,
 body[data-theme="dark"] .instructor-profile-panel .career-card {
-  background:rgba(255,255,255,.07) !important
+  background:transparent !important;
+  box-shadow:none !important
+}
+@media (min-width:761px) {
+  .instructor-career-toggle > summary {
+    display:none !important
+  }
+  .instructor-career-toggle > .instructor-lineup {
+    display:grid !important
+  }
 }
 @media (max-width:760px) {
   .method .method-row {

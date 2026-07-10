@@ -53,6 +53,18 @@
     if (campaign.phone) setCampaignHref("[data-phone-link]", phoneHref(campaign.phone));
   }
   applyCampaignConfig();
+  const instructorCareer = document.querySelector(".instructor-career-toggle");
+  const instructorCareerMq = window.matchMedia("(max-width: 760px)");
+  function syncInstructorCareer() {
+    if (!instructorCareer) return;
+    instructorCareer.open = !instructorCareerMq.matches;
+  }
+  syncInstructorCareer();
+  if (instructorCareerMq.addEventListener) {
+    instructorCareerMq.addEventListener("change", syncInstructorCareer);
+  } else if (instructorCareerMq.addListener) {
+    instructorCareerMq.addListener(syncInstructorCareer);
+  }
   document.querySelectorAll("[data-curriculum-pdf]").forEach(link => {
     const pdfUrl = campaign.curriculumPdfUrl || "timeline.pdf";
     link.href = pdfUrl;
