@@ -7614,4 +7614,38 @@ body[data-theme="dark"] .instructor-profile-panel .career-card {
     background:transparent !important;
     box-shadow:none !important
   }
+  .fundamentals-card-video .fundamentals-video-light {
+    display:block !important
+  }
+  .fundamentals-card-video .fundamentals-video-dark {
+    display:none !important
+  }
+  html.theme-light .fundamentals-card-video .fundamentals-video-light,
+  html[data-theme="light"] .fundamentals-card-video .fundamentals-video-light,
+  body[data-theme="light"] .fundamentals-card-video .fundamentals-video-light {
+    display:block !important
+  }
+  html.theme-light .fundamentals-card-video .fundamentals-video-dark,
+  html[data-theme="light"] .fundamentals-card-video .fundamentals-video-dark,
+  body[data-theme="light"] .fundamentals-card-video .fundamentals-video-dark {
+    display:none !important
+  }
+  html.theme-dark .fundamentals-card-video .fundamentals-video-light,
+  html[data-theme="dark"] .fundamentals-card-video .fundamentals-video-light,
+  body[data-theme="dark"] .fundamentals-card-video .fundamentals-video-light {
+    display:none !important
+  }
+  html.theme-dark .fundamentals-card-video .fundamentals-video-dark,
+  html[data-theme="dark"] .fundamentals-card-video .fundamentals-video-dark,
+  body[data-theme="dark"] .fundamentals-card-video .fundamentals-video-dark {
+    display:block !important
+  }
+}
+@media (max-width:760px) and (prefers-color-scheme:dark) {
+  html:not(.theme-light):not([data-theme="light"]) .fundamentals-card-video .fundamentals-video-light {
+    display:none !important
+  }
+  html:not(.theme-light):not([data-theme="light"]) .fundamentals-card-video .fundamentals-video-dark {
+    display:block !important
+  }
 }
