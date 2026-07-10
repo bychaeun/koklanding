@@ -871,8 +871,8 @@ img {
 .fundamentals-plan {
   padding:30px 34px;
   border-radius:22px;
-  background:rgba(16,21,19,.035);
-  border:1px solid rgba(16,21,19,.075);
+  background:transparent;
+  border:0;
   display:grid;
   grid-template-columns:minmax(240px,.72fr) minmax(0,1.28fr);
   gap:32px;
@@ -936,6 +936,9 @@ img {
 }
 .fundamentals-video-dark {
   display:none !important
+}
+.fundamentals-card-video {
+  display:none
 }
 .week-roadmap {
   display:grid;
@@ -7225,8 +7228,8 @@ html.theme-dark .fundamentals-section .fundamental-card.core .fundamental-label,
   -webkit-text-fill-color:rgba(243,243,240,.60) !important
 }
 html.theme-dark .fundamentals-section .fundamentals-plan,html[data-theme="dark"] .fundamentals-section .fundamentals-plan,body[data-theme="dark"] .fundamentals-section .fundamentals-plan {
-  background:#151515 !important;
-  border-color:rgba(255,255,255,.09) !important
+  background:transparent !important;
+  border:0 !important
 }
 html.theme-dark .fundamentals-section .fundamentals-closing,html[data-theme="dark"] .fundamentals-section .fundamentals-closing,body[data-theme="dark"] .fundamentals-section .fundamentals-closing {
   background:#F3F3F0 !important;
@@ -7260,5 +7263,355 @@ html.theme-dark .fundamentals-video-dark,html[data-theme="dark"] .fundamentals-v
     display:block !important;
     background:#000 !important;
     filter:none !important
+  }
+}
+@media (max-width:760px) {
+  .method .method-row {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+    margin-top:30px !important
+  }
+  .method .method-item {
+    min-height:160px !important;
+    padding:18px 14px 16px !important;
+    border-radius:14px !important
+  }
+  .method .icon-wrap {
+    display:none !important
+  }
+  .method .method-item h3 {
+    min-height:auto !important;
+    margin-bottom:8px !important;
+    font-size:clamp(14px,4vw,16px) !important;
+    line-height:1.34 !important
+  }
+  .method .method-item p {
+    font-size:clamp(11px,3.2vw,12px) !important;
+    line-height:1.55 !important
+  }
+  .fundamentals-media {
+    display:none !important
+  }
+  .fundamentals-compare {
+    grid-template-columns:1fr !important;
+    gap:12px !important
+  }
+  .fundamental-card.core {
+    padding-bottom:18px !important
+  }
+  .fundamentals-card-video {
+    display:block;
+    margin-top:18px;
+    overflow:hidden;
+    border-radius:14px;
+    background:#fff
+  }
+  .fundamentals-card-video video {
+    display:block;
+    width:100%;
+    max-height:220px;
+    object-fit:contain;
+    border-radius:14px;
+    background:#fff
+  }
+  .fundamentals-plan {
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    grid-template-columns:1fr !important;
+    gap:12px !important
+  }
+}
+html.theme-dark .fundamentals-card-video,html[data-theme="dark"] .fundamentals-card-video,body[data-theme="dark"] .fundamentals-card-video {
+  background:#000 !important
+}
+html.theme-dark .fundamentals-card-video video,html[data-theme="dark"] .fundamentals-card-video video,body[data-theme="dark"] .fundamentals-card-video video {
+  background:#000 !important
+}
+@media (prefers-color-scheme:dark) {
+  html:not(.theme-light):not([data-theme="light"]) .fundamentals-card-video,
+  html:not(.theme-light):not([data-theme="light"]) .fundamentals-card-video video {
+    background:#000 !important
+  }
+}
+.instructor-career-toggle {
+  display:block
+}
+.instructor-career-toggle > summary {
+  display:none
+}
+.instructor-career-toggle:not([open]) > .instructor-lineup {
+  display:grid
+}
+@media (max-width:760px) {
+  .instructor-section {
+    padding:46px 0 !important
+  }
+  .instructor-profile-panel .instructor-hero {
+    display:grid !important;
+    grid-template-columns:112px minmax(0,1fr) !important;
+    gap:14px 16px !important;
+    align-items:center !important
+  }
+  .instructor-profile-panel .instructor-copy {
+    display:contents !important
+  }
+  .instructor-profile-panel .instructor-copy .eyebrow {
+    grid-column:1 / -1;
+    margin:0 !important
+  }
+  .instructor-profile-panel .instructor-copy h2 {
+    grid-column:1 / -1;
+    margin-top:8px !important;
+    font-size:clamp(25px,7vw,32px) !important;
+    line-height:1.22 !important
+  }
+  .instructor-profile-panel .instructor-copy p {
+    grid-column:1 / -1;
+    margin-top:8px !important;
+    font-size:12.6px !important;
+    line-height:1.58 !important
+  }
+  .instructor-profile-panel .instructor-visual {
+    grid-column:1;
+    grid-row:4 / span 2;
+    min-height:0 !important;
+    display:block !important
+  }
+  .instructor-profile-panel .instructor-photo-card {
+    width:112px !important;
+    border-radius:16px !important
+  }
+  .instructor-profile-panel .instructor-copy strong {
+    grid-column:2;
+    grid-row:4;
+    align-self:end;
+    margin-top:0 !important;
+    font-size:clamp(28px,8.8vw,40px) !important;
+    line-height:1.05 !important
+  }
+  .instructor-profile-panel .instructor-highlights {
+    grid-column:2;
+    grid-row:5;
+    align-self:start;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:6px !important;
+    margin-top:8px !important
+  }
+  .instructor-profile-panel .instructor-highlights span {
+    padding:6px 8px !important;
+    border-radius:999px !important;
+    font-size:10.5px !important;
+    line-height:1.1 !important
+  }
+  .instructor-career-toggle {
+    margin-top:18px !important
+  }
+  .instructor-career-toggle > summary {
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    border-radius:999px;
+    background:#101513;
+    color:#fff;
+    -webkit-text-fill-color:#fff;
+    font-size:13px;
+    font-weight:850;
+    cursor:pointer;
+    list-style:none
+  }
+  .instructor-career-toggle > summary::-webkit-details-marker {
+    display:none
+  }
+  .instructor-career-toggle:not([open]) > .instructor-lineup {
+    display:none !important
+  }
+  .instructor-career-toggle[open] > .instructor-lineup {
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+    padding-top:12px !important
+  }
+  .instructor-profile-panel .career-card {
+    min-height:58px !important;
+    padding:11px 10px !important;
+    border:0 !important;
+    border-radius:12px !important;
+    background:rgba(255,255,255,.62) !important
+  }
+  .instructor-profile-panel .career-card::before,
+  .instructor-profile-panel .career-card p {
+    display:none !important
+  }
+  .instructor-profile-panel .career-card strong {
+    font-size:11.5px !important;
+    line-height:1.35 !important;
+    letter-spacing:-.03em !important
+  }
+  .review-cards {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important
+  }
+  .review-card {
+    min-height:150px !important;
+    padding:12px !important;
+    border-radius:14px !important
+  }
+  .review-card span {
+    margin-bottom:7px !important;
+    font-size:9.8px !important
+  }
+  .review-card blockquote {
+    margin-bottom:7px !important;
+    font-size:12.4px !important;
+    line-height:1.38 !important
+  }
+  .review-card p {
+    font-size:10.4px !important;
+    line-height:1.45 !important
+  }
+  .fit-hero {
+    gap:16px !important
+  }
+  .fit-lead p {
+    font-size:12.8px !important;
+    line-height:1.62 !important;
+    letter-spacing:-.01em !important
+  }
+  .recommend-grid {
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    margin-top:28px !important
+  }
+  .recommend-grid::after,
+  .recommend-grid .fit-card::before,
+  .recommend-curve {
+    display:none !important
+  }
+  .recommend-grid .fit-card:nth-of-type(n) {
+    grid-column:1 !important;
+    display:grid !important;
+    grid-template-columns:42px 1fr !important;
+    gap:8px 12px !important;
+    padding:14px 0 !important;
+    text-align:left !important;
+    border-radius:0 !important
+  }
+  .recommend-grid .fit-card span,
+  .recommend-grid .fit-card:nth-of-type(even) span {
+    grid-column:1 !important;
+    justify-content:flex-start !important;
+    min-width:0 !important;
+    font-size:17px !important;
+    line-height:1.2 !important
+  }
+  .recommend-grid .fit-card strong {
+    grid-column:2 !important;
+    font-size:14.6px !important;
+    line-height:1.36 !important
+  }
+  .recommend-grid .fit-card p,
+  .recommend-grid .fit-card:nth-of-type(even) p {
+    grid-column:2 !important;
+    margin-top:4px !important;
+    font-size:11.8px !important;
+    line-height:1.55 !important
+  }
+  .trust-points {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:9px !important
+  }
+  .trust-point,
+  .trust-point:nth-child(3),
+  .trust-point:nth-child(4) {
+    grid-column:auto !important;
+    min-height:126px !important
+  }
+  .faq-item summary {
+    min-height:54px !important;
+    padding:14px 42px 14px 16px !important;
+    font-size:13.4px !important;
+    line-height:1.35 !important
+  }
+  .faq-item summary::after {
+    right:16px !important
+  }
+  .faq-item p {
+    padding:0 16px 18px !important;
+    font-size:12.4px !important;
+    line-height:1.62 !important
+  }
+  .message-deadline-inner {
+    justify-items:center !important
+  }
+  .message-chat {
+    width:calc(100vw - 40px) !important;
+    max-width:420px !important;
+    margin:0 auto !important;
+    align-items:center !important
+  }
+  .message-chat .chat-bubble,
+  .message-chat .chat-bubble.question,
+  .message-chat .chat-bubble.answer {
+    justify-self:center !important;
+    align-self:center !important;
+    width:100% !important;
+    max-width:100% !important
+  }
+  .message-chat .chat-bubble.question {
+    color:#101513 !important;
+    -webkit-text-fill-color:#101513 !important
+  }
+}
+html.theme-dark .instructor-career-toggle > summary,
+html[data-theme="dark"] .instructor-career-toggle > summary,
+body[data-theme="dark"] .instructor-career-toggle > summary {
+  background:#F3F3F0 !important;
+  color:#101513 !important;
+  -webkit-text-fill-color:#101513 !important
+}
+html.theme-dark .instructor-profile-panel .career-card,
+html[data-theme="dark"] .instructor-profile-panel .career-card,
+body[data-theme="dark"] .instructor-profile-panel .career-card {
+  background:rgba(255,255,255,.07) !important
+}
+@media (max-width:760px) {
+  .method .method-row {
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+    margin-top:30px !important
+  }
+  .method .method-item {
+    min-height:160px !important
+  }
+  .fundamentals-media {
+    display:none !important
+  }
+  .fundamentals-card-video {
+    display:block !important;
+    width:100% !important;
+    margin-top:18px !important;
+    overflow:hidden !important;
+    border-radius:14px !important;
+    background:#fff !important
+  }
+  .fundamentals-card-video video {
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+    object-fit:contain !important;
+    border-radius:14px !important;
+    background:#fff !important
+  }
+  .fundamentals-plan {
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important
   }
 }
